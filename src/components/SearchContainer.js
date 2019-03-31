@@ -21,6 +21,8 @@ class SearchContainer extends React.Component {
   }
 }
 
+export default SearchContainer;
+
 // const mapStateToProps = state => {
 //   return {
 //     movie: state.form.movie

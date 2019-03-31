@@ -3,9 +3,13 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './Header';
 import SearchContainer from './SearchContainer';
-import Home from './Home';
-import MovieDetails from './MovieDetails';
+import NowPlaying from './NowPlaying';
+import TopRated from './TopRated';
+import Upcoming from './Upcoming';
+import Trending from './Trending';
+import SelectedMovie from './SelectedMovie';
 import NotFound from './NotFound';
+import Footer from './Footer';
 
 class App extends React.Component {
   render() {
@@ -13,10 +17,16 @@ class App extends React.Component {
       <Router>
         <div>
           <Header />
+          <SearchContainer />
           <Switch>
-            <Route exact path="/" component={Home} />
-            {/* <Route path="/search/:titleId" component={MovieDetails} /> */}
+            <Route exact path="/" component={NowPlaying} />
+            <Route path="/toprated" component={TopRated} />
+            <Route path="/upcoming" component={Upcoming} />
+            <Route path="/trending" component={Trending} />
+            <Route path="/movie/:movieId" component={SelectedMovie} />
+            <Route component={NotFound} />
           </Switch>
+          <Footer />
         </div>
       </Router>
     );
