@@ -1,0 +1,15 @@
+:root {
+  --purple: #d16de6;
+  --grey: #c2c2c2;
+  --white: #f7f7f7;
+  --black: #151616;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
