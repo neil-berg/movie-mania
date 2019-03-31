@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-
-import { movieReducer } from './movieReducer';
 import { reducer as formReducer } from 'redux-form';
+
+import { trendingMoviesReducer } from './movieReducers';
 import { loadingReducer } from './loadingReducer';
 
 export default combineReducers({
-  movie: movieReducer,
+  trendingMovies: trendingMoviesReducer,
   form: formReducer,
   isLoading: loadingReducer
 });

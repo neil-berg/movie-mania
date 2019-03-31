@@ -1,19 +1,14 @@
-import omdb from '../apis/omdb';
+import moviedb from '../apis/moviedb';
 
-export const fetchMovie = title => async dispatch => {
-  // Show loading state
+export const fetchTrendingMovies = () => async dispatch => {
   dispatch(isLoading());
-
-  // Fetch data
-  const response = await omdb.get(
-    `/?t=${title}&apikey=${process.env.REACT_APP_OMDB_KEY}`
+  const response = await moviedb.get(
+    `/trending/movie/week?api_key=${process.env.REACT_APP_MOVIEDB_KEY}`
   );
   dispatch({
-    type: 'FETCH_MOVIE',
-    payload: response.data
+    type: 'TRENDING_MOVIES',
+    payload: response.data.results
   });
-
-  // Remove loading state
   dispatch(isNotLoading());
 };
 
