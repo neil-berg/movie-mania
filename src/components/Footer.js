@@ -13,8 +13,9 @@ const StyledFooter = styled.footer`
 `;
 
 const FooterText = styled.p`
-  margin: 0 0 0.25em 0;
+  margin: 0 0 0.5em 0;
   color: var(--grey);
+  font-size: 0.85em;
 
   a {
     text-decoration: none;
