@@ -26,6 +26,19 @@ export const fetchTrendingMovies = () => async dispatch => {
   dispatch(isNotLoading());
 };
 
+export const fetchComingSoonMovies = (startDate, endDate) => async dispatch => {
+  dispatch(isLoading());
+  const response = await moviedb.get(`/discover/movie?api_key=${
+    process.env.REACT_APP_MOVIEDB_KEY
+  }&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=1&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}
+  `);
+  dispatch({
+    type: 'COMINGSOON_MOVIES',
+    payload: response.data.results
+  });
+  dispatch(isNotLoading());
+};
+
 export const isLoading = () => {
   return {
     type: 'IS_LOADING',

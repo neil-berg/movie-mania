@@ -5,7 +5,7 @@ import Header from './Header';
 import SearchContainer from './SearchContainer';
 import NowPlaying from './NowPlaying';
 import TopRated from './TopRated';
-import Upcoming from './Upcoming';
+import ComingSoon from './ComingSoon';
 import Trending from './Trending';
 import SelectedMovie from './SelectedMovie';
 import NotFound from './NotFound';
@@ -21,7 +21,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={NowPlaying} />
             <Route path="/toprated" component={TopRated} />
-            <Route path="/upcoming" component={Upcoming} />
+            <Route path="/comingsoon" component={ComingSoon} />
             <Route path="/trending" component={Trending} />
             <Route path="/movie/:movieId" component={SelectedMovie} />
             <Route component={NotFound} />

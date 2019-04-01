@@ -8,3 +8,13 @@ export const nowPlayingDates = () => {
 
   return [oneMonthAgoStr, currentDateStr];
 };
+export const comingSoonDates = () => {
+  const currentDate = new Date(Date.now());
+  const oneMonthFromNow = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+  const currentDateStr = `${currentDate.getFullYear()}-${currentDate.getMonth() +
+    1}-${currentDate.getDate()}`;
+  const oneMonthFromNowStr = `${oneMonthFromNow.getFullYear()}-${oneMonthFromNow.getMonth() +
+    1}-${oneMonthFromNow.getDate()}`;
+
+  return [currentDateStr, oneMonthFromNowStr];
+};

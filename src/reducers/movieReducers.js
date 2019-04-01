@@ -15,3 +15,12 @@ export const trendingMoviesReducer = (state = [], action) => {
       return state;
   }
 };
+
+export const comingSoonMoviesReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'COMINGSOON_MOVIES':
+      return action.payload;
+    default:
+      return state;
+  }
+};

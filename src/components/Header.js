@@ -63,7 +63,7 @@ const Header = () => {
           <ListContainer>
             <StyledLink to="/">Now Playing</StyledLink>
             <StyledLink to="/trending">Trending</StyledLink>
-            <StyledLink to="/upcoming">Coming Soon</StyledLink>
+            <StyledLink to="/comingsoon">Coming Soon</StyledLink>
             <StyledLink to="/toprated">Top Rated</StyledLink>
           </ListContainer>
         </RightContainer>

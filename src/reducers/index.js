@@ -3,13 +3,15 @@ import { reducer as formReducer } from 'redux-form';
 
 import {
   nowPlayingMoviesReducer,
-  trendingMoviesReducer
+  trendingMoviesReducer,
+  comingSoonMoviesReducer
 } from './movieReducers';
 import { loadingReducer } from './loadingReducer';
 
 export default combineReducers({
   nowPlayingMovies: nowPlayingMoviesReducer,
   trendingMovies: trendingMoviesReducer,
+  comingSoonMovies: comingSoonMoviesReducer,
   form: formReducer,
   isLoading: loadingReducer
 });

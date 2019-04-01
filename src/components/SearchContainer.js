@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import SearchBar from './SearchBar';
-import { fetchTrendingMovies } from '../actions';
 
 class SearchContainer extends React.Component {
   handleSubmit = () => {
