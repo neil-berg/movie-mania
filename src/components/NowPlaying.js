@@ -14,7 +14,7 @@ class NowPlaying extends React.Component {
   renderList() {
     return this.props.nowPlayingMovies.map(movie => {
       return (
-        <div>
+        <div key={movie.id}>
           <p>{movie.title}</p>
         </div>
       );
