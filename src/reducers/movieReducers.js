@@ -33,3 +33,21 @@ export const topRatedMoviesReducer = (state = [], action) => {
       return state;
   }
 };
+
+export const selectedMovieReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'SELECTED_MOVIE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export const selectedMovieCreditsReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SELECTED_MOVIE_CREDITS':
+      return action.payload;
+    default:
+      return state;
+  }
+};

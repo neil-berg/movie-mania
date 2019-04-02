@@ -4,6 +4,9 @@ import { fetchTopRatedMovies } from '../actions';
 
 class TopRated extends React.Component {
   componentDidMount() {
+    // Genre ID codes:
+    // Action - 28, Comedy - 35, Documentary - 99,
+    // Drama - 18, Horror - 27, SciFi - 898
     const genreId = 878;
     this.props.fetchTopRatedMovies(genreId);
   }

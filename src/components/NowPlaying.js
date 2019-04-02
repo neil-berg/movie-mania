@@ -1,8 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
+import MovieCard from './MovieCard';
 import { fetchNowPlayingMovies } from '../actions';
 import { nowPlayingDates } from '../helper.js';
+
+const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 400px);
+  grid-gap: 1.5em;
+  margin: 1.5em 0;
+  justify-content: center;
+`;
 
 class NowPlaying extends React.Component {
   componentDidMount() {
@@ -12,16 +22,17 @@ class NowPlaying extends React.Component {
   }
 
   renderList() {
-    return this.props.nowPlayingMovies.map(movie => {
-      return (
-        <div key={movie.id}>
-          <p>{movie.title}</p>
-        </div>
-      );
-    });
+    return this.props.nowPlayingMovies.map(movie => (
+      <MovieCard movie={movie} />
+    ));
   }
   render() {
-    return <div>{this.renderList()}</div>;
+    return (
+      <div>
+        <h2 style={{ textAlign: 'center' }}>Now Playing</h2>
+        <CardContainer>{this.renderList()}</CardContainer>
+      </div>
+    );
   }
 }
 

@@ -44,6 +44,8 @@ const StyledLink = styled(Link)`
   padding-bottom: 0.75em;
   color: white;
   text-decoration: none;
+  font-size: 0.9em;
+  font-weight: bold;
 
   a {
     text-decoration: none;

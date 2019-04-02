@@ -5,7 +5,9 @@ import {
   nowPlayingMoviesReducer,
   trendingMoviesReducer,
   comingSoonMoviesReducer,
-  topRatedMoviesReducer
+  topRatedMoviesReducer,
+  selectedMovieReducer,
+  selectedMovieCreditsReducer
 } from './movieReducers';
 import { loadingReducer } from './loadingReducer';
 
@@ -14,6 +16,8 @@ export default combineReducers({
   trendingMovies: trendingMoviesReducer,
   comingSoonMovies: comingSoonMoviesReducer,
   topRatedMovies: topRatedMoviesReducer,
+  selectedMovie: selectedMovieReducer,
+  selectedMovieCredits: selectedMovieCreditsReducer,
   form: formReducer,
   isLoading: loadingReducer
 });
