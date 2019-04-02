@@ -1,6 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+import MovieCard from './MovieCard';
 import { fetchTopRatedMovies } from '../actions';
+
+const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 350px);
+  grid-gap: 1.5em;
+  margin: 1.5em 0;
+  justify-content: center;
+`;
 
 class TopRated extends React.Component {
   componentDidMount() {
@@ -12,12 +23,17 @@ class TopRated extends React.Component {
   }
 
   renderList() {
-    return this.props.topRatedMovies.map(movie => {
-      return <div key={movie.id}>{movie.title}</div>;
-    });
+    return this.props.topRatedMovies.map(movie => (
+      <MovieCard movie={movie} key={movie.id} />
+    ));
   }
   render() {
-    return <div>{this.renderList()}</div>;
+    return (
+      <div>
+        <h2 style={{ textAlign: 'center' }}>Top Rated</h2>
+        <CardContainer>{this.renderList()}</CardContainer>
+      </div>
+    );
   }
 }
 

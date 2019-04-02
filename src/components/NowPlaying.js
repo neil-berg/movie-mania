@@ -8,7 +8,7 @@ import { nowPlayingDates } from '../helper.js';
 
 const CardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, 400px);
+  grid-template-columns: repeat(auto-fit, 350px);
   grid-gap: 1.5em;
   margin: 1.5em 0;
   justify-content: center;
@@ -23,7 +23,7 @@ class NowPlaying extends React.Component {
 
   renderList() {
     return this.props.nowPlayingMovies.map(movie => (
-      <MovieCard movie={movie} />
+      <MovieCard movie={movie} key={movie.id} />
     ));
   }
   render() {
