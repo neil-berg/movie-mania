@@ -24,3 +24,12 @@ export const comingSoonMoviesReducer = (state = [], action) => {
       return state;
   }
 };
+
+export const topRatedMoviesReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'TOPRATED_MOVIES':
+      return action.payload;
+    default:
+      return state;
+  }
+};

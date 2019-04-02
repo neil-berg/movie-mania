@@ -5,7 +5,7 @@ export const fetchNowPlayingMovies = (startDate, endDate) => async dispatch => {
   const response = await moviedb.get(
     `/discover/movie?api_key=${
       process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}`
+    }&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=1&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&with_original_language=en`
   );
   dispatch({
     type: 'NOWPLAYING_MOVIES',
@@ -31,9 +31,23 @@ export const fetchComingSoonMovies = (startDate, endDate) => async dispatch => {
   const response = await moviedb.get(`/discover/movie?api_key=${
     process.env.REACT_APP_MOVIEDB_KEY
   }&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=1&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}
-  `);
+  &with_original_language=en`);
   dispatch({
     type: 'COMINGSOON_MOVIES',
+    payload: response.data.results
+  });
+  dispatch(isNotLoading());
+};
+
+export const fetchTopRatedMovies = genreId => async dispatch => {
+  dispatch(isLoading());
+  const response = await moviedb.get(
+    `/discover/movie?api_key=${
+      process.env.REACT_APP_MOVIEDB_KEY
+    }&language=en-US&sort_by=vote_average.desc&certification_country=US&include_adult=false&include_video=false&page=1&vote_count.gte=100&with_genres=${genreId}&with_original_language=en`
+  );
+  dispatch({
+    type: 'TOPRATED_MOVIES',
     payload: response.data.results
   });
   dispatch(isNotLoading());
