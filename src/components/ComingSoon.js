@@ -22,7 +22,7 @@ class ComingSoon extends React.Component {
 
   renderList() {
     return this.props.comingSoonMovies.map(movie => (
-      <MovieCard movie={movie} />
+      <MovieCard movie={movie} key={movie.id} />
     ));
   }
   render() {

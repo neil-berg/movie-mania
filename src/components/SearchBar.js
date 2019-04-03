@@ -1,6 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const StyledForm = styled.form`
   display: flex;
@@ -26,17 +28,24 @@ const Button = styled.button`
   font-size: 0.85em;
 `;
 
+const StyledIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  color: grey;
+`;
 let SearchBar = props => {
   const { handleSubmit } = props;
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <div className="left">
+      <div className="left" style={{ position: 'relative' }}>
         <StyledField
           name="title"
           component="input"
           type="text"
           placeholder="Movie title"
         />
+        <StyledIcon icon={faSearch} />
       </div>
       <Button type="submit">Search</Button>
     </StyledForm>
