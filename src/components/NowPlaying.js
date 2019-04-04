@@ -12,6 +12,10 @@ const CardContainer = styled.div`
   grid-gap: 1.5em;
   margin: 1.5em 0;
   justify-content: center;
+
+  @media screen and (min-width: 500px) {
+    grid-template-columns: repeat(auto-fit, 410px);
+  }
 `;
 
 class NowPlaying extends React.Component {
