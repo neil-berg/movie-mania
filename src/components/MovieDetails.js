@@ -28,8 +28,8 @@ class MovieDetails extends React.Component {
   }
   render() {
     const { movie } = this.props;
-    // const releaseYear = getReleaseYear(movie);
-    // const certification = getCertification(movie);
+    const releaseYear = getReleaseYear(movie);
+    const certification = getCertification(movie);
     // const genres = getGenres(movie);
     // const trailerKey = getTrailerYouTubeKey(movie);
 
@@ -39,15 +39,15 @@ class MovieDetails extends React.Component {
     return (
       <div>
         <Backdrop imgPath={movie.backdrop_path} />
-        {/* <div className="header">
+        <div className="header">
           <p>
             {movie.title} ({releaseYear})
           </p>
-          <span>{movie.runtime} min</span>
+          {/* <span>{movie.runtime} min</span> */}
           <span>{certification}</span>
-          <span>{genres}</span>
+          {/* <span>{genres}</span> */}
         </div>
-        <p className="overview">{movie.overview}</p>
+        {/* <p className="overview">{movie.overview}</p>
         <p>{movie.vote_average}/10</p>
         <p>{movie.vote_count} votes</p>
         <iframe

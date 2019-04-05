@@ -59,10 +59,16 @@ export const getReleaseYear = movie =>
   new Date(movie.release_date).getFullYear();
 
 export const getCertification = movie => {
-  if (movie.release_dates) {
-    return movie.release_dates.results.filter(
-      item => item.iso_3166_1 === 'US'
-    )[0].release_dates[0].certification;
+  // If release dates exist, return the US certification
+  // or undefined if the US certificate doesn't exist
+
+  try {
+    const certificate = movie.release_dates.results
+      .filter(item => item.iso_3166_1 === 'US')[0]
+      .release_dates.filter(item => item.certification !== '')[0].certification;
+    return certificate;
+  } catch (err) {
+    return undefined;
   }
 };
 
