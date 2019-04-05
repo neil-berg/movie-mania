@@ -1,3 +1,5 @@
+import numeral from 'numeral';
+
 export const nowPlayingDates = () => {
   const currentDate = new Date(Date.now());
   const oneMonthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
@@ -74,7 +76,7 @@ export const getGenres = movie => {
     return movie.genres
       .map(item => item.name)
       .slice(0, 2)
-      .join(',');
+      .join(', ');
   } catch (err) {
     return undefined;
   }
@@ -92,6 +94,28 @@ export const getVideos = movie => {
     );
 
     return [...trailers, ...teasers, ...clips, ...featurettes].slice(0, 4);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+export const getVoteCount = movie => {
+  try {
+    return Number(movie.vote_count).toLocaleString();
+  } catch (err) {
+    return undefined;
+  }
+};
+
+export const getBudgetAndRevenue = movie => {
+  try {
+    const budget = numeral(movie.budget)
+      .format('0a')
+      .toUpperCase();
+    const revenue = numeral(movie.revenue)
+      .format('0a')
+      .toUpperCase();
+    return [budget, revenue];
   } catch (err) {
     return undefined;
   }

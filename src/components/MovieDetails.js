@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { fetchSelectedMovie, fetchSelectedMovieCredits } from '../actions';
 import DetailsBackdrop from './DetailsBackdrop';
+import DetailsOverview from './DetailsOverview';
 
 import {
   getReleaseYear,
@@ -11,16 +12,6 @@ import {
   getGenres,
   getVideos
 } from '../helper';
-
-// const Backdrop = styled.div`
-//   height: 350px;
-//   background-image: url("https://image.tmdb.org/t/p/original${props =>
-//     props.imgPath}");
-//   background-position: center 25%;
-//   background-size: cover;
-//   //filter: grayscale(70%);
-
-// `;
 
 class MovieDetails extends React.Component {
   componentDidMount() {
@@ -41,6 +32,7 @@ class MovieDetails extends React.Component {
     return (
       <div>
         <DetailsBackdrop />
+        <DetailsOverview />
         {/* <Backdrop imgPath={movie.backdrop_path} />
         <div className="header">
           <p>
