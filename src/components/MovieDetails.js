@@ -30,12 +30,12 @@ class MovieDetails extends React.Component {
     const { movie } = this.props;
     const releaseYear = getReleaseYear(movie);
     const certification = getCertification(movie);
-    // const genres = getGenres(movie);
-    // const trailerKey = getTrailerYouTubeKey(movie);
+    const genres = getGenres(movie);
+    const trailerKey = getTrailerYouTubeKey(movie);
 
-    // if (!releaseYear) {
-    //   return null;
-    // }
+    if (!releaseYear) {
+      return null;
+    }
     return (
       <div>
         <Backdrop imgPath={movie.backdrop_path} />
@@ -43,22 +43,23 @@ class MovieDetails extends React.Component {
           <p>
             {movie.title} ({releaseYear})
           </p>
-          {/* <span>{movie.runtime} min</span> */}
+          <span>{movie.runtime} min</span>
           <span>{certification}</span>
-          {/* <span>{genres}</span> */}
+          <span>{genres}</span>
         </div>
-        {/* <p className="overview">{movie.overview}</p>
+        <p className="overview">{movie.overview}</p>
         <p>{movie.vote_average}/10</p>
         <p>{movie.vote_count} votes</p>
         <iframe
-          width="420"
+          width="100%"
           height="315"
           src={`https://www.youtube.com/embed/${trailerKey}`}
           frameBorder="0"
+          style={{ maxWidth: '600px' }}
         />
         <div className="videos">
           <h3>Videos</h3>
-        </div>  */}
+        </div>
       </div>
     );
   }

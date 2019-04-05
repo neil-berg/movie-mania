@@ -70,18 +70,20 @@ export const getCertification = movie => {
 };
 
 export const getGenres = movie => {
-  if (movie.genres) {
+  try {
     return movie.genres
       .map(item => item.name)
       .slice(0, 2)
       .join(',');
+  } catch (err) {
+    return undefined;
   }
 };
 
 export const getTrailerYouTubeKey = movie => {
-  if (movie.videos) {
-    return movie.videos.results.filter(
-      item => item.name === 'Official Trailer'
-    )[0].key;
+  try {
+    return movie.videos.results.filter(item => item.type === 'Trailer')[0].key;
+  } catch (err) {
+    return undefined;
   }
 };
