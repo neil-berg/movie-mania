@@ -62,17 +62,17 @@ export const fetchSelectedMovie = movieId => async dispatch => {
 
   dispatch({
     type: 'SELECTED_MOVIE',
-    payload: response.data.results
+    payload: response.data
   });
 };
+
 export const fetchSelectedMovieCredits = movieId => async dispatch => {
   const response = await moviedb.get(
     `/movie/${movieId}/credits?api_key=${process.env.REACT_APP_MOVIEDB_KEY}`
   );
-
   dispatch({
     type: 'SELECTED_MOVIE_CREDITS',
-    payload: response.data.results
+    payload: response.data
   });
 };
 

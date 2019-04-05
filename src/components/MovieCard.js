@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import {
+  faStar,
+  faArrowRight,
+  faAngleDoubleRight
+} from '@fortawesome/free-solid-svg-icons';
+
+import { overviewSnippet, formatDate, ratingToColor } from '../helper';
 
 const CardContainer = styled.div`
   display: grid;
@@ -41,8 +47,8 @@ const CardContainer = styled.div`
   .header__left p.rating {
     color: var(--black);
     position: absolute;
-    top: 5px;
-    left: 17px;
+    top: ${props => (props.rating !== 10 ? '5px' : '4px')};
+    left: ${props => (props.rating !== 10 ? '17px' : '18px')};
     font-size: 0.85em;
     font-weight: bold;
   }
@@ -65,7 +71,7 @@ const CardContainer = styled.div`
   p.overview {
     grid-area: overview;
     font-size: 0.75em;
-    color: grey;
+    color: var(--black);
     margin: 0;
     padding: 0 1em;
   }
@@ -74,7 +80,8 @@ const CardContainer = styled.div`
     grid-area: link;
     padding: 1em;
     text-decoration: none;
-    font-size: 0.75em;
+    font-size: 0.85em;
+    font-weight: bold;
     align-self: end;
     border-top: 1px solid lightgrey;
     color: var(--black);
@@ -88,6 +95,12 @@ const CardContainer = styled.div`
     background: var(--black);
     color: var(--grey);
     margin-right: 2px;
+  }
+
+  .link__text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   @media screen and (min-width: 500px) {
@@ -108,56 +121,41 @@ const CardContainer = styled.div`
 `;
 
 const MovieCard = ({ movie }) => {
-  // Grab first 35 words of the overview
-  const words = movie.overview.split(' ');
-  const snippet =
-    words.length > 25
-      ? words
-          .slice(0, 25)
-          .concat('...')
-          .join(' ')
-      : words.join(' ');
-
-  const dateFormatted = new Date(movie.release_date)
-    .toString()
-    .split(' ')
-    .slice(1, 4)
-    .join(' ');
-
-  const score = Number(movie.vote_average).toFixed(1);
-  let iconColor = '';
-  if (score >= 7.5) {
-    iconColor = 'var(--green)';
-  } else if (score >= 5.4 && score < 7.5) {
-    iconColor = 'var(--yellow)';
-  } else {
-    iconColor = 'var(--red)';
+  let rating = Number(movie.vote_average).toFixed(1);
+  if (rating == 10.0) {
+    rating = 10;
   }
-
   return (
-    <CardContainer>
+    <CardContainer rating={rating}>
       <img
         src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-        alt="Movie poster"
+        alt={`Movie poster for ${movie.title}`}
       />
       <div className="header">
         <div className="header__left">
-          <FontAwesomeIcon icon={faStar} size="3x" color={iconColor} />
-          <p className="rating">{score}</p>
+          <FontAwesomeIcon
+            icon={faStar}
+            size="3x"
+            color={ratingToColor(rating)}
+          />
+          <p className="rating">{rating > 0 ? rating : 'NA'}</p>
         </div>
         <div className="header__right">
           <p className="title">{movie.title}</p>
-          <p className="release">{dateFormatted}</p>
+          <p className="release">{formatDate(movie.release_date)}</p>
         </div>
       </div>
-      <p className="overview">{snippet}</p>
+      <p className="overview">{overviewSnippet(movie.overview)}</p>
       <Link
         to={`movie/${movie.id}-${movie.title
           .toLowerCase()
           .split(' ')
           .join('-')}`}
       >
-        Cast, trailers, and more ->{' '}
+        <div className="link__text">
+          <span>Cast, trailers, and more</span>
+          <FontAwesomeIcon icon={faAngleDoubleRight} size="lg" />
+        </div>
       </Link>
     </CardContainer>
   );

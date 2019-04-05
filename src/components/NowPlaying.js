@@ -6,7 +6,7 @@ import MovieCard from './MovieCard';
 import { fetchNowPlayingMovies } from '../actions';
 import { nowPlayingDates } from '../helper.js';
 
-const CardContainer = styled.div`
+const CardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, 350px);
   grid-gap: 1.5em;
@@ -34,7 +34,7 @@ class NowPlaying extends React.Component {
     return (
       <div>
         <h2 style={{ textAlign: 'center' }}>Now Playing</h2>
-        <CardContainer>{this.renderList()}</CardContainer>
+        <CardGrid>{this.renderList()}</CardGrid>
       </div>
     );
   }

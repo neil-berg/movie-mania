@@ -5,12 +5,16 @@ import styled from 'styled-components';
 import MovieCard from './MovieCard';
 import { fetchTopRatedMovies } from '../actions';
 
-const CardContainer = styled.div`
+const CardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, 350px);
   grid-gap: 1.5em;
   margin: 1.5em 0;
   justify-content: center;
+
+  @media screen and (min-width: 500px) {
+    grid-template-columns: repeat(auto-fit, 410px);
+  }
 `;
 
 class TopRated extends React.Component {
@@ -31,7 +35,7 @@ class TopRated extends React.Component {
     return (
       <div>
         <h2 style={{ textAlign: 'center' }}>Top Rated</h2>
-        <CardContainer>{this.renderList()}</CardContainer>
+        <CardGrid>{this.renderList()}</CardGrid>
       </div>
     );
   }

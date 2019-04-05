@@ -43,7 +43,7 @@ export const selectedMovieReducer = (state = {}, action) => {
   }
 };
 
-export const selectedMovieCreditsReducer = (state = [], action) => {
+export const selectedMovieCreditsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SELECTED_MOVIE_CREDITS':
       return action.payload;
