@@ -25,6 +25,7 @@ const CardContainer = styled.div`
   img {
     grid-area: poster;
     width: 100%;
+    height: 225px;
   }
 
   .header {
@@ -100,10 +101,10 @@ const CardContainer = styled.div`
   }
 
   @media screen and (min-width: 500px) {
-    grid-template-columns: 180px 230px;
+    grid-template-columns: 150px 260px;
 
     .header__right p.title {
-      font-size: 1.15em;
+      font-size: 1.1em;
     }
 
     .header__right p.release {
@@ -111,7 +112,7 @@ const CardContainer = styled.div`
     }
 
     p.overview {
-      font-size: 0.9em;
+      font-size: 0.8em;
     }
   }
 `;

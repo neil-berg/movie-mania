@@ -23,9 +23,9 @@ export const comingSoonDates = () => {
 export const overviewSnippet = overview => {
   const words = overview.split(' ');
   const snippet =
-    words.length > 25
+    words.length > 20
       ? words
-          .slice(0, 25)
+          .slice(0, 20)
           .concat('...')
           .join(' ')
       : words.join(' ');
@@ -59,9 +59,6 @@ export const getReleaseYear = movie =>
   new Date(movie.release_date).getFullYear();
 
 export const getCertification = movie => {
-  // If release dates exist, return the US certification
-  // or undefined if the US certificate doesn't exist
-
   try {
     const certificate = movie.release_dates.results
       .filter(item => item.iso_3166_1 === 'US')[0]
