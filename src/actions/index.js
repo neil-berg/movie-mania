@@ -57,7 +57,7 @@ export const fetchSelectedMovie = movieId => async dispatch => {
   const response = await moviedb.get(
     `/movie/${movieId}?api_key=${
       process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US&append_to_response=videos`
+    }&language=en-US&append_to_response=videos,release_dates`
   );
 
   dispatch({

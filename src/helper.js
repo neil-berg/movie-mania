@@ -54,3 +54,31 @@ export const ratingToColor = rating => {
   }
   return color;
 };
+
+export const getReleaseYear = movie =>
+  new Date(movie.release_date).getFullYear();
+
+export const getCertification = movie => {
+  if (movie.release_dates) {
+    return movie.release_dates.results.filter(
+      item => item.iso_3166_1 === 'US'
+    )[0].release_dates[0].certification;
+  }
+};
+
+export const getGenres = movie => {
+  if (movie.genres) {
+    return movie.genres
+      .map(item => item.name)
+      .slice(0, 2)
+      .join(',');
+  }
+};
+
+export const getTrailerYouTubeKey = movie => {
+  if (movie.videos) {
+    return movie.videos.results.filter(
+      item => item.name === 'Official Trailer'
+    )[0].key;
+  }
+};

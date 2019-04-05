@@ -2,11 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faStar,
-  faArrowRight,
-  faAngleDoubleRight
-} from '@fortawesome/free-solid-svg-icons';
+import { faStar, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
 import { overviewSnippet, formatDate, ratingToColor } from '../helper';
 
@@ -122,7 +118,7 @@ const CardContainer = styled.div`
 
 const MovieCard = ({ movie }) => {
   let rating = Number(movie.vote_average).toFixed(1);
-  if (rating == 10.0) {
+  if (rating === 10.0) {
     rating = 10;
   }
   return (
