@@ -80,9 +80,18 @@ export const getGenres = movie => {
   }
 };
 
-export const getTrailerYouTubeKey = movie => {
+export const getVideos = movie => {
   try {
-    return movie.videos.results.filter(item => item.type === 'Trailer')[0].key;
+    const trailers = movie.videos.results.filter(
+      item => item.type === 'Trailer'
+    );
+    const teasers = movie.videos.results.filter(item => item.type === 'Teaser');
+    const clips = movie.videos.results.filter(item => item.type === 'Clip');
+    const featurettes = movie.videos.results.filter(
+      item => item.type === 'Featurette'
+    );
+
+    return [...trailers, ...teasers, ...clips, ...featurettes].slice(0, 4);
   } catch (err) {
     return undefined;
   }

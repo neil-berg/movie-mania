@@ -3,22 +3,24 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { fetchSelectedMovie, fetchSelectedMovieCredits } from '../actions';
+import DetailsBackdrop from './DetailsBackdrop';
+
 import {
   getReleaseYear,
   getCertification,
   getGenres,
-  getTrailerYouTubeKey
+  getVideos
 } from '../helper';
 
-const Backdrop = styled.div`
-  height: 350px;
-  background-image: url("https://image.tmdb.org/t/p/original${props =>
-    props.imgPath}");
-  background-position: center 25%;
-  background-size: cover;
-  //filter: grayscale(70%);
+// const Backdrop = styled.div`
+//   height: 350px;
+//   background-image: url("https://image.tmdb.org/t/p/original${props =>
+//     props.imgPath}");
+//   background-position: center 25%;
+//   background-size: cover;
+//   //filter: grayscale(70%);
 
-`;
+// `;
 
 class MovieDetails extends React.Component {
   componentDidMount() {
@@ -28,38 +30,40 @@ class MovieDetails extends React.Component {
   }
   render() {
     const { movie } = this.props;
-    const releaseYear = getReleaseYear(movie);
-    const certification = getCertification(movie);
-    const genres = getGenres(movie);
-    const trailerKey = getTrailerYouTubeKey(movie);
+    // const releaseYear = getReleaseYear(movie);
+    // const certification = getCertification(movie);
+    // const genres = getGenres(movie);
+    // const videos = getVideos(movie);
 
-    if (!releaseYear) {
-      return null;
-    }
+    // if (!releaseYear) {
+    //   return null;
+    // }
     return (
       <div>
-        <Backdrop imgPath={movie.backdrop_path} />
+        <DetailsBackdrop />
+        {/* <Backdrop imgPath={movie.backdrop_path} />
         <div className="header">
           <p>
             {movie.title} ({releaseYear})
           </p>
-          <span>{movie.runtime} min</span>
           <span>{certification}</span>
+          <span>{movie.runtime} min</span>
           <span>{genres}</span>
         </div>
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          alt={`Movie poster for ${movie.title}`}
+        />
         <p className="overview">{movie.overview}</p>
         <p>{movie.vote_average}/10</p>
-        <p>{movie.vote_count} votes</p>
-        <iframe
+        <p>{movie.vote_count} votes</p> */}
+        {/* <iframe
           width="100%"
           height="315"
           src={`https://www.youtube.com/embed/${trailerKey}`}
           frameBorder="0"
           style={{ maxWidth: '600px' }}
-        />
-        <div className="videos">
-          <h3>Videos</h3>
-        </div>
+        /> */}
       </div>
     );
   }
