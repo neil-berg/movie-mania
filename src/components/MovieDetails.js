@@ -6,6 +6,7 @@ import { fetchSelectedMovie, fetchSelectedMovieCredits } from '../actions';
 import DetailsBackdrop from './DetailsBackdrop';
 import DetailsOverview from './DetailsOverview';
 import DetailsVideos from './DetailsVideos';
+import DetailsCast from './DetailsCast';
 
 class MovieDetails extends React.Component {
   componentDidMount() {
@@ -14,26 +15,19 @@ class MovieDetails extends React.Component {
     this.props.fetchSelectedMovieCredits(movieId);
   }
   render() {
-    const { movie } = this.props;
     return (
       <div>
         <DetailsBackdrop />
         <DetailsOverview />
         <DetailsVideos />
+        <DetailsCast />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    movie: state.selectedMovie,
-    movieCredits: state.selectedMovieCredits
-  };
-};
-
 export default connect(
-  mapStateToProps,
+  null,
   {
     fetchSelectedMovie,
     fetchSelectedMovieCredits

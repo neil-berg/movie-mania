@@ -15,12 +15,10 @@ const SubHeader = styled.h3`
 const VideoContainer = styled.div`
   display: flex;
   overflow: scroll;
-  justify-content: space-between;
+  justify-content: ${props =>
+    props.videoList.length > 1 ? 'space-between' : 'center'}
   padding-bottom: 1em;
-
-  @media screen and (min-width: 700px) {
-    justify-content: center;
-  }
+  border-bottom: 1px lightgrey solid;
 `;
 
 const StyledVideo = styled.iframe`
@@ -48,7 +46,7 @@ const DetailsVideos = ({ movie }) => {
   return (
     <div style={{ background: 'var(--black)' }}>
       <SubHeader>Videos</SubHeader>
-      <VideoContainer>{videoList}</VideoContainer>
+      <VideoContainer videoList={videoList}>{videoList}</VideoContainer>
     </div>
   );
 };

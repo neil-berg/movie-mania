@@ -120,3 +120,11 @@ export const getBudgetAndRevenue = movie => {
     return ['NA', 'NA'];
   }
 };
+
+export const getFeaturedCast = cast => {
+  try {
+    return cast.slice(0, 10);
+  } catch (err) {
+    return [];
+  }
+};
