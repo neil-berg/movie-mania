@@ -15,21 +15,11 @@ class MovieDetails extends React.Component {
   }
   render() {
     const { movie } = this.props;
-    // if (!releaseYear) {
-    //   return null;
-    // }
     return (
       <div>
         <DetailsBackdrop />
         <DetailsOverview />
         <DetailsVideos />
-        {/* <iframe
-          width="100%"
-          height="315"
-          src={`https://www.youtube.com/embed/${trailerKey}`}
-          frameBorder="0"
-          style={{ maxWidth: '600px' }}
-        /> */}
       </div>
     );
   }
