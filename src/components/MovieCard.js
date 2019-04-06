@@ -13,13 +13,13 @@ const CardContainer = styled.div`
     'poster header'
     'poster overview'
     'poster link';
-  border: 1px lightgrey solid;
+  border: 1px grey solid;
   border-radius: 3px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 2px 2px grey;
   transition: all 0.2s ease-in;
 
   :hover {
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 4px 4px grey;
   }
 
   img {
@@ -55,7 +55,7 @@ const CardContainer = styled.div`
     padding: 0.25em;
     font-size: 0.9em;
     font-weight: bold;
-    color: var(--black);
+    color: white;
   }
 
   .header__right p.release {
@@ -68,7 +68,7 @@ const CardContainer = styled.div`
   p.overview {
     grid-area: overview;
     font-size: 0.75em;
-    color: var(--black);
+    color: white;
     margin: 0;
     padding: 0 1em;
   }
@@ -78,10 +78,10 @@ const CardContainer = styled.div`
     padding: 1em;
     text-decoration: none;
     font-size: 0.85em;
-    font-weight: bold;
+    //font-weight: bold;
     align-self: end;
-    border-top: 1px solid lightgrey;
-    color: var(--black);
+    border-top: 1px solid grey;
+    color: lightgrey;
     transition: all 0.2s ease-in;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -89,9 +89,9 @@ const CardContainer = styled.div`
   }
 
   a:hover {
-    background: var(--black);
-    color: var(--grey);
-    margin-right: 2px;
+    //background: var(--green);
+    color: var(--green);
+    //margin-right: 1px;
   }
 
   .link__text {

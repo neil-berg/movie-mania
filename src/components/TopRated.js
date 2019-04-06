@@ -9,12 +9,21 @@ const CardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, 350px);
   grid-gap: 1.5em;
-  margin: 1.5em 0;
+  padding: 1.5em 0;
   justify-content: center;
+  background: var(--black);
 
   @media screen and (min-width: 500px) {
     grid-template-columns: repeat(auto-fit, 410px);
   }
+`;
+
+const PageTitle = styled.h2`
+  text-align: center;
+  background: var(--black);
+  color: var(--green);
+  margin: 0;
+  padding-top: 1em;
 `;
 
 class TopRated extends React.Component {
@@ -34,7 +43,7 @@ class TopRated extends React.Component {
   render() {
     return (
       <div>
-        <h2 style={{ textAlign: 'center' }}>Top Rated</h2>
+        <PageTitle>Top Rated</PageTitle>
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
     );

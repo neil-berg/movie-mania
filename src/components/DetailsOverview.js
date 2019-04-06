@@ -80,7 +80,7 @@ const OverviewGrid = styled.div`
 
   .text .big {
     color: white;
-    font-size: 1.5em;
+    font-size: 1.25em;
   }
 
   .text .small {
@@ -117,7 +117,6 @@ const DetailsOverview = ({ movie }) => {
   const videos = getVideos(movie);
   const voteCount = getVoteCount(movie);
   const [budget, revenue] = getBudgetAndRevenue(movie);
-
   return (
     <OverviewGrid>
       <div className="title-specs">
@@ -126,7 +125,9 @@ const DetailsOverview = ({ movie }) => {
         </p>
         <div className="specs">
           <span className="certification">{certification}</span>
-          <span className="runtime">{movie.runtime} min</span>
+          <span className="runtime">
+            {movie.runtime ? movie.runtime : 'NA'} min
+          </span>
           <span className="genres">{genres}</span>
         </div>
       </div>

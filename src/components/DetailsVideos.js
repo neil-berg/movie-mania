@@ -19,7 +19,6 @@ const StyledVideo = styled.iframe`
 
 const DetailsVideos = ({ movie }) => {
   const videos = getVideos(movie);
-  console.log(videos);
   const videoList = videos.map(video => {
     return (
       <StyledVideo

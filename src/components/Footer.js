@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as AwardsSVG } from '../svg/undraw_awards_fieb.svg';
 
 const StyledFooter = styled.footer`
-  border-top: 2px solid var(--black);
+  border-top: 1px solid lightgrey;
   display: flex;
   flex-direction: column;
   align-items: center;
