@@ -5,13 +5,7 @@ import styled from 'styled-components';
 import { fetchSelectedMovie, fetchSelectedMovieCredits } from '../actions';
 import DetailsBackdrop from './DetailsBackdrop';
 import DetailsOverview from './DetailsOverview';
-
-import {
-  getReleaseYear,
-  getCertification,
-  getGenres,
-  getVideos
-} from '../helper';
+import DetailsVideos from './DetailsVideos';
 
 class MovieDetails extends React.Component {
   componentDidMount() {
@@ -21,11 +15,6 @@ class MovieDetails extends React.Component {
   }
   render() {
     const { movie } = this.props;
-    // const releaseYear = getReleaseYear(movie);
-    // const certification = getCertification(movie);
-    // const genres = getGenres(movie);
-    // const videos = getVideos(movie);
-
     // if (!releaseYear) {
     //   return null;
     // }
@@ -33,22 +22,7 @@ class MovieDetails extends React.Component {
       <div>
         <DetailsBackdrop />
         <DetailsOverview />
-        {/* <Backdrop imgPath={movie.backdrop_path} />
-        <div className="header">
-          <p>
-            {movie.title} ({releaseYear})
-          </p>
-          <span>{certification}</span>
-          <span>{movie.runtime} min</span>
-          <span>{genres}</span>
-        </div>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          alt={`Movie poster for ${movie.title}`}
-        />
-        <p className="overview">{movie.overview}</p>
-        <p>{movie.vote_average}/10</p>
-        <p>{movie.vote_count} votes</p> */}
+        <DetailsVideos />
         {/* <iframe
           width="100%"
           height="315"

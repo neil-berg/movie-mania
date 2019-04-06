@@ -14,9 +14,13 @@ import {
 } from '../helper';
 
 const OverviewGrid = styled.div`
+  background: var(--black);
+
   .title-specs {
     background: var(--black);
     padding: 1em;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .title {
@@ -57,6 +61,8 @@ const OverviewGrid = styled.div`
     color: white;
     font-size: 0.75em;
     display: flex;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .rating,
@@ -80,6 +86,27 @@ const OverviewGrid = styled.div`
   .text .small {
     color: lightgrey;
     font-size: 1em;
+  }
+
+  .overview {
+    display: flex;
+    align-items: center;
+    background: var(--black);
+    border-top: 1px grey solid;
+    border-bottom: 1px grey solid;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .overview .overview__poster {
+    width: 150px;
+    height: 100%;
+  }
+
+  .overview .overview__text {
+    font-size: 0.8em;
+    color: white;
+    padding: 0 1em;
   }
 `;
 
@@ -112,7 +139,7 @@ const DetailsOverview = ({ movie }) => {
                 {movie.vote_average > 0 ? movie.vote_average : 'NA'}
               </span>
               <span className="small">
-                {movie.vote_average > 0 ? '/10' : ''}
+                {movie.vote_average > 0 ? ' / 10' : ''}
               </span>
             </div>
             <span className="small">{voteCount} votes</span>
@@ -125,10 +152,22 @@ const DetailsOverview = ({ movie }) => {
             size="2x"
           />
           <div className="text">
-            <span className="small">Budget: ${budget}</span>
-            <span className="small">Revenue: ${revenue}</span>
+            <span className="small">
+              Budget: {budget !== '0' ? `$${budget}` : 'NA'}
+            </span>
+            <span className="small">
+              Revenue: {revenue !== '0' ? `$${revenue}` : 'NA'}
+            </span>
           </div>
         </div>
+      </div>
+      <div className="overview">
+        <img
+          className="overview__poster"
+          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          alt={`Movie poster for ${movie.title}`}
+        />
+        <p className="overview__text">{movie.overview}</p>
       </div>
     </OverviewGrid>
   );

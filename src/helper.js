@@ -93,9 +93,9 @@ export const getVideos = movie => {
       item => item.type === 'Featurette'
     );
 
-    return [...trailers, ...teasers, ...clips, ...featurettes].slice(0, 4);
+    return [...trailers, ...teasers, ...clips, ...featurettes].slice(0, 5);
   } catch (err) {
-    return undefined;
+    return [];
   }
 };
 

@@ -122,7 +122,7 @@ const MovieCard = ({ movie }) => {
   if (rating === '10.0') {
     rating = '10';
   }
-  console.log(rating);
+
   return (
     <CardContainer rating={rating}>
       <img
