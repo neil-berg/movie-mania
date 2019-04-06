@@ -67,7 +67,7 @@ export const getCertification = movie => {
       .release_dates.filter(item => item.certification !== '')[0].certification;
     return certificate;
   } catch (err) {
-    return undefined;
+    return 'NA';
   }
 };
 
@@ -78,7 +78,7 @@ export const getGenres = movie => {
       .slice(0, 2)
       .join(', ');
   } catch (err) {
-    return undefined;
+    return 'NA';
   }
 };
 
@@ -103,7 +103,7 @@ export const getVoteCount = movie => {
   try {
     return Number(movie.vote_count).toLocaleString();
   } catch (err) {
-    return undefined;
+    return 'NA';
   }
 };
 
@@ -117,6 +117,6 @@ export const getBudgetAndRevenue = movie => {
       .toUpperCase();
     return [budget, revenue];
   } catch (err) {
-    return undefined;
+    return ['NA', 'NA'];
   }
 };

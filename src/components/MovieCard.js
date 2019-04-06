@@ -118,10 +118,11 @@ const CardContainer = styled.div`
 `;
 
 const MovieCard = ({ movie }) => {
-  let rating = Number(movie.vote_average).toFixed(1);
-  if (rating === 10.0) {
-    rating = 10;
+  let rating = movie.vote_average.toFixed(1);
+  if (rating === '10.0') {
+    rating = '10';
   }
+  console.log(rating);
   return (
     <CardContainer rating={rating}>
       <img
