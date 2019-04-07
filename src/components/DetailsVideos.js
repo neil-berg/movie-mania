@@ -11,15 +11,21 @@ const SubHeader = styled.h3`
   text-align: left;
   font-size: 1.2em;
   font-weight: 400;
+
+  @media screen and (min-width: 450px) {
+    text-align: center;
+  }
 `;
 
 const VideoContainer = styled.div`
   display: flex;
   overflow: scroll;
-  justify-content: ${props =>
-    props.videoList.length > 1 ? 'space-between' : 'center'}
   padding-bottom: 1em;
   border-bottom: 1px grey solid;
+  @media screen and (min-width: 450px) {
+    justify-content: ${props =>
+      props.videoList.length > 1 ? 'space-between' : 'center'};
+  }
 `;
 
 const StyledVideo = styled.iframe`

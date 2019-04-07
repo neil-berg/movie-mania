@@ -11,12 +11,20 @@ const SubHeader = styled.h3`
   text-align: left;
   font-size: 1.2em;
   font-weight: 400;
+
+  @media screen and (min-width: 450px) {
+    text-align: center;
+  }
 `;
 
 const CastContainer = styled.div`
   display: flex;
   overflow: scroll;
   padding: 1em 0;
+
+  @media screen and (min-width: 450px) {
+    justify-content: space-between;
+  }
 `;
 
 const CastCard = styled.div`
