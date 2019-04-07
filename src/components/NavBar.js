@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
   faSearch,
-  faWindowClose
+  faTimes,
+  faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons';
 
 const Nav = styled.nav`
@@ -30,24 +31,60 @@ const Nav = styled.nav`
       display: none;
     }
   }
+`;
 
-  .sidedrawer {
-    margin: 0;
-    padding: 0;
-    border: 1px red solid;
-    height: 100vh;
-    width: 80vw;
-    background: var(--black);
+const Sidedrawer = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border: 1px grey solid;
+  height: 100vh;
+  width: 80vw;
+  background: linear-gradient(to bottom, var(--blue) 20%, var(--black));
+  display: flex;
+  z-index: 2;
+  flex-direction: column;
+  align-items: start;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: ${props => (props.sidedrawerOpen ? '' : 'translateX(-100%)')};
+  transition: transform 0.3s ease-out;
+
+  .sidedrawer__item {
+    border-bottom: 1px var(--black) solid;
+    width: 100%;
+    font-size: 1.25em;
     display: flex;
-    z-index: 2;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: ${props => (props.sidedrawerOpen ? '' : 'translateX(-100%)')};
-    transition: transform 0.3s ease-out;
+    justify-content: space-between;
+  }
+
+  .sidedrawer__item:first-child {
+    padding: 1em;
+    display: flex;
+    justify-content: flex-end;
+    color: var(--yellow);
+  }
+
+  .sidedrawer__item a {
+    color: white;
+    padding: 1em;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .sidedrawer__item .link__text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease-in;
+  }
+
+  .sidedrawer__item .link__text:hover {
+    color: var(--yellow);
   }
 `;
 
@@ -65,7 +102,6 @@ const ListContainer = styled.ul`
 `;
 
 const StyledLink = styled(Link)`
-  margin: 0 1em;
   color: white;
   text-decoration: none;
   font-size: 0.9em;
@@ -78,7 +114,7 @@ const StyledLink = styled(Link)`
 
 class NavBar extends React.Component {
   state = {
-    sidedrawerOpen: false
+    sidedrawerOpen: true
   };
 
   openSidedrawer = () => {
@@ -97,11 +133,7 @@ class NavBar extends React.Component {
     return (
       <Nav sidedrawerOpen={this.state.sidedrawerOpen}>
         <div className="bars-icon">
-          <FontAwesomeIcon
-            icon={faBars}
-            size="lg"
-            onClick={this.openSidedrawer}
-          />
+          <FontAwesomeIcon icon={faBars} onClick={this.openSidedrawer} />
         </div>
 
         <ListContainer>
@@ -111,24 +143,50 @@ class NavBar extends React.Component {
           <StyledLink to="/toprated">Top Rated</StyledLink>
         </ListContainer>
 
-        <ul className="sidedrawer">
-          <FontAwesomeIcon
-            icon={faWindowClose}
-            onClick={this.closeSidedrawer}
-          />
-          <StyledLink to="/" onClick={this.closeSidedrawer}>
-            Now Playing
-          </StyledLink>
-          <StyledLink to="/trending" onClick={this.closeSidedrawer}>
-            Trending
-          </StyledLink>
-          <StyledLink to="/comingsoon" onClick={this.closeSidedrawer}>
-            Coming Soon
-          </StyledLink>
-          <StyledLink to="/toprated" onClick={this.closeSidedrawer}>
-            Top Rated
-          </StyledLink>
-        </ul>
+        <Sidedrawer
+          className="sidedrawer"
+          sidedrawerOpen={this.state.sidedrawerOpen}
+        >
+          <li className="sidedrawer__item">
+            <FontAwesomeIcon
+              className="icon-close"
+              icon={faTimes}
+              onClick={this.closeSidedrawer}
+            />
+          </li>
+          <li className="sidedrawer__item">
+            <Link to="/" onClick={this.closeSidedrawer}>
+              <div className="link__text">
+                <span>Now Playing</span>
+                <FontAwesomeIcon icon={faAngleDoubleRight} />
+              </div>
+            </Link>
+          </li>
+          <li className="sidedrawer__item">
+            <Link to="/trending" onClick={this.closeSidedrawer}>
+              <div className="link__text">
+                <span>Trending</span>
+                <FontAwesomeIcon icon={faAngleDoubleRight} />
+              </div>
+            </Link>
+          </li>
+          <li className="sidedrawer__item">
+            <Link to="/comingsoon" onClick={this.closeSidedrawer}>
+              <div className="link__text">
+                <span>Coming Soon</span>
+                <FontAwesomeIcon icon={faAngleDoubleRight} />
+              </div>
+            </Link>
+          </li>
+          <li className="sidedrawer__item">
+            <Link to="/toprated" onClick={this.closeSidedrawer}>
+              <div className="link__text">
+                <span>Top Rated</span>
+                <FontAwesomeIcon icon={faAngleDoubleRight} />
+              </div>
+            </Link>
+          </li>
+        </Sidedrawer>
 
         <div className="search-icon">
           <FontAwesomeIcon icon={faSearch} />
