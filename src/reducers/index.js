@@ -10,6 +10,7 @@ import {
   selectedMovieCreditsReducer
 } from './movieReducers';
 import { loadingReducer } from './loadingReducer';
+import { sidedrawerReducer } from './sidedrawerReducer';
 
 export default combineReducers({
   nowPlayingMovies: nowPlayingMoviesReducer,
@@ -19,5 +20,6 @@ export default combineReducers({
   selectedMovie: selectedMovieReducer,
   selectedMovieCredits: selectedMovieCreditsReducer,
   form: formReducer,
-  isLoading: loadingReducer
+  isLoading: loadingReducer,
+  sidedrawerOpen: sidedrawerReducer
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +9,8 @@ import {
   faTimes,
   faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons';
+
+import { openSidedrawer, closeSidedrawer } from '../actions';
 
 const Nav = styled.nav`
   display: flex;
@@ -39,7 +42,7 @@ const Sidedrawer = styled.ul`
   list-style-type: none;
   border: 1px grey solid;
   height: 100vh;
-  width: 80vw;
+  width: 100vw;
   background: linear-gradient(to bottom, var(--blue) 20%, var(--black));
   display: flex;
   z-index: 2;
@@ -113,27 +116,13 @@ const StyledLink = styled(Link)`
 `;
 
 class NavBar extends React.Component {
-  state = {
-    sidedrawerOpen: true
-  };
-
-  openSidedrawer = () => {
-    this.setState({
-      sidedrawerOpen: true
-    });
-  };
-
-  closeSidedrawer = () => {
-    this.setState({
-      sidedrawerOpen: false
-    });
-  };
-
   render() {
+    const { sidedrawerOpen, closeSidedrawer, openSidedrawer } = this.props;
+
     return (
-      <Nav sidedrawerOpen={this.state.sidedrawerOpen}>
+      <Nav sidedrawerOpen={sidedrawerOpen}>
         <div className="bars-icon">
-          <FontAwesomeIcon icon={faBars} onClick={this.openSidedrawer} />
+          <FontAwesomeIcon icon={faBars} onClick={() => openSidedrawer()} />
         </div>
 
         <ListContainer>
@@ -143,19 +132,16 @@ class NavBar extends React.Component {
           <StyledLink to="/toprated">Top Rated</StyledLink>
         </ListContainer>
 
-        <Sidedrawer
-          className="sidedrawer"
-          sidedrawerOpen={this.state.sidedrawerOpen}
-        >
+        <Sidedrawer className="sidedrawer" sidedrawerOpen={sidedrawerOpen}>
           <li className="sidedrawer__item">
             <FontAwesomeIcon
               className="icon-close"
               icon={faTimes}
-              onClick={this.closeSidedrawer}
+              onClick={() => closeSidedrawer()}
             />
           </li>
           <li className="sidedrawer__item">
-            <Link to="/" onClick={this.closeSidedrawer}>
+            <Link to="/" onClick={() => closeSidedrawer()}>
               <div className="link__text">
                 <span>Now Playing</span>
                 <FontAwesomeIcon icon={faAngleDoubleRight} />
@@ -163,7 +149,7 @@ class NavBar extends React.Component {
             </Link>
           </li>
           <li className="sidedrawer__item">
-            <Link to="/trending" onClick={this.closeSidedrawer}>
+            <Link to="/trending" onClick={() => closeSidedrawer()}>
               <div className="link__text">
                 <span>Trending</span>
                 <FontAwesomeIcon icon={faAngleDoubleRight} />
@@ -171,7 +157,7 @@ class NavBar extends React.Component {
             </Link>
           </li>
           <li className="sidedrawer__item">
-            <Link to="/comingsoon" onClick={this.closeSidedrawer}>
+            <Link to="/comingsoon" onClick={() => closeSidedrawer()}>
               <div className="link__text">
                 <span>Coming Soon</span>
                 <FontAwesomeIcon icon={faAngleDoubleRight} />
@@ -179,7 +165,7 @@ class NavBar extends React.Component {
             </Link>
           </li>
           <li className="sidedrawer__item">
-            <Link to="/toprated" onClick={this.closeSidedrawer}>
+            <Link to="/toprated" onClick={() => closeSidedrawer()}>
               <div className="link__text">
                 <span>Top Rated</span>
                 <FontAwesomeIcon icon={faAngleDoubleRight} />
@@ -196,4 +182,16 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+const mapStateToProps = state => {
+  return {
+    sidedrawerOpen: state.sidedrawerOpen
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    openSidedrawer,
+    closeSidedrawer
+  }
+)(NavBar);

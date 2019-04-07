@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
-import { fetchComingSoonMovies } from '../actions';
+import { fetchComingSoonMovies, closeSidedrawer } from '../actions';
 import { comingSoonDates } from '../helper';
 
 const CardGrid = styled.div`
@@ -38,7 +38,7 @@ class ComingSoon extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Coming Soon</PageTitle>
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
@@ -55,6 +55,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    fetchComingSoonMovies
+    fetchComingSoonMovies,
+    closeSidedrawer
   }
 )(ComingSoon);

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
-import { fetchTrendingMovies } from '../actions';
+import { fetchTrendingMovies, closeSidedrawer } from '../actions';
 
 const CardGrid = styled.div`
   display: grid;
@@ -37,7 +37,7 @@ class Trending extends React.Component {
 
   render() {
     return (
-      <div>
+      <div onClick={() => this.closeSidedrawer()}>
         <PageTitle>Trending</PageTitle>
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
@@ -54,6 +54,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    fetchTrendingMovies
+    fetchTrendingMovies,
+    closeSidedrawer
   }
 )(Trending);

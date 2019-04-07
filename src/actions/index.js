@@ -76,6 +76,18 @@ export const fetchSelectedMovieCredits = movieId => async dispatch => {
   });
 };
 
+export const openSidedrawer = () => {
+  return {
+    type: 'OPEN_SIDEDRAWER'
+  };
+};
+
+export const closeSidedrawer = () => {
+  return {
+    type: 'CLOSE_SIDEDRAWER'
+  };
+};
+
 export const isLoading = () => {
   return {
     type: 'IS_LOADING',

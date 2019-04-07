@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
-import { fetchTopRatedMovies } from '../actions';
+import { fetchTopRatedMovies, closeSidedrawer } from '../actions';
 
 const CardGrid = styled.div`
   display: grid;
@@ -40,7 +40,7 @@ class TopRated extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Top Rated</PageTitle>
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
@@ -57,6 +57,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    fetchTopRatedMovies
+    fetchTopRatedMovies,
+    closeSidedrawer
   }
 )(TopRated);

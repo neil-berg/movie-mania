@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
-import { fetchNowPlayingMovies } from '../actions';
+import { fetchNowPlayingMovies, closeSidedrawer } from '../actions';
 import { nowPlayingDates } from '../helper.js';
 
 const CardGrid = styled.div`
@@ -39,7 +39,7 @@ class NowPlaying extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Now Playing</PageTitle>
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
@@ -56,6 +56,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    fetchNowPlayingMovies
+    fetchNowPlayingMovies,
+    closeSidedrawer
   }
 )(NowPlaying);
