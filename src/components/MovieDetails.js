@@ -7,6 +7,7 @@ import DetailsBackdrop from './DetailsBackdrop';
 import DetailsOverview from './DetailsOverview';
 import DetailsVideos from './DetailsVideos';
 import DetailsCast from './DetailsCast';
+import DetailsCrew from './DetailsCrew';
 
 class MovieDetails extends React.Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class MovieDetails extends React.Component {
       <div>
         <DetailsBackdrop />
         <DetailsOverview />
+        <DetailsCrew />
         <DetailsVideos />
         <DetailsCast />
       </div>

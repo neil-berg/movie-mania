@@ -6,10 +6,11 @@ import { getFeaturedCast } from '../helper';
 
 const SubHeader = styled.h3`
   margin: 0;
-  padding: 0.5em;
+  padding: 1em 0em 0.5em 1em;
   color: var(--green);
-  text-align: center;
-  font-size: 1.25em;
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: 400;
 `;
 
 const CastContainer = styled.div`
@@ -25,8 +26,9 @@ const CastCard = styled.div`
   margin-left: 1em;
 
   .profile_photo {
-    width: 150px;
+    width: 125px;
     height: auto;
+    flex-basis: 187.5px;
   }
 
   .name,
@@ -35,6 +37,7 @@ const CastCard = styled.div`
     font-size: 0.85em;
     padding: 0.5em 0 0 0;
     margin: 0;
+    text-align: center;
   }
 
   .character {
@@ -53,8 +56,10 @@ const DetailsCast = ({ cast }) => {
           src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
           alt={`Profile photo for ${item.name}`}
         />
-        <p className="name">{item.name}</p>
-        <p className="character">{item.character}</p>
+        <div>
+          <p className="name">{item.name}</p>
+          <p className="character">{item.character}</p>
+        </div>
       </CastCard>
     );
   });

@@ -128,3 +128,35 @@ export const getFeaturedCast = cast => {
     return [];
   }
 };
+
+export const getDirectors = crew => {
+  try {
+    return crew
+      .filter(item => item.job === 'Director')
+      .map(item => item.name)
+      .join(', ');
+  } catch (err) {
+    return [];
+  }
+};
+
+export const getWriters = crew => {
+  try {
+    return crew
+      .filter(item => item.job === 'Writer')
+      .map(item => item.name)
+      .join(', ');
+  } catch (err) {
+    return [];
+  }
+};
+export const getProducers = crew => {
+  try {
+    return crew
+      .filter(item => item.job === 'Producer')
+      .map(item => item.name)
+      .join(', ');
+  } catch (err) {
+    return [];
+  }
+};

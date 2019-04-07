@@ -6,10 +6,11 @@ import { getVideos } from '../helper';
 
 const SubHeader = styled.h3`
   margin: 0;
-  padding: 0.5em;
+  padding: 1em 0em 0.75em 1em;
   color: var(--green);
-  text-align: center;
-  font-size: 1.25em;
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: 400;
 `;
 
 const VideoContainer = styled.div`
@@ -18,7 +19,7 @@ const VideoContainer = styled.div`
   justify-content: ${props =>
     props.videoList.length > 1 ? 'space-between' : 'center'}
   padding-bottom: 1em;
-  border-bottom: 1px lightgrey solid;
+  border-bottom: 1px grey solid;
 `;
 
 const StyledVideo = styled.iframe`
