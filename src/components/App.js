@@ -11,6 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import Header from './Header';
+import NavBar from './NavBar';
 import SearchContainer from './SearchContainer';
 import NowPlaying from './NowPlaying';
 import TopRated from './TopRated';
@@ -35,7 +36,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Header />
-          <SearchContainer />
+          <NavBar />
           <Switch>
             <Route exact path="/" component={NowPlaying} />
             <Route path="/toprated" component={TopRated} />

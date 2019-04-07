@@ -11,7 +11,6 @@ const CardGrid = styled.div`
   grid-gap: 1.5em;
   padding: 1.5em 0;
   justify-content: center;
-  background: var(--black);
 
   @media screen and (min-width: 500px) {
     grid-template-columns: repeat(auto-fit, 410px);
@@ -20,7 +19,6 @@ const CardGrid = styled.div`
 
 const PageTitle = styled.h2`
   text-align: center;
-  background: var(--black);
   color: var(--green);
   margin: 0;
   padding-top: 1em;

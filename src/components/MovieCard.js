@@ -78,7 +78,6 @@ const CardContainer = styled.div`
     padding: 1em;
     text-decoration: none;
     font-size: 0.85em;
-    //font-weight: bold;
     align-self: end;
     border-top: 1px solid grey;
     color: lightgrey;
@@ -89,9 +88,7 @@ const CardContainer = styled.div`
   }
 
   a:hover {
-    //background: var(--green);
     color: var(--green);
-    //margin-right: 1px;
   }
 
   .link__text {
