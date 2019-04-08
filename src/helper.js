@@ -150,13 +150,11 @@ export const getWriters = crew => {
     return [];
   }
 };
-export const getProducers = crew => {
+
+export const getSearchValue = movie => {
   try {
-    return crew
-      .filter(item => item.job === 'Producer')
-      .map(item => item.name)
-      .join(', ');
+    return movie.values.title;
   } catch (err) {
-    return [];
+    return '';
   }
 };

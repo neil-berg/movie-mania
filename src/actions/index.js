@@ -100,6 +100,13 @@ export const closeSearchBar = () => {
   };
 };
 
+export const setSearchValue = value => {
+  return {
+    type: 'SET_SEARCH_VALUE',
+    payload: value
+  };
+};
+
 export const isLoading = () => {
   return {
     type: 'IS_LOADING',

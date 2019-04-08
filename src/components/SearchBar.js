@@ -42,13 +42,17 @@ const StyledField = styled(Field)`
 
 const Button = styled.button`
   border: none;
+  background: white;
   color: var(--black);
   font-size: 0.85em;
   cursor: pointer;
 `;
 
+const required = value => (value ? undefined : 'Required');
+
 let SearchBar = props => {
-  const { handleSubmit, searchBarOpen, closeSearchBar } = props;
+  const { handleSubmit, searchBarOpen, closeSearchBar, valid, reset } = props;
+
   return (
     <Wrapper searchBarOpen={searchBarOpen}>
       <FontAwesomeIcon
@@ -62,17 +66,24 @@ let SearchBar = props => {
           component="input"
           type="text"
           placeholder="Enter movie title"
+          validate={[required]}
         />
-        <Button type="submit" onClick={() => closeSearchBar()}>
-          Search
-        </Button>
+        {valid ? (
+          <Button type="submit" onClick={() => closeSearchBar()}>
+            Search
+          </Button>
+        ) : (
+          <Button type="button" disabled>
+            Search
+          </Button>
+        )}
       </StyledForm>
     </Wrapper>
   );
 };
 
 SearchBar = reduxForm({
-  form: 'movie'
+  form: 'movieForm'
 })(SearchBar);
 
 const mapStateToProps = state => {

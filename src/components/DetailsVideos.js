@@ -22,10 +22,7 @@ const VideoContainer = styled.div`
   overflow: scroll;
   padding-bottom: 1em;
   border-bottom: 1px grey solid;
-  @media screen and (min-width: 450px) {
-    justify-content: ${props =>
-      props.videoList.length === 1 || 2 ? 'center' : 'space-between'};
-  }
+  justify-content: ${props => (props.videoList.length === 1 ? 'center' : '')};
 `;
 
 const StyledVideo = styled.iframe`

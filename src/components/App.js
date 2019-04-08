@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  withRouter
+} from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faThermometerFull,
@@ -12,12 +17,12 @@ import {
 
 import Header from './Header';
 import NavBar from './NavBar';
-import SearchContainer from './SearchContainer';
 import NowPlaying from './NowPlaying';
 import TopRated from './TopRated';
 import ComingSoon from './ComingSoon';
 import Trending from './Trending';
 import MovieDetails from './MovieDetails';
+import MovieSearchResults from './MovieSearchResults';
 import NotFound from './NotFound';
 import Footer from './Footer';
 
@@ -43,6 +48,10 @@ class App extends React.Component {
             <Route path="/comingsoon" component={ComingSoon} />
             <Route path="/trending" component={Trending} />
             <Route path="/movie/:movieId" component={MovieDetails} />
+            <Route
+              path="/search/:searchId"
+              render={props => <MovieSearchResults {...props} />}
+            />
             <Route component={NotFound} />
           </Switch>
           <Footer />

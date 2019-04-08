@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -28,16 +28,13 @@ const Nav = styled.nav`
   .search-icon {
     margin: 0;
     padding: 0 1em;
+    cursor: pointer;
   }
 
   .bars-icon {
     @media screen and (min-width: 600px) {
       display: none;
     }
-  }
-
-  .search-icon {
-    cursor: pointer;
   }
 `;
 
