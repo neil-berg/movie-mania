@@ -37,7 +37,7 @@ class Trending extends React.Component {
 
   render() {
     return (
-      <div onClick={() => this.closeSidedrawer()}>
+      <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Trending</PageTitle>
         <CardGrid>{this.renderList()}</CardGrid>
       </div>

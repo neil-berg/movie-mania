@@ -8,7 +8,6 @@ import {
   getReleaseYear,
   getCertification,
   getGenres,
-  getVideos,
   getVoteCount,
   getBudgetAndRevenue
 } from '../helper';
@@ -114,7 +113,6 @@ const DetailsOverview = ({ movie }) => {
   const releaseYear = getReleaseYear(movie);
   const certification = getCertification(movie);
   const genres = getGenres(movie);
-  const videos = getVideos(movie);
   const voteCount = getVoteCount(movie);
   const [budget, revenue] = getBudgetAndRevenue(movie);
   return (

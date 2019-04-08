@@ -10,7 +10,8 @@ import {
   faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons';
 
-import { openSidedrawer, closeSidedrawer } from '../actions';
+import { openSidedrawer, closeSidedrawer, openSearchBar } from '../actions';
+import SearchContainer from './SearchContainer';
 
 const Nav = styled.nav`
   display: flex;
@@ -33,6 +34,10 @@ const Nav = styled.nav`
     @media screen and (min-width: 600px) {
       display: none;
     }
+  }
+
+  .search-icon {
+    cursor: pointer;
   }
 `;
 
@@ -109,15 +114,23 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 0.9em;
   font-weight: bold;
+  margin: 0 1em;
+  transition: all 0.2s ease-in;
 
-  a {
-    text-decoration: none;
+  :hover {
+    color: var(--green);
   }
 `;
 
 class NavBar extends React.Component {
   render() {
-    const { sidedrawerOpen, closeSidedrawer, openSidedrawer } = this.props;
+    const {
+      sidedrawerOpen,
+      closeSidedrawer,
+      openSidedrawer,
+      searchBarOpen,
+      openSearchBar
+    } = this.props;
 
     return (
       <Nav sidedrawerOpen={sidedrawerOpen}>
@@ -175,8 +188,10 @@ class NavBar extends React.Component {
         </Sidedrawer>
 
         <div className="search-icon">
-          <FontAwesomeIcon icon={faSearch} />
+          <FontAwesomeIcon icon={faSearch} onClick={() => openSearchBar()} />
         </div>
+
+        <SearchContainer />
       </Nav>
     );
   }
@@ -184,7 +199,8 @@ class NavBar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    sidedrawerOpen: state.sidedrawerOpen
+    sidedrawerOpen: state.sidedrawerOpen,
+    searchBarOpen: state.searchBarOpen
   };
 };
 
@@ -192,6 +208,7 @@ export default connect(
   mapStateToProps,
   {
     openSidedrawer,
-    closeSidedrawer
+    closeSidedrawer,
+    openSearchBar
   }
 )(NavBar);

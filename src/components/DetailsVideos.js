@@ -24,7 +24,7 @@ const VideoContainer = styled.div`
   border-bottom: 1px grey solid;
   @media screen and (min-width: 450px) {
     justify-content: ${props =>
-      props.videoList.length > 1 ? 'space-between' : 'center'};
+      props.videoList.length === 2 ? 'center' : 'space-between'};
   }
 `;
 

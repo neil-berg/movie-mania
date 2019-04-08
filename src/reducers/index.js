@@ -11,6 +11,7 @@ import {
 } from './movieReducers';
 import { loadingReducer } from './loadingReducer';
 import { sidedrawerReducer } from './sidedrawerReducer';
+import { searchBarReducer } from './searchBarReducer';
 
 export default combineReducers({
   nowPlayingMovies: nowPlayingMoviesReducer,
@@ -21,5 +22,6 @@ export default combineReducers({
   selectedMovieCredits: selectedMovieCreditsReducer,
   form: formReducer,
   isLoading: loadingReducer,
-  sidedrawerOpen: sidedrawerReducer
+  sidedrawerOpen: sidedrawerReducer,
+  searchBarOpen: searchBarReducer
 });

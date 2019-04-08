@@ -1,54 +1,70 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const StyledForm = styled.form`
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { closeSearchBar } from '../actions';
+
+const Wrapper = styled.div`
+  background: white;
+  width: 100vw;
+  padding: 0 1em;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.25em 0;
-  border-bottom: 2px solid var(--black);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  transform: ${props => (props.searchBarOpen ? '' : 'translateX(100%)')};
+  transition: transform 0.3s ease-out;
+
+  .icon-close {
+    font-size: 1em;
+    color: var(--black);
+    margin-right: 15px;
+  }
+`;
+const StyledForm = styled.form`
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const StyledField = styled(Field)`
-  height: 35px;
-  width: 200px;
+  //height: 44px;
+  //width: 100%;
   border: none;
-  margin: 0 1em;
   font-size: 0.85em;
 `;
 
 const Button = styled.button`
-  padding: 0.25em 0.75em;
-  border-radius: 10px;
-  border: 2px solid var(--green);
   color: var(--black);
   font-size: 0.85em;
 `;
 
-const StyledIcon = styled(FontAwesomeIcon)`
-  position: absolute;
-  left: -10px;
-  top: 10px;
-  color: grey;
-`;
 let SearchBar = props => {
-  const { handleSubmit } = props;
+  const { handleSubmit, searchBarOpen, closeSearchBar } = props;
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <div className="left" style={{ position: 'relative' }}>
+    <Wrapper searchBarOpen={searchBarOpen}>
+      <FontAwesomeIcon
+        className="icon-close"
+        icon={faTimes}
+        onClick={() => closeSearchBar()}
+      />
+      <StyledForm onSubmit={handleSubmit}>
         <StyledField
           name="title"
           component="input"
           type="text"
-          placeholder="Movie title"
+          placeholder="Enter movie title"
         />
-        <StyledIcon icon={faSearch} />
-      </div>
-      <Button type="submit">Search</Button>
-    </StyledForm>
+        <Button type="submit">Search</Button>
+      </StyledForm>
+    </Wrapper>
   );
 };
 
@@ -56,4 +72,13 @@ SearchBar = reduxForm({
   form: 'movie'
 })(SearchBar);
 
-export default SearchBar;
+const mapStateToProps = state => {
+  return {
+    searchBarOpen: state.searchBarOpen
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { closeSearchBar }
+)(SearchBar);

@@ -88,6 +88,18 @@ export const closeSidedrawer = () => {
   };
 };
 
+export const openSearchBar = () => {
+  return {
+    type: 'OPEN_SEARCHBAR'
+  };
+};
+
+export const closeSearchBar = () => {
+  return {
+    type: 'CLOSE_SEARCHBAR'
+  };
+};
+
 export const isLoading = () => {
   return {
     type: 'IS_LOADING',

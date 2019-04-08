@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { getDirectors, getWriters, getProducers } from '../helper';
+import { getDirectors, getWriters } from '../helper';
 
 const CrewContainer = styled.div`
   background: var(--black);

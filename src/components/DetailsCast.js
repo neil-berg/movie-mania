@@ -62,7 +62,7 @@ const DetailsCast = ({ cast }) => {
         <img
           className="profile_photo"
           src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-          alt={`Profile photo for ${item.name}`}
+          alt={item.name}
         />
         <div>
           <p className="name">{item.name}</p>
