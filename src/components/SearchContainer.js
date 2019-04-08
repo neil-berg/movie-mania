@@ -20,9 +20,9 @@ class SearchContainer extends React.PureComponent {
   };
 
   render() {
-    if (this.props.searchValue !== '') {
-      return <Redirect to="/search/my-movie-title" />;
-    }
+    // if (this.props.searchValue !== '') {
+    //   return <Redirect to="/search/my-movie-title" />;
+    // }
     return <SearchBar onSubmit={this.handleSubmit} />;
   }
 }

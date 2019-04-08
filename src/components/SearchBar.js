@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 
@@ -51,8 +52,8 @@ const Button = styled.button`
 const required = value => (value ? undefined : 'Required');
 
 let SearchBar = props => {
-  const { handleSubmit, searchBarOpen, closeSearchBar, valid, reset } = props;
-
+  const { handleSubmit, searchBarOpen, closeSearchBar, valid, values } = props;
+  console.log(values);
   return (
     <Wrapper searchBarOpen={searchBarOpen}>
       <FontAwesomeIcon
@@ -68,10 +69,13 @@ let SearchBar = props => {
           placeholder="Enter movie title"
           validate={[required]}
         />
+        {/* <Link to="/search/my-movie-title/">Search</Link> */}
         {valid ? (
-          <Button type="submit" onClick={() => closeSearchBar()}>
-            Search
-          </Button>
+          <Link to={`/search/sample-title`}>
+            <Button type="submit" onClick={() => closeSearchBar()}>
+              Search
+            </Button>
+          </Link>
         ) : (
           <Button type="button" disabled>
             Search
