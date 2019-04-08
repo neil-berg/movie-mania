@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 3;
-  transform: ${props => (props.searchBarOpen ? '' : 'translateX(100%)')};
+  transform: ${props => (props.searchBarOpen ? '' : 'translateX(-100%)')};
   transition: transform 0.3s ease-out;
 
   .icon-close {
@@ -28,22 +28,23 @@ const Wrapper = styled.div`
 `;
 const StyledForm = styled.form`
   width: 100%;
-  height: 44px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
 const StyledField = styled(Field)`
-  //height: 44px;
-  //width: 100%;
+  height: 44px;
+  width: 100%;
   border: none;
   font-size: 0.85em;
 `;
 
 const Button = styled.button`
+  border: none;
   color: var(--black);
   font-size: 0.85em;
+  cursor: pointer;
 `;
 
 let SearchBar = props => {
@@ -62,7 +63,9 @@ let SearchBar = props => {
           type="text"
           placeholder="Enter movie title"
         />
-        <Button type="submit">Search</Button>
+        <Button type="submit" onClick={() => closeSearchBar()}>
+          Search
+        </Button>
       </StyledForm>
     </Wrapper>
   );
