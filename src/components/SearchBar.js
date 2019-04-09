@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -64,7 +64,7 @@ const Button = styled.button`
   font-family: 'Nanum Gothic', sans-serif;
 `;
 
-class SearchBarV2 extends React.Component {
+class SearchBar extends React.Component {
   state = {
     value: ''
   };
@@ -75,7 +75,11 @@ class SearchBarV2 extends React.Component {
     });
   };
 
-  handleSubmit = () => {
+  handleFormSubmit = e => {
+    e.preventDefault();
+  };
+
+  handleSearch = () => {
     this.props.closeSearchBar();
     this.props.setSearchValue(this.state.value);
     localStorage.setItem('movie-search-term', JSON.stringify(this.state.value));
@@ -99,7 +103,7 @@ class SearchBarV2 extends React.Component {
           style={{ cursor: 'pointer' }}
         />
 
-        <StyledForm>
+        <StyledForm onSubmit={e => this.handleFormSubmit(e)}>
           <StyledInput
             type="text"
             placeholder="Enter movie title"
@@ -109,7 +113,7 @@ class SearchBarV2 extends React.Component {
           {isValid ? (
             <StyledLink
               to={`/search/${formattedValue}`}
-              onClick={this.handleSubmit}
+              onClick={this.handleSearch}
             >
               Search
             </StyledLink>
@@ -126,11 +130,12 @@ class SearchBarV2 extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    searchBarOpen: state.searchBarOpen
+    searchBarOpen: state.searchBarOpen,
+    searchValue: state.searchValue
   };
 };
 
 export default connect(
   mapStateToProps,
   { closeSearchBar, setSearchValue }
-)(SearchBarV2);
+)(SearchBar);
