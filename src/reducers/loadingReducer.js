@@ -1,6 +1,6 @@
 export const loadingReducer = (state = '', action) => {
   switch (action.type) {
-    case 'IS_LOADNG':
+    case 'IS_LOADING':
       return action.payload;
     case 'IS_NOT_LOADING':
       return action.payload;

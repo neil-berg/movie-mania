@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
+import Spinner from './Spinner';
 import { fetchTrendingMovies, closeSidedrawer } from '../actions';
 
 const CardGrid = styled.div`
@@ -36,6 +37,9 @@ class Trending extends React.Component {
   }
 
   render() {
+    if (this.props.isLoading) {
+      return <Spinner text="Loading movies" />;
+    }
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Trending</PageTitle>
@@ -47,6 +51,7 @@ class Trending extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    isLoading: state.isLoading,
     trendingMovies: state.trendingMovies
   };
 };

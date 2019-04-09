@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
+import Spinner from './Spinner';
 import { closeSidedrawer, fetchSearchedMovie } from '../actions';
 
 const NoResultsWrapper = styled.div`
@@ -62,6 +63,9 @@ class MovieSearchResults extends React.Component {
       .map(movie => <MovieCard movie={movie} key={movie.id} />);
   }
   render() {
+    if (this.props.isLoading) {
+      return <Spinner text="Loading movies" />;
+    }
     if (this.renderList().length === 0) {
       return (
         <NoResultsWrapper>
@@ -85,6 +89,7 @@ class MovieSearchResults extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    isLoading: state.isLoading,
     searchValue: state.searchValue,
     searchResults: state.searchResults
   };

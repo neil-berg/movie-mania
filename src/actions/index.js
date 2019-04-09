@@ -54,6 +54,8 @@ export const fetchTopRatedMovies = genreId => async dispatch => {
 };
 
 export const fetchSelectedMovie = movieId => async dispatch => {
+  dispatch(isLoading());
+
   const response = await moviedb.get(
     `/movie/${movieId}?api_key=${
       process.env.REACT_APP_MOVIEDB_KEY
@@ -64,6 +66,8 @@ export const fetchSelectedMovie = movieId => async dispatch => {
     type: 'SELECTED_MOVIE',
     payload: response.data
   });
+
+  dispatch(isNotLoading());
 };
 
 export const fetchSelectedMovieCredits = movieId => async dispatch => {
@@ -77,6 +81,8 @@ export const fetchSelectedMovieCredits = movieId => async dispatch => {
 };
 
 export const fetchSearchedMovie = value => async dispatch => {
+  dispatch(isLoading());
+
   const response = await moviedb.get(
     `/search/movie?api_key=${
       process.env.REACT_APP_MOVIEDB_KEY
@@ -86,6 +92,8 @@ export const fetchSearchedMovie = value => async dispatch => {
     type: 'SEARCH_RESULTS',
     payload: response.data.results
   });
+
+  dispatch(isNotLoading());
 };
 
 export const openSidedrawer = () => {

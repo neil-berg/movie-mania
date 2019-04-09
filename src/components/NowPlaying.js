@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
+import Spinner from './Spinner';
 import { fetchNowPlayingMovies, closeSidedrawer } from '../actions';
 import { nowPlayingDates } from '../helper.js';
 
@@ -38,6 +39,9 @@ class NowPlaying extends React.Component {
     ));
   }
   render() {
+    if (this.props.isLoading) {
+      return <Spinner text="Loading movies" />;
+    }
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Now Playing</PageTitle>
@@ -49,6 +53,7 @@ class NowPlaying extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    isLoading: state.isLoading,
     nowPlayingMovies: state.nowPlayingMovies
   };
 };

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
+import Spinner from './Spinner';
 import { fetchComingSoonMovies, closeSidedrawer } from '../actions';
 import { comingSoonDates } from '../helper';
 
@@ -37,6 +38,9 @@ class ComingSoon extends React.Component {
     ));
   }
   render() {
+    if (this.props.isLoading) {
+      return <Spinner text="Loading movies" />;
+    }
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Coming Soon</PageTitle>
@@ -48,6 +52,7 @@ class ComingSoon extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    isLoading: state.isLoading,
     comingSoonMovies: state.comingSoonMovies
   };
 };
