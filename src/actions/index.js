@@ -76,6 +76,18 @@ export const fetchSelectedMovieCredits = movieId => async dispatch => {
   });
 };
 
+export const fetchSearchedMovie = value => async dispatch => {
+  const response = await moviedb.get(
+    `/search/movie?api_key=${
+      process.env.REACT_APP_MOVIEDB_KEY
+    }&language=en-US&query=${value}&page=1&include_adult=false`
+  );
+  dispatch({
+    type: 'SEARCH_RESULTS',
+    payload: response.data.results
+  });
+};
+
 export const openSidedrawer = () => {
   return {
     type: 'OPEN_SIDEDRAWER'

@@ -11,7 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { openSidedrawer, closeSidedrawer, openSearchBar } from '../actions';
-import SearchContainer from './SearchContainer';
+import SearchBarV2 from './SearchBarV2';
 
 const Nav = styled.nav`
   display: flex;
@@ -188,7 +188,7 @@ class NavBar extends React.Component {
           <FontAwesomeIcon icon={faSearch} onClick={() => openSearchBar()} />
         </div>
 
-        <SearchContainer />
+        <SearchBarV2 />
       </Nav>
     );
   }

@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 
 import {
   nowPlayingMoviesReducer,
@@ -7,11 +6,12 @@ import {
   comingSoonMoviesReducer,
   topRatedMoviesReducer,
   selectedMovieReducer,
-  selectedMovieCreditsReducer
+  selectedMovieCreditsReducer,
+  searchedMovieReducer
 } from './movieReducers';
 import { loadingReducer } from './loadingReducer';
 import { sidedrawerReducer } from './sidedrawerReducer';
-import { searchBarReducer, searchValueReducer } from './searchBarReducer';
+import { searchBarReducer } from './searchBarReducer';
 
 export default combineReducers({
   nowPlayingMovies: nowPlayingMoviesReducer,
@@ -20,9 +20,8 @@ export default combineReducers({
   topRatedMovies: topRatedMoviesReducer,
   selectedMovie: selectedMovieReducer,
   selectedMovieCredits: selectedMovieCreditsReducer,
-  form: formReducer,
   isLoading: loadingReducer,
   sidedrawerOpen: sidedrawerReducer,
   searchBarOpen: searchBarReducer,
-  searchValue: searchValueReducer
+  searchResults: searchedMovieReducer
 });

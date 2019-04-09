@@ -11,6 +11,7 @@ class SearchContainer extends React.PureComponent {
     // If successful submission, close search bar and fetch results
     const searchValue = getSearchValue(this.props.movie);
     this.props.setSearchValue(searchValue);
+    console.log(searchValue);
     //dispatch(reset('movieForm'));
     // const movie = this.props.movie;
     // if (movie.values) {

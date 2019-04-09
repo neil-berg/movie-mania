@@ -71,10 +71,11 @@ let SearchBar = props => {
         />
         {/* <Link to="/search/my-movie-title/">Search</Link> */}
         {valid ? (
-          <Link to={`/search/sample-title`}>
-            <Button type="submit" onClick={() => closeSearchBar()}>
+          <Link to={`/search/sample-title`} onClick={() => closeSearchBar()}>
+            Search
+            {/* <Button type="submit" onClick={() => closeSearchBar()}>
               Search
-            </Button>
+            </Button> */}
           </Link>
         ) : (
           <Button type="button" disabled>

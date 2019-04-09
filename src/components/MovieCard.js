@@ -142,7 +142,7 @@ const MovieCard = ({ movie }) => {
       </div>
       <p className="overview">{overviewSnippet(movie.overview)}</p>
       <Link
-        to={`movie/${movie.id}-${movie.title
+        to={`/movie/${movie.id}-${movie.title
           .toLowerCase()
           .split(' ')
           .join('-')}`}
