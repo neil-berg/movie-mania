@@ -20,26 +20,23 @@ const SubHeader = styled.h3`
 const VideoContainer = styled.div`
   display: flex;
   overflow: scroll;
-  padding-bottom: 1em;
+  padding-bottom: 2em;
   border-bottom: 1px grey solid;
-  justify-content: ${props => (props.videoList.length === 1 ? 'center' : '')};
 `;
 
 const StyledVideo = styled.iframe`
   width: 350px;
   height: 100%;
   frameborder: 0;
-  margin: 0.5em;
 `;
 
 const DetailsVideos = ({ movie }) => {
   const videos = getVideos(movie);
   const videoList = videos.map(video => {
     return (
-      <StyledVideo
-        key={video.key}
-        src={`https://www.youtube.com/embed/${video.key}`}
-      />
+      <div style={{ padding: '0 0.5em', margin: '0 auto' }} key={video.key}>
+        <StyledVideo src={`https://www.youtube.com/embed/${video.key}`} />
+      </div>
     );
   });
 
@@ -48,7 +45,7 @@ const DetailsVideos = ({ movie }) => {
   }
 
   return (
-    <div style={{ background: 'var(--black)' }}>
+    <div>
       <SubHeader>Videos</SubHeader>
       <VideoContainer videoList={videoList}>{videoList}</VideoContainer>
     </div>

@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { closeSearchBar } from '../actions';
+import { closeSearchBar, setSearchValue } from '../actions';
 
 const Wrapper = styled.div`
   background: white;
@@ -34,62 +33,96 @@ const StyledForm = styled.form`
   justify-content: space-between;
 `;
 
-const StyledField = styled(Field)`
+const StyledInput = styled.input`
   height: 44px;
   width: 100%;
   border: none;
   font-size: 0.85em;
+
+  :focus {
+    outline-width: 0;
+  }
 `;
 
-const Button = styled.button`
-  border: none;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  margin: 0;
+  padding-right: 1em;
   background: white;
   color: var(--black);
   font-size: 0.85em;
   cursor: pointer;
 `;
 
-const required = value => (value ? undefined : 'Required');
+const Button = styled.button`
+  border: none;
+  margin: 0;
+  padding-right: 1em;
+  background: white;
+  color: var(--black);
+  font-size: 0.85em;
+  font-family: 'Nanum Gothic', sans-serif;
+`;
 
-let SearchBar = props => {
-  const { handleSubmit, searchBarOpen, closeSearchBar, valid, values } = props;
-  console.log(values);
-  return (
-    <Wrapper searchBarOpen={searchBarOpen}>
-      <FontAwesomeIcon
-        className="icon-close"
-        icon={faTimes}
-        onClick={() => closeSearchBar()}
-      />
-      <StyledForm onSubmit={handleSubmit}>
-        <StyledField
-          name="title"
-          component="input"
-          type="text"
-          placeholder="Enter movie title"
-          validate={[required]}
+class SearchBarV2 extends React.Component {
+  state = {
+    value: ''
+  };
+
+  handleChange = e => {
+    this.setState({
+      value: e.target.value
+    });
+  };
+
+  handleSubmit = () => {
+    this.props.closeSearchBar();
+    this.props.setSearchValue(this.state.value);
+    localStorage.setItem('movie-search-term', JSON.stringify(this.state.value));
+    this.setState({ value: '' });
+  };
+
+  render() {
+    const { searchBarOpen, closeSearchBar } = this.props;
+    const isValid = this.state.value !== '' ? true : false;
+    const formattedValue = this.state.value
+      .toLowerCase()
+      .split(' ')
+      .join('-');
+
+    return (
+      <Wrapper searchBarOpen={searchBarOpen}>
+        <FontAwesomeIcon
+          className="icon-close"
+          icon={faTimes}
+          onClick={() => closeSearchBar()}
+          style={{ cursor: 'pointer' }}
         />
-        {/* <Link to="/search/my-movie-title/">Search</Link> */}
-        {valid ? (
-          <Link to={`/search/sample-title`} onClick={() => closeSearchBar()}>
-            Search
-            {/* <Button type="submit" onClick={() => closeSearchBar()}>
-              Search
-            </Button> */}
-          </Link>
-        ) : (
-          <Button type="button" disabled>
-            Search
-          </Button>
-        )}
-      </StyledForm>
-    </Wrapper>
-  );
-};
 
-SearchBar = reduxForm({
-  form: 'movieForm'
-})(SearchBar);
+        <StyledForm>
+          <StyledInput
+            type="text"
+            placeholder="Enter movie title"
+            value={this.state.value}
+            onChange={e => this.handleChange(e)}
+          />
+          {isValid ? (
+            <StyledLink
+              to={`/search/${formattedValue}`}
+              onClick={this.handleSubmit}
+            >
+              Search
+            </StyledLink>
+          ) : (
+            <Button type="button" disabled>
+              Search
+            </Button>
+          )}
+        </StyledForm>
+      </Wrapper>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -99,5 +132,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { closeSearchBar }
-)(SearchBar);
+  { closeSearchBar, setSearchValue }
+)(SearchBarV2);

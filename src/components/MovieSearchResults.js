@@ -3,7 +3,22 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
-import { closeSidedrawer } from '../actions';
+import { closeSidedrawer, fetchSearchedMovie } from '../actions';
+
+const NoResultsWrapper = styled.div`
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+const NoResultsText = styled.p`
+  margin: 2em 0 0 0;
+  padding: 0;
+  font-size: 1.25em;
+  color: var(--green);
+`;
 
 const CardGrid = styled.div`
   display: grid;
@@ -25,15 +40,43 @@ const PageTitle = styled.h2`
 `;
 
 class MovieSearchResults extends React.Component {
+  componentDidMount() {
+    const value =
+      this.props.searchValue || localStorage.getItem('movie-search-term');
+    this.props.fetchSearchedMovie(value.split(' ').join('%20'));
+  }
+
+  componentDidUpdate(prevProps) {
+    const oldValue = prevProps.match.params.searchId;
+    const newValue = this.props.match.params.searchId;
+    if (oldValue !== newValue) {
+      this.props.fetchSearchedMovie(
+        this.props.searchValue.split(' ').join('%20')
+      );
+    }
+  }
+
   renderList() {
     return this.props.searchResults
       .filter(movie => movie.vote_count > 100)
       .map(movie => <MovieCard movie={movie} key={movie.id} />);
   }
   render() {
+    if (this.renderList().length === 0) {
+      return (
+        <NoResultsWrapper>
+          <NoResultsText>
+            Oops, no results for {localStorage.getItem('movie-search-term')}.
+          </NoResultsText>
+          <NoResultsText>Try another search!</NoResultsText>
+        </NoResultsWrapper>
+      );
+    }
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
-        <PageTitle>Search Results</PageTitle>
+        <PageTitle>
+          Search results for {localStorage.getItem('movie-search-term')}
+        </PageTitle>
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
     );
@@ -42,11 +85,12 @@ class MovieSearchResults extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    searchValue: state.searchValue,
     searchResults: state.searchResults
   };
 };
 
 export default connect(
   mapStateToProps,
-  { closeSidedrawer }
+  { closeSidedrawer, fetchSearchedMovie }
 )(MovieSearchResults);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,7 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { openSidedrawer, closeSidedrawer, openSearchBar } from '../actions';
-import SearchBarV2 from './SearchBarV2';
+import SearchBar from './SearchBar';
 
 const Nav = styled.nav`
   display: flex;
@@ -103,6 +103,7 @@ const ListContainer = styled.ul`
   @media screen and (min-width: 600px) {
     display: flex;
     margin: 0 auto;
+    transform: translateX(24px);
   }
 `;
 
@@ -125,7 +126,6 @@ class NavBar extends React.Component {
       sidedrawerOpen,
       closeSidedrawer,
       openSidedrawer,
-      searchBarOpen,
       openSearchBar
     } = this.props;
 
@@ -188,7 +188,7 @@ class NavBar extends React.Component {
           <FontAwesomeIcon icon={faSearch} onClick={() => openSearchBar()} />
         </div>
 
-        <SearchBarV2 />
+        <SearchBar />
       </Nav>
     );
   }
@@ -196,8 +196,7 @@ class NavBar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    sidedrawerOpen: state.sidedrawerOpen,
-    searchBarOpen: state.searchBarOpen
+    sidedrawerOpen: state.sidedrawerOpen
   };
 };
 
