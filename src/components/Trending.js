@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
+import SortMenu from './SortMenu';
 import Spinner from './Spinner';
 import { fetchTrendingMovies, closeSidedrawer } from '../actions';
+import { sortedTrendingSelector } from '../selectors';
 
 const CardGrid = styled.div`
   display: grid;
@@ -43,6 +45,7 @@ class Trending extends React.Component {
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Trending</PageTitle>
+        <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
     );
@@ -52,7 +55,7 @@ class Trending extends React.Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
-    trendingMovies: state.trendingMovies
+    trendingMovies: sortedTrendingSelector(state)
   };
 };
 

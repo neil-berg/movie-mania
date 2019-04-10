@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
 import Spinner from './Spinner';
 import { fetchTopRatedMovies, closeSidedrawer } from '../actions';
+import { sortedTopRatedSelector } from '../selectors';
 
 const CardGrid = styled.div`
   display: grid;
@@ -46,6 +48,7 @@ class TopRated extends React.Component {
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Top Rated</PageTitle>
+        <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
     );
@@ -55,7 +58,7 @@ class TopRated extends React.Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
-    topRatedMovies: state.topRatedMovies
+    topRatedMovies: sortedTopRatedSelector(state)
   };
 };
 

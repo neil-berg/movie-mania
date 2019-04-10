@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
 import Spinner from './Spinner';
 import { closeSidedrawer, fetchSearchedMovie } from '../actions';
+import { sortedSearchResultsSelector } from '../selectors';
 
 const NoResultsWrapper = styled.div`
   height: 60vh;
@@ -81,6 +83,7 @@ class MovieSearchResults extends React.Component {
         <PageTitle>
           Search results for {localStorage.getItem('movie-search-term')}
         </PageTitle>
+        <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
     );
@@ -91,7 +94,7 @@ const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
     searchValue: state.searchValue,
-    searchResults: state.searchResults
+    searchResults: sortedSearchResultsSelector(state)
   };
 };
 

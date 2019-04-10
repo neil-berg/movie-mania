@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
 import Spinner from './Spinner';
 import { fetchComingSoonMovies, closeSidedrawer } from '../actions';
 import { comingSoonDates } from '../helper';
+import { sortedComingSoonSelector } from '../selectors';
 
 const CardGrid = styled.div`
   display: grid;
@@ -44,6 +46,7 @@ class ComingSoon extends React.Component {
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Coming Soon</PageTitle>
+        <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
     );
@@ -53,7 +56,7 @@ class ComingSoon extends React.Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
-    comingSoonMovies: state.comingSoonMovies
+    comingSoonMovies: sortedComingSoonSelector(state)
   };
 };
 
