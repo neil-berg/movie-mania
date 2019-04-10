@@ -103,6 +103,13 @@ export const setSortKey = key => {
   };
 };
 
+export const setSortText = text => {
+  return {
+    type: 'SET_SORT_Text',
+    payload: text
+  };
+};
+
 export const openSidedrawer = () => {
   return {
     type: 'OPEN_SIDEDRAWER'
@@ -131,6 +138,18 @@ export const setSearchValue = value => {
   return {
     type: 'SET_SEARCH_VALUE',
     payload: value
+  };
+};
+
+export const openSortMenu = () => {
+  return {
+    type: 'OPEN_SORT_MENU'
+  };
+};
+
+export const closeSortMenu = () => {
+  return {
+    type: 'CLOSE_SORT_MENU'
   };
 };
 

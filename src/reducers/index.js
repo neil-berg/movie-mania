@@ -7,12 +7,16 @@ import {
   topRatedMoviesReducer,
   selectedMovieReducer,
   selectedMovieCreditsReducer,
-  searchedMovieReducer,
-  sortKeyReducer
+  searchedMovieReducer
 } from './movieReducers';
 import { loadingReducer } from './loadingReducer';
 import { sidedrawerReducer } from './sidedrawerReducer';
 import { searchBarReducer, searchValueReducer } from './searchReducer';
+import {
+  sortKeyReducer,
+  sortTextReducer,
+  sortMenuOpenReducer
+} from './sortMenuReducer';
 
 export default combineReducers({
   nowPlayingMovies: nowPlayingMoviesReducer,
@@ -26,5 +30,7 @@ export default combineReducers({
   searchBarOpen: searchBarReducer,
   searchValue: searchValueReducer,
   searchResults: searchedMovieReducer,
-  sortKey: sortKeyReducer
+  sortKey: sortKeyReducer,
+  sortMenuOpen: sortMenuOpenReducer,
+  sortText: sortTextReducer
 });

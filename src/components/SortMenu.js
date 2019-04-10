@@ -9,7 +9,7 @@ import {
   faAngleDoubleDown
 } from '@fortawesome/free-solid-svg-icons';
 
-import { setSortKey } from '../actions';
+import { setSortKey, openSortMenu, closeSortMenu } from '../actions';
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,6 +19,8 @@ const Wrapper = styled.div`
 
 const MenuContainer = styled.div`
   margin-top: 1em;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Button = styled.button`
@@ -28,20 +30,16 @@ const Button = styled.button`
   font-family: 'Nanum Gothic', sans-serif;
   font-size: 0.9em;
   background: transparent;
-  border: none;
-  border-top: 1px solid grey;
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
+  border: 1px solid grey;
+  border-top: ${props => (props.selected ? '1px grey solid' : '0')};
   color: ${props => (props.selected ? 'var(--yellow)' : 'white')};
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: ${props => (props.selected ? 'space-between' : '')}
 
-  :first-child {
-    justify-content: space-between;
-  }
-  :last-child {
-    border-bottom: 1px solid grey;
+  .button-icon {
+    font-size: 1.2em;
   }
 
   .button-text {
@@ -55,6 +53,7 @@ const Button = styled.button`
 
 class SortMenu extends React.Component {
   handleClick = e => {
+    // Store the sortKey and longname in storeState
     const targetValue = e.target.textContent;
     let key = '';
     if (targetValue === 'Most Popular') {
@@ -70,33 +69,50 @@ class SortMenu extends React.Component {
   render() {
     return (
       <Wrapper>
-        <MenuContainer onClick={this.handleClick}>
-          <Button selected>
-            <span className="button-text selected">Most Popular</span>
-            <FontAwesomeIcon icon={faAngleDoubleDown} size="lg" />
-          </Button>
+        <MenuContainer
+          sortMenuOpen={this.props.sortMenuOpen}
+          onClick={this.handleClick}
+        >
+          <div className="selected" onClick={() => this.props.openSortMenu()}>
+            <Button selected>
+              <span className="button-text selected">
+                {this.props.sortText}
+              </span>
+              <FontAwesomeIcon
+                className="button-icon"
+                icon={faAngleDoubleDown}
+              />
+            </Button>
+          </div>
 
-          <Button>
-            <FontAwesomeIcon icon={faMedal} size="lg" />
-            <span className="button-text">Most Popular</span>
-          </Button>
-
-          <Button>
-            <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-            <span className="button-text">Highest Rated</span>
-          </Button>
-
-          <Button>
-            <FontAwesomeIcon icon={faCalendarAlt} size="lg" />
-            <span className="button-text">Most Recent</span>
-          </Button>
+          <div className="dropdown">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faMedal} />
+              <span className="button-text">Most Popular</span>
+            </Button>
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faThumbsUp} />
+              <span className="button-text">Highest Rated</span>
+            </Button>
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faCalendarAlt} />
+              <span className="button-text">Most Recent</span>
+            </Button>
+          </div>
         </MenuContainer>
       </Wrapper>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    sortMenuOpen: state.sortMenuOpen,
+    sortText: state.sortText
+  };
+};
+
 export default connect(
-  null,
-  { setSortKey }
+  mapStateToProps,
+  { setSortKey, openSortMenu, closeSortMenu }
 )(SortMenu);
