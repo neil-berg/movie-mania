@@ -7,7 +7,8 @@ import {
   topRatedMoviesReducer,
   selectedMovieReducer,
   selectedMovieCreditsReducer,
-  searchedMovieReducer
+  searchedMovieReducer,
+  sortKeyReducer
 } from './movieReducers';
 import { loadingReducer } from './loadingReducer';
 import { sidedrawerReducer } from './sidedrawerReducer';
@@ -24,5 +25,6 @@ export default combineReducers({
   sidedrawerOpen: sidedrawerReducer,
   searchBarOpen: searchBarReducer,
   searchValue: searchValueReducer,
-  searchResults: searchedMovieReducer
+  searchResults: searchedMovieReducer,
+  sortKey: sortKeyReducer
 });

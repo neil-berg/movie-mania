@@ -96,6 +96,13 @@ export const fetchSearchedMovie = value => async dispatch => {
   dispatch(isNotLoading());
 };
 
+export const setSortKey = key => {
+  return {
+    type: 'SET_SORT_KEY',
+    payload: key
+  };
+};
+
 export const openSidedrawer = () => {
   return {
     type: 'OPEN_SIDEDRAWER'

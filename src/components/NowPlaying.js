@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
 import Spinner from './Spinner';
 import { fetchNowPlayingMovies, closeSidedrawer } from '../actions';
 import { nowPlayingDates } from '../helper.js';
+import { sortedNowPlayingSelector } from '../selectors';
 
 const CardGrid = styled.div`
   display: grid;
@@ -45,6 +47,7 @@ class NowPlaying extends React.Component {
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>Now Playing</PageTitle>
+        <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
     );
@@ -53,8 +56,9 @@ class NowPlaying extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    sortKey: state.sortKey,
     isLoading: state.isLoading,
-    nowPlayingMovies: state.nowPlayingMovies
+    nowPlayingMovies: sortedNowPlayingSelector(state)
   };
 };
 
