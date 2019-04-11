@@ -72,13 +72,13 @@ const Button = styled.button`
 class SortMenu extends React.Component {
   componentDidMount() {
     this.props.closeSortMenu();
+    this.props.setSortKey('popularity');
+    this.props.setSortText('Most Popular');
   }
   toggleSortMenu = () => {
-    if (this.props.sortMenuOpen) {
-      this.props.closeSortMenu();
-    } else {
-      this.props.openSortMenu();
-    }
+    this.props.sortMenuOpen
+      ? this.props.closeSortMenu()
+      : this.props.openSortMenu();
   };
   handleClick = e => {
     // Store the sortKey and longname in storeState
