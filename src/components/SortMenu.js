@@ -6,10 +6,16 @@ import {
   faMedal,
   faThumbsUp,
   faCalendarAlt,
-  faAngleDoubleDown
+  faAngleDoubleDown,
+  faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons';
 
-import { setSortKey, openSortMenu, closeSortMenu } from '../actions';
+import {
+  setSortKey,
+  setSortText,
+  openSortMenu,
+  closeSortMenu
+} from '../actions';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,6 +27,14 @@ const MenuContainer = styled.div`
   margin-top: 1em;
   display: flex;
   flex-direction: column;
+
+  .dropdown {
+    transform: ${props =>
+      props.sortMenuOpen ? 'rotateX(0)' : 'rotateX(90deg)'};
+    transition: all 0.5s;
+    overflow: ${props => (props.sortMenuOpen ? '' : 'hidden')};
+    max-height: ${props => (props.sortMenuOpen ? '400px' : '0')};
+  }
 `;
 
 const Button = styled.button`
@@ -49,12 +63,35 @@ const Button = styled.button`
   .button-text.selected {
     margin: 0;
   }
+
+  :focus {
+    outline: 0;
+  }
 `;
 
 class SortMenu extends React.Component {
+  componentDidMount() {
+    this.props.closeSortMenu();
+  }
+  toggleSortMenu = () => {
+    if (this.props.sortMenuOpen) {
+      this.props.closeSortMenu();
+    } else {
+      this.props.openSortMenu();
+    }
+  };
   handleClick = e => {
     // Store the sortKey and longname in storeState
-    const targetValue = e.target.textContent;
+    const nodeName = e.target.nodeName;
+    let targetValue = '';
+    if (nodeName === 'BUTTON') {
+      targetValue = e.target.innerText;
+    } else if (nodeName === 'svg' || nodeName === 'SPAN') {
+      targetValue = e.target.parentElement.innerText;
+    } else if (nodeName === 'path') {
+      targetValue = e.target.parentElement.parentElement.innerText;
+    }
+
     let key = '';
     if (targetValue === 'Most Popular') {
       key = 'popularity';
@@ -64,6 +101,7 @@ class SortMenu extends React.Component {
       key = 'release_date';
     }
     this.props.setSortKey(key);
+    this.props.setSortText(targetValue);
   };
 
   render() {
@@ -73,19 +111,23 @@ class SortMenu extends React.Component {
           sortMenuOpen={this.props.sortMenuOpen}
           onClick={this.handleClick}
         >
-          <div className="selected" onClick={() => this.props.openSortMenu()}>
+          <div className="selected" onClick={this.toggleSortMenu}>
             <Button selected>
               <span className="button-text selected">
                 {this.props.sortText}
               </span>
               <FontAwesomeIcon
                 className="button-icon"
-                icon={faAngleDoubleDown}
+                icon={
+                  this.props.sortMenuOpen
+                    ? faAngleDoubleRight
+                    : faAngleDoubleDown
+                }
               />
             </Button>
           </div>
 
-          <div className="dropdown">
+          <div className="dropdown" onClick={() => this.props.closeSortMenu()}>
             <Button>
               <FontAwesomeIcon className="button-icon" icon={faMedal} />
               <span className="button-text">Most Popular</span>
@@ -114,5 +156,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setSortKey, openSortMenu, closeSortMenu }
+  { setSortKey, setSortText, openSortMenu, closeSortMenu }
 )(SortMenu);
