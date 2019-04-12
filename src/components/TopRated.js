@@ -5,8 +5,13 @@ import styled from 'styled-components';
 import SortMenu from './SortMenu';
 import GenreMenu from './GenreMenu';
 import MovieCard from './MovieCard';
+import Pagination from './Pagination';
 import Spinner from './Spinner';
-import { fetchTopRatedMovies, closeSidedrawer } from '../actions';
+import {
+  fetchTopRatedMovies,
+  closeSidedrawer,
+  setPageNumber
+} from '../actions';
 import { sortedTopRatedSelector } from '../selectors';
 
 const CardGrid = styled.div`
@@ -29,14 +34,26 @@ const PageTitle = styled.h2`
 
 class TopRated extends React.Component {
   componentDidMount() {
-    this.props.fetchTopRatedMovies(this.props.genreKey);
+    // Initially load Action page-1
+    this.props.fetchTopRatedMovies(this.props.genreKey, 1);
   }
 
   componentDidUpdate(prevProps) {
     const oldGenre = prevProps.genreKey;
     const newGenre = this.props.genreKey;
+    const oldPage = Number(
+      prevProps.location.pathname.split('/')[3].split('-')[1]
+    );
+    const newPage = Number(
+      this.props.location.pathname.split('/')[3].split('-')[1]
+    );
     if (oldGenre !== newGenre) {
-      this.props.fetchTopRatedMovies(newGenre);
+      this.props.fetchTopRatedMovies(newGenre, 1);
+      this.props.setPageNumber(1);
+    }
+    if (oldPage !== newPage) {
+      this.props.fetchTopRatedMovies(this.props.genreKey, newPage);
+      this.props.setPageNumber(newPage);
     }
   }
 
@@ -55,6 +72,7 @@ class TopRated extends React.Component {
         <GenreMenu />
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
+        <Pagination location={this.props.location} />
       </div>
     );
   }
@@ -73,6 +91,7 @@ export default connect(
   mapStateToProps,
   {
     fetchTopRatedMovies,
-    closeSidedrawer
+    closeSidedrawer,
+    setPageNumber
   }
 )(TopRated);

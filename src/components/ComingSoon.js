@@ -4,8 +4,13 @@ import styled from 'styled-components';
 
 import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
+import Pagination from './Pagination';
 import Spinner from './Spinner';
-import { fetchComingSoonMovies, closeSidedrawer } from '../actions';
+import {
+  fetchComingSoonMovies,
+  closeSidedrawer,
+  setPageNumber
+} from '../actions';
 import { comingSoonDates } from '../helper';
 import { sortedComingSoonSelector } from '../selectors';
 
@@ -30,7 +35,20 @@ const PageTitle = styled.h2`
 class ComingSoon extends React.Component {
   componentDidMount() {
     const [startDate, endDate] = comingSoonDates();
-    this.props.fetchComingSoonMovies(startDate, endDate);
+    this.props.fetchComingSoonMovies(startDate, endDate, 1);
+  }
+  componentDidUpdate(prevProps) {
+    const [startDate, endDate] = comingSoonDates();
+    const oldPage = Number(
+      prevProps.location.pathname.split('/')[2].split('-')[1]
+    );
+    const newPage = Number(
+      this.props.location.pathname.split('/')[2].split('-')[1]
+    );
+    if (oldPage !== newPage) {
+      this.props.fetchComingSoonMovies(startDate, endDate, newPage);
+      this.props.setPageNumber(newPage);
+    }
   }
 
   renderList() {
@@ -47,6 +65,7 @@ class ComingSoon extends React.Component {
         <PageTitle>Coming Soon</PageTitle>
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
+        <Pagination location={this.props.location} />
       </div>
     );
   }
@@ -63,6 +82,7 @@ export default connect(
   mapStateToProps,
   {
     fetchComingSoonMovies,
-    closeSidedrawer
+    closeSidedrawer,
+    setPageNumber
   }
 )(ComingSoon);

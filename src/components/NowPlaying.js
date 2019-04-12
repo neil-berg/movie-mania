@@ -6,7 +6,11 @@ import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
 import Spinner from './Spinner';
 import Pagination from './Pagination';
-import { fetchNowPlayingMovies, closeSidedrawer } from '../actions';
+import {
+  fetchNowPlayingMovies,
+  closeSidedrawer,
+  setPageNumber
+} from '../actions';
 import { nowPlayingDates } from '../helper.js';
 import { sortedNowPlayingSelector } from '../selectors';
 
@@ -30,17 +34,22 @@ const PageTitle = styled.h2`
 
 class NowPlaying extends React.Component {
   componentDidMount() {
-    // Determine a month window of dates to fetch for 'now playing'
+    // Determine a month window of dates to fetch for 'now playing' and fetch 1st page of movies
     const [startDate, endDate] = nowPlayingDates();
-    this.props.fetchNowPlayingMovies(startDate, endDate, this.props.page);
+    this.props.fetchNowPlayingMovies(startDate, endDate, 1);
   }
 
   componentDidUpdate(prevProps) {
     const [startDate, endDate] = nowPlayingDates();
-    const oldPage = prevProps.page;
-    const newPage = this.props.page;
+    const oldPage = Number(
+      prevProps.location.pathname.split('/')[2].split('-')[1]
+    );
+    const newPage = Number(
+      this.props.location.pathname.split('/')[2].split('-')[1]
+    );
     if (oldPage !== newPage) {
       this.props.fetchNowPlayingMovies(startDate, endDate, newPage);
+      this.props.setPageNumber(newPage);
     }
   }
 
@@ -58,7 +67,7 @@ class NowPlaying extends React.Component {
         <PageTitle>Now Playing</PageTitle>
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
-        <Pagination />
+        <Pagination location={this.props.location} />
       </div>
     );
   }
@@ -68,7 +77,6 @@ const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
     nowPlayingMovies: sortedNowPlayingSelector(state),
-    page: state.page,
     sortKey: state.sortKey
   };
 };
@@ -77,6 +85,7 @@ export default connect(
   mapStateToProps,
   {
     fetchNowPlayingMovies,
-    closeSidedrawer
+    closeSidedrawer,
+    setPageNumber
   }
 )(NowPlaying);

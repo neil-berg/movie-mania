@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -44,6 +45,11 @@ const MenuContainer = styled.div`
     transition: all 0.5s;
     overflow: ${props => (props.genreMenuOpen ? '' : 'hidden')};
     max-height: ${props => (props.genreMenuOpen ? '400px' : '0')};
+
+    a {
+      text-decoration: none;
+    }
+  }
 `;
 
 const SelectedButton = styled.button`
@@ -88,6 +94,7 @@ const Button = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 
   .button-icon {
     font-size: 1.2em;
@@ -146,29 +153,39 @@ class GenreMenu extends React.Component {
         </SelectedButton>
 
         <div className="dropdown" onClick={this.handleClick}>
-          <Button>
-            <FontAwesomeIcon
-              className="button-icon"
-              icon={faExclamationTriangle}
-            />
-            <span className="button-text">Action</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faHiking} />
-            <span className="button-text">Adventure</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faPencilAlt} />
-            <span className="button-text">Animation</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faLaughSquint} />
-            <span className="button-text">Comedy</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faShoePrints} />
-            <span className="button-text">Crime</span>
-          </Button>
+          <Link to="/toprated/action/page-1">
+            <Button>
+              <FontAwesomeIcon
+                className="button-icon"
+                icon={faExclamationTriangle}
+              />
+              <span className="button-text">Action</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/adventure/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faHiking} />
+              <span className="button-text">Adventure</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/animation/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faPencilAlt} />
+              <span className="button-text">Animation</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/comedy/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faLaughSquint} />
+              <span className="button-text">Comedy</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/crime/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faShoePrints} />
+              <span className="button-text">Crime</span>
+            </Button>
+          </Link>
           <Button>
             <FontAwesomeIcon className="button-icon" icon={faVideo} />
             <span className="button-text">Documentary</span>

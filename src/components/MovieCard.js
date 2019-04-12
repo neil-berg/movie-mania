@@ -44,8 +44,8 @@ const CardContainer = styled.div`
   .header__left p.rating {
     color: var(--black);
     position: absolute;
-    top: ${props => (props.rating !== 10 ? '5px' : '4px')};
-    left: ${props => (props.rating !== 10 ? '17px' : '18px')};
+    top: ${props => (props.rating !== '10' ? '5px' : '4px')};
+    left: ${props => (props.rating !== '10' ? '17px' : '19px')};
     font-size: 0.85em;
     font-weight: bold;
   }

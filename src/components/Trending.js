@@ -4,8 +4,13 @@ import styled from 'styled-components';
 
 import MovieCard from './MovieCard';
 import SortMenu from './SortMenu';
+import Pagination from './Pagination';
 import Spinner from './Spinner';
-import { fetchTrendingMovies, closeSidedrawer } from '../actions';
+import {
+  fetchTrendingMovies,
+  closeSidedrawer,
+  setPageNumber
+} from '../actions';
 import { sortedTrendingSelector } from '../selectors';
 
 const CardGrid = styled.div`
@@ -28,7 +33,20 @@ const PageTitle = styled.h2`
 
 class Trending extends React.Component {
   componentDidMount() {
-    this.props.fetchTrendingMovies();
+    this.props.fetchTrendingMovies(1);
+  }
+
+  componentDidUpdate(prevProps) {
+    const oldPage = Number(
+      prevProps.location.pathname.split('/')[2].split('-')[1]
+    );
+    const newPage = Number(
+      this.props.location.pathname.split('/')[2].split('-')[1]
+    );
+    if (oldPage !== newPage) {
+      this.props.fetchTrendingMovies(newPage);
+      this.props.setPageNumber(newPage);
+    }
   }
 
   renderList() {
@@ -46,6 +64,7 @@ class Trending extends React.Component {
         <PageTitle>Trending</PageTitle>
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
+        <Pagination location={this.props.location} />
       </div>
     );
   }
@@ -62,6 +81,7 @@ export default connect(
   mapStateToProps,
   {
     fetchTrendingMovies,
-    closeSidedrawer
+    closeSidedrawer,
+    setPageNumber
   }
 )(Trending);

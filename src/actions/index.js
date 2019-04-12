@@ -18,10 +18,12 @@ export const fetchNowPlayingMovies = (
   dispatch(isNotLoading());
 };
 
-export const fetchTrendingMovies = () => async dispatch => {
+export const fetchTrendingMovies = (page = 1) => async dispatch => {
   dispatch(isLoading());
   const response = await moviedb.get(
-    `/trending/movie/week?api_key=${process.env.REACT_APP_MOVIEDB_KEY}`
+    `/trending/movie/week?&api_key=${
+      process.env.REACT_APP_MOVIEDB_KEY
+    }&page=${page}`
   );
   dispatch({
     type: 'TRENDING_MOVIES',
@@ -30,11 +32,15 @@ export const fetchTrendingMovies = () => async dispatch => {
   dispatch(isNotLoading());
 };
 
-export const fetchComingSoonMovies = (startDate, endDate) => async dispatch => {
+export const fetchComingSoonMovies = (
+  startDate,
+  endDate,
+  page = 1
+) => async dispatch => {
   dispatch(isLoading());
   const response = await moviedb.get(`/discover/movie?api_key=${
     process.env.REACT_APP_MOVIEDB_KEY
-  }&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=1&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}
+  }&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=${page}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}
   &with_original_language=en`);
   dispatch({
     type: 'COMINGSOON_MOVIES',
@@ -43,12 +49,12 @@ export const fetchComingSoonMovies = (startDate, endDate) => async dispatch => {
   dispatch(isNotLoading());
 };
 
-export const fetchTopRatedMovies = genreId => async dispatch => {
+export const fetchTopRatedMovies = (genreId, page = 1) => async dispatch => {
   dispatch(isLoading());
   const response = await moviedb.get(
     `/discover/movie?api_key=${
       process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US&sort_by=vote_average.desc&certification_country=US&include_adult=false&include_video=false&page=1&vote_count.gte=100&with_genres=${genreId}&with_original_language=en`
+    }&language=en-US&sort_by=vote_average.desc&certification_country=US&include_adult=false&include_video=false&page=${page}&vote_count.gte=100&with_genres=${genreId}&with_original_language=en`
   );
   dispatch({
     type: 'TOPRATED_MOVIES',

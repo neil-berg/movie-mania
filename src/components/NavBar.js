@@ -136,10 +136,10 @@ class NavBar extends React.Component {
         </div>
 
         <ListContainer>
-          <StyledLink to="/nowplaying">Now Playing</StyledLink>
-          <StyledLink to="/trending">Trending</StyledLink>
-          <StyledLink to="/comingsoon">Coming Soon</StyledLink>
-          <StyledLink to="/toprated">Top Rated</StyledLink>
+          <StyledLink to="/nowplaying/page-1">Now Playing</StyledLink>
+          <StyledLink to="/trending/page-1">Trending</StyledLink>
+          <StyledLink to="/comingsoon/page-1">Coming Soon</StyledLink>
+          <StyledLink to="/toprated/action/page-1">Top Rated</StyledLink>
         </ListContainer>
 
         <Sidedrawer className="sidedrawer" sidedrawerOpen={sidedrawerOpen}>
@@ -151,7 +151,7 @@ class NavBar extends React.Component {
             />
           </li>
           <li className="sidedrawer__item">
-            <Link to="/nowplaying" onClick={() => closeSidedrawer()}>
+            <Link to="/nowplaying/page-1" onClick={() => closeSidedrawer()}>
               <div className="link__text">
                 <span>Now Playing</span>
                 <FontAwesomeIcon icon={faAngleDoubleRight} />
@@ -159,7 +159,7 @@ class NavBar extends React.Component {
             </Link>
           </li>
           <li className="sidedrawer__item">
-            <Link to="/trending" onClick={() => closeSidedrawer()}>
+            <Link to="/trending/page-1" onClick={() => closeSidedrawer()}>
               <div className="link__text">
                 <span>Trending</span>
                 <FontAwesomeIcon icon={faAngleDoubleRight} />
@@ -167,7 +167,7 @@ class NavBar extends React.Component {
             </Link>
           </li>
           <li className="sidedrawer__item">
-            <Link to="/comingsoon" onClick={() => closeSidedrawer()}>
+            <Link to="/comingsoon/page-1" onClick={() => closeSidedrawer()}>
               <div className="link__text">
                 <span>Coming Soon</span>
                 <FontAwesomeIcon icon={faAngleDoubleRight} />
@@ -175,7 +175,10 @@ class NavBar extends React.Component {
             </Link>
           </li>
           <li className="sidedrawer__item">
-            <Link to="/toprated" onClick={() => closeSidedrawer()}>
+            <Link
+              to="/toprated/action/page-1"
+              onClick={() => closeSidedrawer()}
+            >
               <div className="link__text">
                 <span>Top Rated</span>
                 <FontAwesomeIcon icon={faAngleDoubleRight} />

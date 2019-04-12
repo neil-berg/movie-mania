@@ -12,6 +12,7 @@ import {
 
 import Header from './Header';
 import NavBar from './NavBar';
+import Home from './Home';
 import NowPlaying from './NowPlaying';
 import TopRated from './TopRated';
 import ComingSoon from './ComingSoon';
@@ -38,11 +39,11 @@ class App extends React.Component {
           <Header />
           <NavBar />
           <Switch>
-            <Route exact path="/" component={NowPlaying} />
-            <Route path="/nowplaying/" component={NowPlaying} />
-            <Route path="/toprated" component={TopRated} />
-            <Route path="/comingsoon" component={ComingSoon} />
-            <Route path="/trending" component={Trending} />
+            <Route exact path="/" component={Home} />
+            <Route path="/nowplaying/:pageId" component={NowPlaying} />
+            <Route path="/trending/:pageId" component={Trending} />
+            <Route path="/comingsoon/:pageId" component={ComingSoon} />
+            <Route path="/toprated/:genreId/:pageId" component={TopRated} />
             <Route exact path="/movie/:movieId" component={MovieDetails} />
             <Route path="/search/:searchId" component={MovieSearchResults} />
             <Route component={NotFound} />

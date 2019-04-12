@@ -26,12 +26,19 @@ const PageContainer = styled.div`
     color white;
   }
 
+  .numbers a {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+  }
+
   .page-number {
     padding: 0 0.5em;
   }
 
   .selected {
     color: var(--yellow);
+    font-weight: bold;
   }
 `;
 
@@ -41,35 +48,53 @@ class Pagination extends React.Component {
   };
 
   renderPageList() {
-    return [1, 2, 3, 4, 5].map(item => (
-      <span
-        key={item}
-        className={`page-number ${item === this.props.page ? 'selected' : ''}`}
-      >
-        {item}
-      </span>
-    ));
+    return [1, 2, 3, 4, 5].map(item => {
+      let section = this.props.location.pathname.split('/')[1];
+      if (section === 'toprated') {
+        section = this.props.location.pathname
+          .split('/')
+          .slice(1, 3)
+          .join('/');
+      }
+      return (
+        <Link to={`/${section}/page-${item}`}>
+          <span
+            key={item}
+            className={`page-number ${
+              item === this.props.page ? 'selected' : ''
+            }`}
+          >
+            {item}
+          </span>
+        </Link>
+      );
+    });
   }
 
   render() {
+    const section = this.props.location.pathname.split('/')[1];
     return (
       <PageContainer>
         {this.props.page > 1 ? (
-          <FontAwesomeIcon
-            className="icon"
-            icon={faLongArrowAltLeft}
-            onClick={this.props.setPreviousPage}
-          />
+          <Link to={`/${section}/page-${this.props.page - 1}`}>
+            <FontAwesomeIcon
+              className="icon"
+              icon={faLongArrowAltLeft}
+              onClick={this.props.setPreviousPage}
+            />
+          </Link>
         ) : null}
         <div className="numbers" onClick={this.handleClick}>
           {this.renderPageList()}
         </div>
         {this.props.page < 5 ? (
-          <FontAwesomeIcon
-            className="icon"
-            icon={faLongArrowAltRight}
-            onClick={this.props.setNextPage}
-          />
+          <Link to={`/${section}/page-${this.props.page + 1}`}>
+            <FontAwesomeIcon
+              className="icon"
+              icon={faLongArrowAltRight}
+              onClick={this.props.setNextPage}
+            />
+          </Link>
         ) : null}
       </PageContainer>
     );
