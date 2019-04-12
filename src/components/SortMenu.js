@@ -24,7 +24,6 @@ const Wrapper = styled.div`
 `;
 
 const MenuContainer = styled.div`
-  margin-top: 1em;
   display: flex;
   flex-direction: column;
 

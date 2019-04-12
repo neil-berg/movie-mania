@@ -24,8 +24,7 @@ const CardGrid = styled.div`
 const PageTitle = styled.h2`
   text-align: center;
   color: var(--green);
-  margin: 0;
-  padding-top: 1em;
+  margin: 1em;
 `;
 
 class ComingSoon extends React.Component {

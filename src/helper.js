@@ -166,7 +166,7 @@ export const getGenreKey = genre => {
     Animation: 16,
     Comedy: 35,
     Crime: 80,
-    Documentary: 90,
+    Documentary: 99,
     Drama: 18,
     Family: 10751,
     Fantasy: 14,
