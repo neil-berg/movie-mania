@@ -153,6 +153,32 @@ export const closeSortMenu = () => {
   };
 };
 
+export const openGenreMenu = () => {
+  return {
+    type: 'OPEN_GENRE_MENU'
+  };
+};
+
+export const closeGenreMenu = () => {
+  return {
+    type: 'CLOSE_GENRE_MENU'
+  };
+};
+
+export const setGenreKey = key => {
+  return {
+    type: 'SET_GENRE_KEY',
+    payload: key
+  };
+};
+
+export const setGenreText = text => {
+  return {
+    type: 'SET_GENRE_TEXT',
+    payload: text
+  };
+};
+
 export const isLoading = () => {
   return {
     type: 'IS_LOADING',

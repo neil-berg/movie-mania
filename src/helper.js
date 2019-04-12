@@ -158,3 +158,25 @@ export const getSearchValue = movie => {
     return '';
   }
 };
+
+export const getGenreKey = genre => {
+  const genreToKey = {
+    Action: 28,
+    Adventure: 12,
+    Animation: 16,
+    Comedy: 35,
+    Crime: 80,
+    Documentary: 90,
+    Drama: 18,
+    Family: 10751,
+    Fantasy: 14,
+    Horror: 27,
+    Music: 10402,
+    Mystery: 9648,
+    Romance: 10749,
+    SciFi: 878,
+    Thriller: 53
+  };
+
+  return genreToKey[genre];
+};

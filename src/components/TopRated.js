@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import SortMenu from './SortMenu';
+import GenreMenu from './GenreMenu';
 import MovieCard from './MovieCard';
 import Spinner from './Spinner';
 import { fetchTopRatedMovies, closeSidedrawer } from '../actions';
@@ -29,11 +30,15 @@ const PageTitle = styled.h2`
 
 class TopRated extends React.Component {
   componentDidMount() {
-    // Genre ID codes:
-    // Action - 28, Comedy - 35, Documentary - 99,
-    // Drama - 18, Horror - 27, SciFi - 898
-    const genreId = 878;
-    this.props.fetchTopRatedMovies(genreId);
+    this.props.fetchTopRatedMovies(this.props.genreKey);
+  }
+
+  componentDidUpdate(prevProps) {
+    const oldGenre = prevProps.genreKey;
+    const newGenre = this.props.genreKey;
+    if (oldGenre !== newGenre) {
+      this.props.fetchTopRatedMovies(newGenre);
+    }
   }
 
   renderList() {
@@ -47,7 +52,8 @@ class TopRated extends React.Component {
     }
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
-        <PageTitle>Top Rated</PageTitle>
+        <PageTitle>Top Rated - {this.props.genreText}</PageTitle>
+        <GenreMenu />
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
       </div>
@@ -58,6 +64,8 @@ class TopRated extends React.Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
+    genreKey: state.genreKey,
+    genreText: state.genreText,
     topRatedMovies: sortedTopRatedSelector(state)
   };
 };

@@ -17,6 +17,11 @@ import {
   sortTextReducer,
   sortMenuOpenReducer
 } from './sortMenuReducer';
+import {
+  genreKeyReducer,
+  genreTextReducer,
+  genreMenuOpenReducer
+} from './genreMenuReducer';
 
 export default combineReducers({
   nowPlayingMovies: nowPlayingMoviesReducer,
@@ -32,5 +37,8 @@ export default combineReducers({
   searchResults: searchedMovieReducer,
   sortKey: sortKeyReducer,
   sortMenuOpen: sortMenuOpenReducer,
-  sortText: sortTextReducer
+  sortText: sortTextReducer,
+  genreMenuOpen: genreMenuOpenReducer,
+  genreText: genreTextReducer,
+  genreKey: genreKeyReducer
 });

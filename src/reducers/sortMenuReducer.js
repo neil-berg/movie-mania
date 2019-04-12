@@ -16,7 +16,7 @@ export const sortTextReducer = (state = 'Most Popular', action) => {
   }
 };
 
-export const sortMenuOpenReducer = (state = 'false', action) => {
+export const sortMenuOpenReducer = (state = false, action) => {
   switch (action.type) {
     case 'OPEN_SORT_MENU':
       return true;

@@ -38,8 +38,8 @@ const MenuContainer = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 1em 2em;
-  width: 215px;
+  padding: 1em;
+  width: 175px;
   display: block;
   font-family: 'Nanum Gothic', sans-serif;
   font-size: 0.9em;
