@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
 import Spinner from './Spinner';
+import Pagination from './Pagination';
 import { fetchNowPlayingMovies, closeSidedrawer } from '../actions';
 import { nowPlayingDates } from '../helper.js';
 import { sortedNowPlayingSelector } from '../selectors';
@@ -31,7 +32,16 @@ class NowPlaying extends React.Component {
   componentDidMount() {
     // Determine a month window of dates to fetch for 'now playing'
     const [startDate, endDate] = nowPlayingDates();
-    this.props.fetchNowPlayingMovies(startDate, endDate);
+    this.props.fetchNowPlayingMovies(startDate, endDate, this.props.page);
+  }
+
+  componentDidUpdate(prevProps) {
+    const [startDate, endDate] = nowPlayingDates();
+    const oldPage = prevProps.page;
+    const newPage = this.props.page;
+    if (oldPage !== newPage) {
+      this.props.fetchNowPlayingMovies(startDate, endDate, newPage);
+    }
   }
 
   renderList() {
@@ -48,6 +58,7 @@ class NowPlaying extends React.Component {
         <PageTitle>Now Playing</PageTitle>
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
+        <Pagination />
       </div>
     );
   }
@@ -55,9 +66,10 @@ class NowPlaying extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    sortKey: state.sortKey,
     isLoading: state.isLoading,
-    nowPlayingMovies: sortedNowPlayingSelector(state)
+    nowPlayingMovies: sortedNowPlayingSelector(state),
+    page: state.page,
+    sortKey: state.sortKey
   };
 };
 

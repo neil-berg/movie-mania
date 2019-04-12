@@ -136,7 +136,7 @@ class NavBar extends React.Component {
         </div>
 
         <ListContainer>
-          <StyledLink to="/">Now Playing</StyledLink>
+          <StyledLink to="/nowplaying">Now Playing</StyledLink>
           <StyledLink to="/trending">Trending</StyledLink>
           <StyledLink to="/comingsoon">Coming Soon</StyledLink>
           <StyledLink to="/toprated">Top Rated</StyledLink>
@@ -151,7 +151,7 @@ class NavBar extends React.Component {
             />
           </li>
           <li className="sidedrawer__item">
-            <Link to="/" onClick={() => closeSidedrawer()}>
+            <Link to="/nowplaying" onClick={() => closeSidedrawer()}>
               <div className="link__text">
                 <span>Now Playing</span>
                 <FontAwesomeIcon icon={faAngleDoubleRight} />

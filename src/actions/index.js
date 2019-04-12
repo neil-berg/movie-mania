@@ -1,11 +1,15 @@
 import moviedb from '../apis/moviedb';
 
-export const fetchNowPlayingMovies = (startDate, endDate) => async dispatch => {
+export const fetchNowPlayingMovies = (
+  startDate,
+  endDate,
+  page = 1
+) => async dispatch => {
   dispatch(isLoading());
   const response = await moviedb.get(
     `/discover/movie?api_key=${
       process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=1&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&with_original_language=en`
+    }&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=${page}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&with_original_language=en`
   );
   dispatch({
     type: 'NOWPLAYING_MOVIES',
@@ -176,6 +180,25 @@ export const setGenreText = text => {
   return {
     type: 'SET_GENRE_TEXT',
     payload: text
+  };
+};
+
+export const setPageNumber = number => {
+  return {
+    type: 'SET_PAGE_NUMBER',
+    payload: number
+  };
+};
+
+export const setPreviousPage = () => {
+  return {
+    type: 'SET_PREVIOUS_PAGE'
+  };
+};
+
+export const setNextPage = () => {
+  return {
+    type: 'SET_NEXT_PAGE'
   };
 };
 

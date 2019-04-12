@@ -39,15 +39,12 @@ class App extends React.Component {
           <NavBar />
           <Switch>
             <Route exact path="/" component={NowPlaying} />
+            <Route path="/nowplaying/" component={NowPlaying} />
             <Route path="/toprated" component={TopRated} />
             <Route path="/comingsoon" component={ComingSoon} />
             <Route path="/trending" component={Trending} />
             <Route exact path="/movie/:movieId" component={MovieDetails} />
-            <Route
-              exact
-              path="/search/:searchId"
-              component={MovieSearchResults}
-            />
+            <Route path="/search/:searchId" component={MovieSearchResults} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

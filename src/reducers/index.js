@@ -22,6 +22,7 @@ import {
   genreTextReducer,
   genreMenuOpenReducer
 } from './genreMenuReducer';
+import { paginationReducer } from './paginationReducer';
 
 export default combineReducers({
   nowPlayingMovies: nowPlayingMoviesReducer,
@@ -40,5 +41,6 @@ export default combineReducers({
   sortText: sortTextReducer,
   genreMenuOpen: genreMenuOpenReducer,
   genreText: genreTextReducer,
-  genreKey: genreKeyReducer
+  genreKey: genreKeyReducer,
+  page: paginationReducer
 });
