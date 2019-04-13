@@ -10,9 +10,12 @@ import Spinner from './Spinner';
 import {
   fetchTopRatedMovies,
   closeSidedrawer,
-  setPageNumber
+  setPageNumber,
+  setGenreText,
+  setGenreKey
 } from '../actions';
 import { sortedTopRatedSelector } from '../selectors';
+import { getGenreKey } from '../helper';
 
 const CardGrid = styled.div`
   display: grid;
@@ -34,26 +37,26 @@ const PageTitle = styled.h2`
 
 class TopRated extends React.Component {
   componentDidMount() {
-    // Initially load Action page-1
-    this.props.fetchTopRatedMovies(this.props.genreKey, 1);
+    const genreText = this.props.location.pathname.split('/')[2];
+    const genreKey = getGenreKey(genreText);
+    const page = Number(this.props.location.pathname.slice(-1));
+    this.props.fetchTopRatedMovies(genreKey, page);
+    this.props.setGenreKey(genreKey);
+    this.props.setGenreText(genreText);
+    this.props.setPageNumber(page);
   }
 
   componentDidUpdate(prevProps) {
-    const oldGenre = prevProps.genreKey;
-    const newGenre = this.props.genreKey;
-    const oldPage = Number(
-      prevProps.location.pathname.split('/')[3].split('-')[1]
-    );
-    const newPage = Number(
-      this.props.location.pathname.split('/')[3].split('-')[1]
-    );
-    if (oldGenre !== newGenre) {
-      this.props.fetchTopRatedMovies(newGenre, 1);
-      this.props.setPageNumber(1);
-    }
-    if (oldPage !== newPage) {
-      this.props.fetchTopRatedMovies(this.props.genreKey, newPage);
+    const oldGenre = prevProps.location.pathname.split('/')[2];
+    const newGenre = this.props.location.pathname.split('/')[2];
+    const newGenreKey = getGenreKey(newGenre);
+    const oldPage = Number(prevProps.location.pathname.slice(-1));
+    const newPage = Number(this.props.location.pathname.slice(-1));
+    if (oldGenre !== newGenre || oldPage !== newPage) {
+      this.props.fetchTopRatedMovies(newGenreKey, newPage);
       this.props.setPageNumber(newPage);
+      this.props.setGenreKey(newGenreKey);
+      this.props.setGenreText(newGenre);
     }
   }
 
@@ -92,6 +95,8 @@ export default connect(
   {
     fetchTopRatedMovies,
     closeSidedrawer,
-    setPageNumber
+    setPageNumber,
+    setGenreKey,
+    setGenreText
   }
 )(TopRated);

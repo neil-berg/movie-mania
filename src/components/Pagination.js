@@ -72,7 +72,13 @@ class Pagination extends React.Component {
   }
 
   render() {
-    const section = this.props.location.pathname.split('/')[1];
+    let section = this.props.location.pathname.split('/')[1];
+    if (section === 'toprated') {
+      section = this.props.location.pathname
+        .split('/')
+        .slice(1, 3)
+        .join('/');
+    }
     return (
       <PageContainer>
         {this.props.page > 1 ? (

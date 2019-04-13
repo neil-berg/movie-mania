@@ -161,21 +161,21 @@ export const getSearchValue = movie => {
 
 export const getGenreKey = genre => {
   const genreToKey = {
-    Action: 28,
-    Adventure: 12,
-    Animation: 16,
-    Comedy: 35,
-    Crime: 80,
-    Documentary: 99,
-    Drama: 18,
-    Family: 10751,
-    Fantasy: 14,
-    Horror: 27,
-    Music: 10402,
-    Mystery: 9648,
-    Romance: 10749,
-    SciFi: 878,
-    Thriller: 53
+    action: 28,
+    adventure: 12,
+    animation: 16,
+    comedy: 35,
+    crime: 80,
+    documentary: 99,
+    drama: 18,
+    family: 10751,
+    fantasy: 14,
+    horror: 27,
+    music: 10402,
+    mystery: 9648,
+    romance: 10749,
+    scifi: 878,
+    thriller: 53
   };
 
   return genreToKey[genre];

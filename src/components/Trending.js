@@ -33,16 +33,14 @@ const PageTitle = styled.h2`
 
 class Trending extends React.Component {
   componentDidMount() {
-    this.props.fetchTrendingMovies(1);
+    const page = Number(this.props.location.pathname.slice(-1));
+    this.props.fetchTrendingMovies(page);
+    this.props.setPageNumber(page);
   }
 
   componentDidUpdate(prevProps) {
-    const oldPage = Number(
-      prevProps.location.pathname.split('/')[2].split('-')[1]
-    );
-    const newPage = Number(
-      this.props.location.pathname.split('/')[2].split('-')[1]
-    );
+    const oldPage = Number(prevProps.location.pathname.slice(-1));
+    const newPage = Number(this.props.location.pathname.slice(-1));
     if (oldPage !== newPage) {
       this.props.fetchTrendingMovies(newPage);
       this.props.setPageNumber(newPage);

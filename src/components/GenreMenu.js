@@ -130,9 +130,9 @@ class GenreMenu extends React.Component {
       targetValue = e.target.parentElement.parentElement.innerText;
     }
 
-    const key = getGenreKey(targetValue);
+    const key = getGenreKey(targetValue.toLowerCase());
     this.props.setGenreKey(key);
-    this.props.setGenreText(targetValue);
+    this.props.setGenreText(targetValue.toLowerCase());
     this.props.closeGenreMenu();
   };
 
@@ -143,7 +143,10 @@ class GenreMenu extends React.Component {
           genreMenuOpen={this.props.genreMenuOpen}
           onClick={this.toggleGenreMenu}
         >
-          <span className="selected-text">{this.props.genreText}</span>
+          <span className="selected-text">
+            {this.props.genreText[0].toUpperCase() +
+              this.props.genreText.slice(1)}
+          </span>
           <FontAwesomeIcon
             className="selected-icon"
             icon={
@@ -186,46 +189,69 @@ class GenreMenu extends React.Component {
               <span className="button-text">Crime</span>
             </Button>
           </Link>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faVideo} />
-            <span className="button-text">Documentary</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faTheaterMasks} />
-            <span className="button-text">Drama</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faUsers} />
-            <span className="button-text">Family</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faDragon} />
-            <span className="button-text">Fantasy</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faSkull} />
-            <span className="button-text">Horror</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faMusic} />
-            <span className="button-text">Music</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faSearchLocation} />
-            <span className="button-text">Mystery</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faHeart} />
-            <span className="button-text">Romance</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faUserAstronaut} />
-            <span className="button-text">SciFi</span>
-          </Button>
-          <Button>
-            <FontAwesomeIcon className="button-icon" icon={faUserSecret} />
-            <span className="button-text">Thriller</span>
-          </Button>
+          <Link to="/toprated/documentary/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faVideo} />
+              <span className="button-text">Documentary</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/drama/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faTheaterMasks} />
+              <span className="button-text">Drama</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/family/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faUsers} />
+              <span className="button-text">Family</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/fantasy/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faDragon} />
+              <span className="button-text">Fantasy</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/horror/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faSkull} />
+              <span className="button-text">Horror</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/music/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faMusic} />
+              <span className="button-text">Music</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/mystery/page-1">
+            <Button>
+              <FontAwesomeIcon
+                className="button-icon"
+                icon={faSearchLocation}
+              />
+              <span className="button-text">Mystery</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/romance/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faHeart} />
+              <span className="button-text">Romance</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/scifi/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faUserAstronaut} />
+              <span className="button-text">SciFi</span>
+            </Button>
+          </Link>
+          <Link to="/toprated/thriller/page-1">
+            <Button>
+              <FontAwesomeIcon className="button-icon" icon={faUserSecret} />
+              <span className="button-text">Thriller</span>
+            </Button>
+          </Link>
         </div>
       </MenuContainer>
     );

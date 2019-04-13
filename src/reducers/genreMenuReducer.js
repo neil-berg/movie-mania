@@ -9,7 +9,7 @@ export const genreMenuOpenReducer = (state = false, action) => {
   }
 };
 
-export const genreTextReducer = (state = 'Action', action) => {
+export const genreTextReducer = (state = 'action', action) => {
   switch (action.type) {
     case 'SET_GENRE_TEXT':
       return action.payload;

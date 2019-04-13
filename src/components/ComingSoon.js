@@ -35,16 +35,14 @@ const PageTitle = styled.h2`
 class ComingSoon extends React.Component {
   componentDidMount() {
     const [startDate, endDate] = comingSoonDates();
-    this.props.fetchComingSoonMovies(startDate, endDate, 1);
+    const page = Number(this.props.location.pathname.slice(-1));
+    this.props.fetchComingSoonMovies(startDate, endDate, page);
+    this.props.setPageNumber(page);
   }
   componentDidUpdate(prevProps) {
     const [startDate, endDate] = comingSoonDates();
-    const oldPage = Number(
-      prevProps.location.pathname.split('/')[2].split('-')[1]
-    );
-    const newPage = Number(
-      this.props.location.pathname.split('/')[2].split('-')[1]
-    );
+    const oldPage = Number(prevProps.location.pathname.slice(-1));
+    const newPage = Number(this.props.location.pathname.slice(-1));
     if (oldPage !== newPage) {
       this.props.fetchComingSoonMovies(startDate, endDate, newPage);
       this.props.setPageNumber(newPage);
