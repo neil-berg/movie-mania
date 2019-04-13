@@ -8,8 +8,6 @@ import {
   faLongArrowAltRight
 } from '@fortawesome/free-solid-svg-icons';
 
-import { setPageNumber, setPreviousPage, setNextPage } from '../actions';
-
 const PageContainer = styled.div`
   display: flex;
   align-items: center;
@@ -43,10 +41,6 @@ const PageContainer = styled.div`
 `;
 
 class Pagination extends React.Component {
-  handleClick = e => {
-    this.props.setPageNumber(Number(e.target.innerText));
-  };
-
   renderPageList() {
     return [1, 2, 3, 4, 5].map(item => {
       let section = this.props.location.pathname.split('/')[1];
@@ -83,23 +77,13 @@ class Pagination extends React.Component {
       <PageContainer>
         {this.props.page > 1 ? (
           <Link to={`/${section}/page-${this.props.page - 1}`}>
-            <FontAwesomeIcon
-              className="icon"
-              icon={faLongArrowAltLeft}
-              onClick={this.props.setPreviousPage}
-            />
+            <FontAwesomeIcon className="icon" icon={faLongArrowAltLeft} />
           </Link>
         ) : null}
-        <div className="numbers" onClick={this.handleClick}>
-          {this.renderPageList()}
-        </div>
+        <div className="numbers">{this.renderPageList()}</div>
         {this.props.page < 5 ? (
           <Link to={`/${section}/page-${this.props.page + 1}`}>
-            <FontAwesomeIcon
-              className="icon"
-              icon={faLongArrowAltRight}
-              onClick={this.props.setNextPage}
-            />
+            <FontAwesomeIcon className="icon" icon={faLongArrowAltRight} />
           </Link>
         ) : null}
       </PageContainer>
@@ -113,11 +97,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    setPageNumber,
-    setPreviousPage,
-    setNextPage
-  }
-)(Pagination);
+export default connect(mapStateToProps)(Pagination);

@@ -196,18 +196,6 @@ export const setPageNumber = number => {
   };
 };
 
-export const setPreviousPage = () => {
-  return {
-    type: 'SET_PREVIOUS_PAGE'
-  };
-};
-
-export const setNextPage = () => {
-  return {
-    type: 'SET_NEXT_PAGE'
-  };
-};
-
 export const isLoading = () => {
   return {
     type: 'IS_LOADING',

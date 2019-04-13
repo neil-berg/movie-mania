@@ -44,7 +44,7 @@ class App extends React.Component {
             <Route path="/trending/:pageId" component={Trending} />
             <Route path="/comingsoon/:pageId" component={ComingSoon} />
             <Route path="/toprated/:genreId/:pageId" component={TopRated} />
-            <Route exact path="/movie/:movieId" component={MovieDetails} />
+            <Route path="/movie/:movieId" component={MovieDetails} />
             <Route path="/search/:searchId" component={MovieSearchResults} />
             <Route component={NotFound} />
           </Switch>
