@@ -13,7 +13,7 @@ import {
   setPageNumber,
   setGenreText,
   setGenreKey,
-  setSection
+  setHeaderText
 } from '../actions';
 import { sortedTopRatedSelector } from '../selectors';
 import { getGenreKey } from '../helper';
@@ -32,7 +32,7 @@ const CardGrid = styled.div`
 
 class TopRated extends React.Component {
   componentDidMount() {
-    this.props.setSection('Top Rated');
+    this.props.setHeaderText('Top Rated');
     const genreText = this.props.location.pathname.split('/')[2];
     const genreKey = getGenreKey(genreText);
     const page = Number(this.props.location.pathname.slice(-1));
@@ -93,6 +93,6 @@ export default connect(
     setPageNumber,
     setGenreKey,
     setGenreText,
-    setSection
+    setHeaderText
   }
 )(TopRated);

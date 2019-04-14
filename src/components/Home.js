@@ -16,7 +16,7 @@ import {
   fetchNowPlayingMovies,
   fetchComingSoonMovies,
   fetchTrendingMovies,
-  setSection
+  setHeaderText
 } from '../actions';
 
 import { nowPlayingDates, comingSoonDates } from '../helper';
@@ -66,7 +66,7 @@ const SectionHeader = styled.h2`
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.setSection('Home');
+    this.props.setHeaderText('Home');
     // Fetch NowPlaying, ComingSoon, and Trending movies
     const [startDateNow, endDateNow] = nowPlayingDates();
     this.props.fetchNowPlayingMovies(startDateNow, endDateNow, 1);
@@ -144,6 +144,6 @@ export default connect(
     fetchNowPlayingMovies,
     fetchComingSoonMovies,
     fetchTrendingMovies,
-    setSection
+    setHeaderText
   }
 )(Home);

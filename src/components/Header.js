@@ -25,18 +25,43 @@ const HeaderContainer = styled.header`
     font-size: 1.25em;
     cursor: pointer;
   }
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media screen and (max-width: 600px) {
+    max-width: 600px;
+  }
+
+  @media screen and (min-width: 600px) {
+    padding: 0.5em 1.5em;
+
+    a .header-icon {
+      font-size: 1.75em;
+    }
+
+    svg {
+      width: 50px;
+      height: 50px;
+    }
+  }
 `;
 
 const Title = styled.h1`
   font-size: 1.25em;
   margin: 0;
   color: var(--green);
+
+  @media screen and (min-width: 600px) {
+    font-size: 2em;
 `;
 
-const Header = ({ section }) => {
+const Header = ({ headerText }) => {
   return (
     <HeaderContainer>
-      {section !== 'Home' ? (
+      {headerText !== 'Home' ? (
         <Link
           className="header-title"
           to="/"
@@ -45,15 +70,15 @@ const Header = ({ section }) => {
           <FontAwesomeIcon className="header-icon" icon={faHome} />
         </Link>
       ) : null}
-      <Title>{section === 'Home' ? 'Movie Mania' : section}</Title>
-      <Logo className="header-svg" style={{ width: 50, height: 50 }} />
+      <Title>{headerText === 'Home' ? 'Movie Mania' : headerText}</Title>
+      <Logo />
     </HeaderContainer>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    section: state.section
+    headerText: state.headerText
   };
 };
 

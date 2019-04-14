@@ -10,7 +10,7 @@ import {
   fetchNowPlayingMovies,
   closeSidedrawer,
   setPageNumber,
-  setSection
+  setHeaderText
 } from '../actions';
 import { nowPlayingDates } from '../helper.js';
 import { sortedNowPlayingSelector } from '../selectors';
@@ -29,7 +29,7 @@ const CardGrid = styled.div`
 
 class NowPlaying extends React.Component {
   componentDidMount() {
-    this.props.setSection('Now Playing');
+    this.props.setHeaderText('Now Playing');
     // Determine a 1 month window of dates to fetch for 'now playing'
     const [startDate, endDate] = nowPlayingDates();
     const page = Number(this.props.location.pathname.slice(-1));
@@ -80,6 +80,6 @@ export default connect(
     fetchNowPlayingMovies,
     closeSidedrawer,
     setPageNumber,
-    setSection
+    setHeaderText
   }
 )(NowPlaying);

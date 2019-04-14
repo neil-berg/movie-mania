@@ -10,12 +10,12 @@ import DetailsCrew from './DetailsCrew';
 import {
   fetchSelectedMovie,
   fetchSelectedMovieCredits,
-  setSection
+  setHeaderText
 } from '../actions';
 
 class MovieDetails extends React.Component {
   componentDidMount() {
-    this.props.setSection('Movie Mania');
+    this.props.setHeaderText('Movie Mania');
     const movieId = this.props.match.params.movieId.split('-')[0];
     this.props.fetchSelectedMovie(movieId);
     this.props.fetchSelectedMovieCredits(movieId);
@@ -45,6 +45,6 @@ export default connect(
   {
     fetchSelectedMovie,
     fetchSelectedMovieCredits,
-    setSection
+    setHeaderText
   }
 )(MovieDetails);

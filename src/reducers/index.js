@@ -23,20 +23,20 @@ import {
   genreMenuOpenReducer
 } from './genreMenuReducer';
 import { paginationReducer } from './paginationReducer';
-import { sectionReducer } from './sectionReducer';
+import { headerReducer } from './headerReducer';
 
 export default combineReducers({
   comingSoonMovies: comingSoonMoviesReducer,
   genreKey: genreKeyReducer,
   genreMenuOpen: genreMenuOpenReducer,
   genreText: genreTextReducer,
+  headerText: headerReducer,
   isLoading: loadingReducer,
   nowPlayingMovies: nowPlayingMoviesReducer,
   page: paginationReducer,
   searchBarOpen: searchBarReducer,
   searchResults: searchedMovieReducer,
   searchValue: searchValueReducer,
-  section: sectionReducer,
   selectedMovie: selectedMovieReducer,
   selectedMovieCredits: selectedMovieCreditsReducer,
   sidedrawerOpen: sidedrawerReducer,

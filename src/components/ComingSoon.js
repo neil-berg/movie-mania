@@ -10,7 +10,7 @@ import {
   fetchComingSoonMovies,
   closeSidedrawer,
   setPageNumber,
-  setSection
+  setHeaderText
 } from '../actions';
 import { comingSoonDates } from '../helper';
 import { sortedComingSoonSelector } from '../selectors';
@@ -29,7 +29,7 @@ const CardGrid = styled.div`
 
 class ComingSoon extends React.Component {
   componentDidMount() {
-    this.props.setSection('Coming Soon');
+    this.props.setHeaderText('Coming Soon');
     const [startDate, endDate] = comingSoonDates();
     const page = Number(this.props.location.pathname.slice(-1));
     this.props.fetchComingSoonMovies(startDate, endDate, page);
@@ -77,6 +77,6 @@ export default connect(
     fetchComingSoonMovies,
     closeSidedrawer,
     setPageNumber,
-    setSection
+    setHeaderText
   }
 )(ComingSoon);

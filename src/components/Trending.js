@@ -10,7 +10,7 @@ import {
   fetchTrendingMovies,
   closeSidedrawer,
   setPageNumber,
-  setSection
+  setHeaderText
 } from '../actions';
 import { sortedTrendingSelector } from '../selectors';
 
@@ -28,7 +28,7 @@ const CardGrid = styled.div`
 
 class Trending extends React.Component {
   componentDidMount() {
-    this.props.setSection('Trending');
+    this.props.setHeaderText('Trending');
     const page = Number(this.props.location.pathname.slice(-1));
     this.props.fetchTrendingMovies(page);
     this.props.setPageNumber(page);
@@ -76,6 +76,6 @@ export default connect(
     fetchTrendingMovies,
     closeSidedrawer,
     setPageNumber,
-    setSection
+    setHeaderText
   }
 )(Trending);

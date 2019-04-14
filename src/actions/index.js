@@ -106,10 +106,10 @@ export const fetchSearchedMovie = value => async dispatch => {
   dispatch(isNotLoading());
 };
 
-export const setSection = section => {
+export const setHeaderText = text => {
   return {
-    type: 'SET_SECTION',
-    payload: section
+    type: 'SET_HEADER_TEXT',
+    payload: text
   };
 };
 

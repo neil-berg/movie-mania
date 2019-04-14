@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
-import Spinner from './Spinner';
-import { closeSidedrawer, fetchSearchedMovie, setSection } from '../actions';
+import { closeSidedrawer, fetchSearchedMovie, setHeaderText } from '../actions';
 import { sortedSearchResultsSelector } from '../selectors';
 
 const NoResultsWrapper = styled.div`
@@ -37,13 +36,13 @@ const CardGrid = styled.div`
 
 const PageTitle = styled.h2`
   text-align: center;
-  color: var(--green);
+  color: white;
   margin-top: 1em;
 `;
 
 class MovieSearchResults extends React.Component {
   componentDidMount() {
-    this.props.setSection('Movie Mania');
+    this.props.setHeaderText('Movie Mania');
     const value =
       this.props.searchValue || localStorage.getItem('movie-search-term');
     this.props.fetchSearchedMovie(value.split(' ').join('%20'));
@@ -78,7 +77,7 @@ class MovieSearchResults extends React.Component {
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
         <PageTitle>
-          Search results for {localStorage.getItem('movie-search-term')}
+          Results for {localStorage.getItem('movie-search-term')}
         </PageTitle>
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
@@ -97,5 +96,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { closeSidedrawer, fetchSearchedMovie, setSection }
+  { closeSidedrawer, fetchSearchedMovie, setHeaderText }
 )(MovieSearchResults);
