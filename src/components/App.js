@@ -10,6 +10,7 @@ import ComingSoon from './ComingSoon';
 import Trending from './Trending';
 import MovieDetails from './MovieDetails';
 import MovieSearchResults from './MovieSearchResults';
+import PersonDetails from './PersonDetails';
 import NotFound from './NotFound';
 import Footer from './Footer';
 
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route path="/toprated/:genreId/:pageId" component={TopRated} />
             <Route path="/movie/:movieId" component={MovieDetails} />
             <Route path="/search/:searchId" component={MovieSearchResults} />
+            <Route path="/person/:personId" component={PersonDetails} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

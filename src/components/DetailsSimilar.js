@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { getFeaturedCast, createPersonSlug } from '../helper';
+import { getReleaseYear, createMovieSlug } from '../helper';
 
 const SubHeader = styled.h3`
   margin: 0;
   padding: 1em 0em 0.5em 1em;
   color: var(--green);
+  border-top: 1px grey solid;
   text-align: left;
   font-size: 1.2em;
   font-weight: 400;
@@ -20,7 +22,7 @@ const SubHeader = styled.h3`
   }
 `;
 
-const CastContainer = styled.div`
+const SimilarContainer = styled.div`
   display: flex;
   overflow: scroll;
   padding: 1em 0;
@@ -30,10 +32,10 @@ const CastContainer = styled.div`
   }
 `;
 
-const CastCard = styled.div`
+const SimilarCard = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin-left: 1em;
 
   .profile_photo {
@@ -42,16 +44,15 @@ const CastCard = styled.div`
     flex-basis: 187.5px;
   }
 
-  .name,
-  .character {
+  .title,
+  .year {
     color: white;
     font-size: 0.85em;
     padding: 0.5em 0 0 0;
     margin: 0;
-    text-align: center;
   }
 
-  .character {
+  .year {
     color: lightgrey;
   }
 `;
@@ -70,21 +71,20 @@ const BlankPhoto = styled.div`
   }
 `;
 
-const DetailsCast = ({ cast }) => {
-  const featuredCast = getFeaturedCast(cast);
-  if (featuredCast.length === 0) {
+const DetailsSimilar = ({ similarMovies }) => {
+  if (similarMovies.length === 0) {
     return null;
   }
 
-  const featuredCastList = featuredCast.map(person => {
+  const similarList = similarMovies.map(movie => {
     return (
-      <Link to={createPersonSlug(person)}>
-        <CastCard key={person.id}>
-          {person.profile_path ? (
+      <Link to={createMovieSlug(movie)}>
+        <SimilarCard key={movie.id}>
+          {movie.poster_path ? (
             <img
               className="profile_photo"
-              src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
-              alt={person.name}
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={movie.name}
             />
           ) : (
             <BlankPhoto>
@@ -92,25 +92,25 @@ const DetailsCast = ({ cast }) => {
             </BlankPhoto>
           )}
           <div>
-            <p className="name">{person.name}</p>
-            <p className="character">{person.character}</p>
+            <p className="title">{movie.title}</p>
+            <p className="year">{getReleaseYear(movie)}</p>
           </div>
-        </CastCard>
+        </SimilarCard>
       </Link>
     );
   });
   return (
     <div style={{ background: 'var(--black)' }}>
-      <SubHeader>Featured Cast</SubHeader>
-      <CastContainer>{featuredCastList}</CastContainer>
+      <SubHeader>Similar Movies</SubHeader>
+      <SimilarContainer>{similarList}</SimilarContainer>
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    cast: state.selectedMovieCredits.cast
+    similarMovies: state.similarMovies
   };
 };
 
-export default connect(mapStateToProps)(DetailsCast);
+export default connect(mapStateToProps)(DetailsSimilar);

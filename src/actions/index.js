@@ -106,6 +106,57 @@ export const fetchSearchedMovie = value => async dispatch => {
   dispatch(isNotLoading());
 };
 
+export const fetchSimilarMovies = movieId => async dispatch => {
+  dispatch(isLoading());
+
+  const response = await moviedb.get(
+    `/movie/${movieId}/similar?api_key=${
+      process.env.REACT_APP_MOVIEDB_KEY
+    }&language=en-US&page=1`
+  );
+
+  dispatch({
+    type: 'SIMILAR_MOVIES',
+    payload: response.data.results
+  });
+
+  dispatch(isNotLoading());
+};
+
+export const fetchPersonDetails = personId => async dispatch => {
+  dispatch(isLoading());
+
+  const response = await moviedb.get(
+    `/person/${personId}?api_key=${
+      process.env.REACT_APP_MOVIEDB_KEY
+    }&language=en-US`
+  );
+
+  dispatch({
+    type: 'PERSON_DETAILS',
+    payload: response.data
+  });
+
+  dispatch(isNotLoading());
+};
+
+export const fetchPersonCredits = personId => async dispatch => {
+  dispatch(isLoading());
+
+  const response = await moviedb.get(
+    `/person/${personId}/movie_credits?api_key=${
+      process.env.REACT_APP_MOVIEDB_KEY
+    }&language=en-US`
+  );
+
+  dispatch({
+    type: 'PERSON_CREDITS',
+    payload: response.data.cast
+  });
+
+  dispatch(isNotLoading());
+};
+
 export const setHeaderText = text => {
   return {
     type: 'SET_HEADER_TEXT',

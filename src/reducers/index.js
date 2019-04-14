@@ -7,7 +7,8 @@ import {
   topRatedMoviesReducer,
   selectedMovieReducer,
   selectedMovieCreditsReducer,
-  searchedMovieReducer
+  searchedMovieReducer,
+  similarMoviesReducer
 } from './movieReducers';
 import { loadingReducer } from './loadingReducer';
 import { sidedrawerReducer } from './sidedrawerReducer';
@@ -24,6 +25,7 @@ import {
 } from './genreMenuReducer';
 import { paginationReducer } from './paginationReducer';
 import { headerReducer } from './headerReducer';
+import { personDetailsReducer, personCreditsReducer } from './personReducer';
 
 export default combineReducers({
   comingSoonMovies: comingSoonMoviesReducer,
@@ -34,12 +36,15 @@ export default combineReducers({
   isLoading: loadingReducer,
   nowPlayingMovies: nowPlayingMoviesReducer,
   page: paginationReducer,
+  personDetails: personDetailsReducer,
+  personCredits: personCreditsReducer,
   searchBarOpen: searchBarReducer,
   searchResults: searchedMovieReducer,
   searchValue: searchValueReducer,
   selectedMovie: selectedMovieReducer,
   selectedMovieCredits: selectedMovieCreditsReducer,
   sidedrawerOpen: sidedrawerReducer,
+  similarMovies: similarMoviesReducer,
   sortKey: sortKeyReducer,
   sortMenuOpen: sortMenuOpenReducer,
   sortText: sortTextReducer,

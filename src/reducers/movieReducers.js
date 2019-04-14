@@ -60,3 +60,12 @@ export const searchedMovieReducer = (state = [], action) => {
       return state;
   }
 };
+
+export const similarMoviesReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SIMILAR_MOVIES':
+      return action.payload;
+    default:
+      return state;
+  }
+};

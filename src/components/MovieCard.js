@@ -8,7 +8,12 @@ import {
   faVideo
 } from '@fortawesome/free-solid-svg-icons';
 
-import { overviewSnippet, formatDate, ratingToColor } from '../helper';
+import {
+  overviewSnippet,
+  formatDate,
+  ratingToColor,
+  createMovieSlug
+} from '../helper';
 
 const CardContainer = styled.div`
   display: grid;
@@ -166,12 +171,7 @@ const MovieCard = ({ movie }) => {
         </div>
       </div>
       <p className="overview">{overviewSnippet(movie.overview)}</p>
-      <Link
-        to={`/movie/${movie.id}-${movie.title
-          .toLowerCase()
-          .split(' ')
-          .join('-')}`}
-      >
+      <Link to={createMovieSlug(movie)}>
         <div className="link__text">
           <span>Cast, trailers, and more</span>
           <FontAwesomeIcon icon={faAngleDoubleRight} size="lg" />

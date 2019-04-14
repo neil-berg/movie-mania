@@ -181,3 +181,17 @@ export const getGenreKey = genre => {
 
   return genreToKey[genre];
 };
+
+export const createMovieSlug = movie =>
+  `/movie/${movie.id}-${movie.title
+    .toLowerCase()
+    .replace(/[.,:;?!-'"/]/gi, '')
+    .split(' ')
+    .join('-')}`;
+
+export const createPersonSlug = person =>
+  `/person/${person.id}-${person.name
+    .toLowerCase()
+    .replace(/[.,:;?!-'"/]/gi, '')
+    .split(' ')
+    .join('-')}`;
