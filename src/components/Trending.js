@@ -9,7 +9,8 @@ import Spinner from './Spinner';
 import {
   fetchTrendingMovies,
   closeSidedrawer,
-  setPageNumber
+  setPageNumber,
+  setSection
 } from '../actions';
 import { sortedTrendingSelector } from '../selectors';
 
@@ -25,14 +26,9 @@ const CardGrid = styled.div`
   }
 `;
 
-const PageTitle = styled.h2`
-  text-align: center;
-  color: var(--green);
-  margin: 1em;
-`;
-
 class Trending extends React.Component {
   componentDidMount() {
+    this.props.setSection('Trending');
     const page = Number(this.props.location.pathname.slice(-1));
     this.props.fetchTrendingMovies(page);
     this.props.setPageNumber(page);
@@ -59,7 +55,6 @@ class Trending extends React.Component {
     }
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
-        <PageTitle>Trending</PageTitle>
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
         <Pagination location={this.props.location} />
@@ -80,6 +75,7 @@ export default connect(
   {
     fetchTrendingMovies,
     closeSidedrawer,
-    setPageNumber
+    setPageNumber,
+    setSection
   }
 )(Trending);

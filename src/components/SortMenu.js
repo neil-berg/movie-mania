@@ -21,6 +21,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 1.5em;
 `;
 
 const MenuContainer = styled.div`

@@ -12,10 +12,10 @@ const CardContainer = styled.div`
   justify-content: space-between;
   color: white;
   border-bottom: 1px grey solid;
-  padding: 1em;
+  padding: 0.5em 1em;
 
   .info .title {
-    font-size: 1.25em;
+    font-size: 1em;
     color: var(--green);
     margin: 0;
     padding: 0 0 0.25em 0;
@@ -28,7 +28,7 @@ const CardContainer = styled.div`
   }
 
   .info .score .number {
-    font-size: 1em;
+    font-size: 0.85em;
     color: white;
     padding-right: 0.35em;
   }
@@ -64,7 +64,7 @@ const MiniMovieCard = ({ movie, section }) => {
         {section === 'now-playing' ? (
           <p className="score">
             <span className="number">{movie.vote_average}</span>
-            <FontAwesomeIcon icon={faStar} color="goldenrod" />
+            <FontAwesomeIcon icon={faStar} color="var(--yellow)" />
           </p>
         ) : (
           <span className="date">{formatDate(movie.release_date)}</span>

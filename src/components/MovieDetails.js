@@ -1,19 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchSelectedMovie, fetchSelectedMovieCredits } from '../actions';
 import DetailsBackdrop from './DetailsBackdrop';
 import DetailsOverview from './DetailsOverview';
 import DetailsVideos from './DetailsVideos';
 import DetailsCast from './DetailsCast';
 import DetailsCrew from './DetailsCrew';
 
+import {
+  fetchSelectedMovie,
+  fetchSelectedMovieCredits,
+  setSection
+} from '../actions';
+
 class MovieDetails extends React.Component {
   componentDidMount() {
+    this.props.setSection('Movie Mania');
     const movieId = this.props.match.params.movieId.split('-')[0];
     this.props.fetchSelectedMovie(movieId);
     this.props.fetchSelectedMovieCredits(movieId);
   }
+
   render() {
     return (
       <div>
@@ -27,10 +34,17 @@ class MovieDetails extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    movie: state.selectedMovie
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   {
     fetchSelectedMovie,
-    fetchSelectedMovieCredits
+    fetchSelectedMovieCredits,
+    setSection
   }
 )(MovieDetails);

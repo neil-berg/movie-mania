@@ -23,24 +23,26 @@ import {
   genreMenuOpenReducer
 } from './genreMenuReducer';
 import { paginationReducer } from './paginationReducer';
+import { sectionReducer } from './sectionReducer';
 
 export default combineReducers({
-  nowPlayingMovies: nowPlayingMoviesReducer,
-  trendingMovies: trendingMoviesReducer,
   comingSoonMovies: comingSoonMoviesReducer,
-  topRatedMovies: topRatedMoviesReducer,
+  genreKey: genreKeyReducer,
+  genreMenuOpen: genreMenuOpenReducer,
+  genreText: genreTextReducer,
+  isLoading: loadingReducer,
+  nowPlayingMovies: nowPlayingMoviesReducer,
+  page: paginationReducer,
+  searchBarOpen: searchBarReducer,
+  searchResults: searchedMovieReducer,
+  searchValue: searchValueReducer,
+  section: sectionReducer,
   selectedMovie: selectedMovieReducer,
   selectedMovieCredits: selectedMovieCreditsReducer,
-  isLoading: loadingReducer,
   sidedrawerOpen: sidedrawerReducer,
-  searchBarOpen: searchBarReducer,
-  searchValue: searchValueReducer,
-  searchResults: searchedMovieReducer,
   sortKey: sortKeyReducer,
   sortMenuOpen: sortMenuOpenReducer,
   sortText: sortTextReducer,
-  genreMenuOpen: genreMenuOpenReducer,
-  genreText: genreTextReducer,
-  genreKey: genreKeyReducer,
-  page: paginationReducer
+  topRatedMovies: topRatedMoviesReducer,
+  trendingMovies: trendingMoviesReducer
 });

@@ -1,14 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faThermometerFull,
-  faThermometerThreeQuarters,
-  faThermometerHalf,
-  faThermometerQuarter,
-  faThermometerEmpty,
-  faThermometer
-} from '@fortawesome/free-solid-svg-icons';
 
 import Header from './Header';
 import NavBar from './NavBar';
@@ -21,15 +12,6 @@ import MovieDetails from './MovieDetails';
 import MovieSearchResults from './MovieSearchResults';
 import NotFound from './NotFound';
 import Footer from './Footer';
-
-library.add(
-  faThermometerFull,
-  faThermometerThreeQuarters,
-  faThermometerHalf,
-  faThermometerQuarter,
-  faThermometerEmpty,
-  faThermometer
-);
 
 class App extends React.Component {
   render() {

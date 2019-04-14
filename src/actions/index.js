@@ -106,6 +106,13 @@ export const fetchSearchedMovie = value => async dispatch => {
   dispatch(isNotLoading());
 };
 
+export const setSection = section => {
+  return {
+    type: 'SET_SECTION',
+    payload: section
+  };
+};
+
 export const setSortKey = key => {
   return {
     type: 'SET_SORT_KEY',

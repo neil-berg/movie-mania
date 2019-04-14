@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
 import Spinner from './Spinner';
-import { closeSidedrawer, fetchSearchedMovie } from '../actions';
+import { closeSidedrawer, fetchSearchedMovie, setSection } from '../actions';
 import { sortedSearchResultsSelector } from '../selectors';
 
 const NoResultsWrapper = styled.div`
@@ -38,11 +38,12 @@ const CardGrid = styled.div`
 const PageTitle = styled.h2`
   text-align: center;
   color: var(--green);
-  margin: 1em;
+  margin-top: 1em;
 `;
 
 class MovieSearchResults extends React.Component {
   componentDidMount() {
+    this.props.setSection('Movie Mania');
     const value =
       this.props.searchValue || localStorage.getItem('movie-search-term');
     this.props.fetchSearchedMovie(value.split(' ').join('%20'));
@@ -64,9 +65,6 @@ class MovieSearchResults extends React.Component {
       .map(movie => <MovieCard movie={movie} key={movie.id} />);
   }
   render() {
-    if (this.props.isLoading) {
-      return <Spinner text="Loading movies" />;
-    }
     if (this.renderList().length === 0) {
       return (
         <NoResultsWrapper>
@@ -99,5 +97,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { closeSidedrawer, fetchSearchedMovie }
+  { closeSidedrawer, fetchSearchedMovie, setSection }
 )(MovieSearchResults);

@@ -9,7 +9,8 @@ import Pagination from './Pagination';
 import {
   fetchNowPlayingMovies,
   closeSidedrawer,
-  setPageNumber
+  setPageNumber,
+  setSection
 } from '../actions';
 import { nowPlayingDates } from '../helper.js';
 import { sortedNowPlayingSelector } from '../selectors';
@@ -26,14 +27,9 @@ const CardGrid = styled.div`
   }
 `;
 
-const PageTitle = styled.h2`
-  text-align: center;
-  color: var(--green);
-  margin: 1em;
-`;
-
 class NowPlaying extends React.Component {
   componentDidMount() {
+    this.props.setSection('Now Playing');
     // Determine a 1 month window of dates to fetch for 'now playing'
     const [startDate, endDate] = nowPlayingDates();
     const page = Number(this.props.location.pathname.slice(-1));
@@ -62,7 +58,6 @@ class NowPlaying extends React.Component {
     }
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
-        <PageTitle>Now Playing</PageTitle>
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
         <Pagination location={this.props.location} />
@@ -84,6 +79,7 @@ export default connect(
   {
     fetchNowPlayingMovies,
     closeSidedrawer,
-    setPageNumber
+    setPageNumber,
+    setSection
   }
 )(NowPlaying);

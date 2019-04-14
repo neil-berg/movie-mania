@@ -105,7 +105,7 @@ const HighlightedMovie = ({ movie }) => {
         <p className="title">{movie.title}</p>
         <p className="score">
           <span className="number">{movie.vote_average}</span>
-          <FontAwesomeIcon icon={faStar} color="goldenrod" />
+          <FontAwesomeIcon icon={faStar} color="var(--yellow)" />
         </p>
       </div>
 

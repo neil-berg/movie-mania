@@ -9,7 +9,8 @@ import Spinner from './Spinner';
 import {
   fetchComingSoonMovies,
   closeSidedrawer,
-  setPageNumber
+  setPageNumber,
+  setSection
 } from '../actions';
 import { comingSoonDates } from '../helper';
 import { sortedComingSoonSelector } from '../selectors';
@@ -26,14 +27,9 @@ const CardGrid = styled.div`
   }
 `;
 
-const PageTitle = styled.h2`
-  text-align: center;
-  color: var(--green);
-  margin: 1em;
-`;
-
 class ComingSoon extends React.Component {
   componentDidMount() {
+    this.props.setSection('Coming Soon');
     const [startDate, endDate] = comingSoonDates();
     const page = Number(this.props.location.pathname.slice(-1));
     this.props.fetchComingSoonMovies(startDate, endDate, page);
@@ -60,7 +56,6 @@ class ComingSoon extends React.Component {
     }
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
-        <PageTitle>Coming Soon</PageTitle>
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
         <Pagination location={this.props.location} />
@@ -81,6 +76,7 @@ export default connect(
   {
     fetchComingSoonMovies,
     closeSidedrawer,
-    setPageNumber
+    setPageNumber,
+    setSection
   }
 )(ComingSoon);

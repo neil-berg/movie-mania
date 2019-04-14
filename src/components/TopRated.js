@@ -12,7 +12,8 @@ import {
   closeSidedrawer,
   setPageNumber,
   setGenreText,
-  setGenreKey
+  setGenreKey,
+  setSection
 } from '../actions';
 import { sortedTopRatedSelector } from '../selectors';
 import { getGenreKey } from '../helper';
@@ -29,14 +30,9 @@ const CardGrid = styled.div`
   }
 `;
 
-const PageTitle = styled.h2`
-  text-align: center;
-  color: var(--green);
-  margin: 1em;
-`;
-
 class TopRated extends React.Component {
   componentDidMount() {
+    this.props.setSection('Top Rated');
     const genreText = this.props.location.pathname.split('/')[2];
     const genreKey = getGenreKey(genreText);
     const page = Number(this.props.location.pathname.slice(-1));
@@ -71,7 +67,6 @@ class TopRated extends React.Component {
     }
     return (
       <div onClick={() => this.props.closeSidedrawer()}>
-        <PageTitle>Top Rated - {this.props.genreText}</PageTitle>
         <GenreMenu />
         <SortMenu />
         <CardGrid>{this.renderList()}</CardGrid>
@@ -97,6 +92,7 @@ export default connect(
     closeSidedrawer,
     setPageNumber,
     setGenreKey,
-    setGenreText
+    setGenreText,
+    setSection
   }
 )(TopRated);
