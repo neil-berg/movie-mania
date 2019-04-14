@@ -7,7 +7,6 @@ import {
   faExclamationTriangle,
   faHiking,
   faPencilAlt,
-  faCalendarAlt,
   faTheaterMasks,
   faLaughSquint,
   faDragon,

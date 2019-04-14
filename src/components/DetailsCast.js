@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { getFeaturedCast } from '../helper';
 
@@ -53,17 +55,40 @@ const CastCard = styled.div`
   }
 `;
 
+const BlankPhoto = styled.div`
+  width: 125px;
+  height: 187.5px;
+  border: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .blank-user {
+    color: grey;
+    font-size: 3em;
+  }
+`;
+
 const DetailsCast = ({ cast }) => {
   const featuredCast = getFeaturedCast(cast);
+  if (featuredCast.length === 0) {
+    return null;
+  }
 
   const featuredCastList = featuredCast.map(item => {
     return (
       <CastCard key={item.id}>
-        <img
-          className="profile_photo"
-          src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-          alt={item.name}
-        />
+        {item.profile_path ? (
+          <img
+            className="profile_photo"
+            src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+            alt={item.name}
+          />
+        ) : (
+          <BlankPhoto>
+            <FontAwesomeIcon className="blank-user" icon={faUser} />
+          </BlankPhoto>
+        )}
         <div>
           <p className="name">{item.name}</p>
           <p className="character">{item.character}</p>

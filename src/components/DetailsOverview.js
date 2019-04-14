@@ -161,11 +161,13 @@ const DetailsOverview = ({ movie }) => {
         </div>
       </div>
       <div className="overview">
-        <img
-          className="overview__poster"
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          alt={`Movie poster for ${movie.title}`}
-        />
+        {movie.poster_path ? (
+          <img
+            className="overview__poster"
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            alt={`Movie poster for ${movie.title}`}
+          />
+        ) : null}
         <p className="overview__text">{movie.overview}</p>
       </div>
     </OverviewGrid>

@@ -13,11 +13,13 @@ const PageContainer = styled.div`
   align-items: center;
   justify-content: center;
   list-style-type: none;
-  font-size: 1.5em;
+  font-size: 1.25em;
   margin-bottom: 1em;
 
   .icon {
     color: white;
+    font-size: 1.5em;
+    margin: 0 0.5em;
   }
 
   .numbers {
@@ -37,6 +39,7 @@ const PageContainer = styled.div`
   .selected {
     color: var(--yellow);
     font-weight: bold;
+    //border: 1px solid var(--yellow);
   }
 `;
 
@@ -51,7 +54,7 @@ class Pagination extends React.Component {
           .join('/');
       }
       return (
-        <Link to={`/${section}/page-${item}`}>
+        <Link to={`/${section}/page-${item}`} key={item}>
           <span
             key={item}
             className={`page-number ${

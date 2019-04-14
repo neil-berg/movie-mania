@@ -21,7 +21,7 @@ export const comingSoonDates = () => {
   return [currentDateStr, oneMonthFromNowStr];
 };
 
-// Shorten long movie summaries to the first 25 words
+// Shorten long movie summaries to the first 20 words
 export const overviewSnippet = overview => {
   const words = overview.split(' ');
   const snippet =
@@ -30,6 +30,7 @@ export const overviewSnippet = overview => {
           .slice(0, 20)
           .concat('...')
           .join(' ')
+          .replace(/\s\.\.\./, '...')
       : words.join(' ');
   return snippet;
 };

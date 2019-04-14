@@ -11,7 +11,9 @@ const Backdrop = styled.div`
 `;
 
 const DetailsBackdrop = ({ movie }) => {
-  return <Backdrop imgPath={movie.backdrop_path} />;
+  return movie.backdrop_path ? (
+    <Backdrop imgPath={movie.backdrop_path} />
+  ) : null;
 };
 
 const mapStateToProps = state => {

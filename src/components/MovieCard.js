@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faStar,
+  faAngleDoubleRight,
+  faVideo
+} from '@fortawesome/free-solid-svg-icons';
 
 import { overviewSnippet, formatDate, ratingToColor } from '../helper';
 
@@ -114,6 +118,21 @@ const CardContainer = styled.div`
   }
 `;
 
+const BlankPoster = styled.div`
+  width: 150px;
+  height: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px grey solid;
+  grid-area: poster;
+
+  .blank-video {
+    color: grey;
+    font-size: 3em;
+  }
+`;
+
 const MovieCard = ({ movie }) => {
   let rating = movie.vote_average.toFixed(1);
   if (rating === '10.0') {
@@ -122,10 +141,16 @@ const MovieCard = ({ movie }) => {
 
   return (
     <CardContainer rating={rating}>
-      <img
-        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-        alt={`Movie poster for ${movie.title}`}
-      />
+      {movie.poster_path ? (
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          alt={`Movie poster for ${movie.title}`}
+        />
+      ) : (
+        <BlankPoster>
+          <FontAwesomeIcon className="blank-video" icon={faVideo} />
+        </BlankPoster>
+      )}
       <div className="header">
         <div className="header__left">
           <FontAwesomeIcon
