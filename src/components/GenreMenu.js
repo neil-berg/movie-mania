@@ -57,7 +57,7 @@ const SelectedButton = styled.button`
   margin: 0 auto;
   font-family: 'Nanum Gothic', sans-serif;
   font-size: 0.9em;
-  background: transparent;
+  background: var(--black);
   border: 1px solid grey;
   color: var(--yellow);
   cursor: pointer;
@@ -84,10 +84,9 @@ const Button = styled.button`
   padding: 1em;
   font-family: 'Nanum Gothic', sans-serif;
   font-size: 0.9em;
-  background: transparent;
+  background: var(--black);
+  color: white;
   border: 1px solid grey;
-  border-top: ${props => (props.selected ? '1px grey solid' : '0')};
-  color: ${props => (props.selected ? 'var(--yellow)' : 'white')};
   cursor: pointer;
   display: flex;
   flex-direction: column;

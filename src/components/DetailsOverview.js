@@ -13,10 +13,7 @@ import {
 } from '../helper';
 
 const OverviewGrid = styled.div`
-  background: var(--black);
-
   .title-specs {
-    background: var(--black);
     padding: 1em;
     max-width: 600px;
     margin: 0 auto;
@@ -55,7 +52,6 @@ const OverviewGrid = styled.div`
 
   .rating-money {
     border-top: 1px solid grey;
-    background: var(--black);
     padding: 1em;
     color: white;
     font-size: 0.75em;
@@ -90,7 +86,6 @@ const OverviewGrid = styled.div`
   .overview {
     display: flex;
     align-items: center;
-    background: var(--black);
     border-top: 1px grey solid;
     border-bottom: 1px grey solid;
     max-width: 600px;

@@ -36,7 +36,7 @@ class MovieDetails extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ background: 'var(--black)' }}>
         <DetailsBackdrop />
         <DetailsOverview />
         <DetailsCrew />

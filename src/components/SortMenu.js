@@ -27,6 +27,7 @@ const Wrapper = styled.div`
 const MenuContainer = styled.div`
   display: flex;
   flex-direction: column;
+  background: var(--black);
 
   .dropdown {
     transform: ${props =>
