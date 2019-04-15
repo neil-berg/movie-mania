@@ -26,6 +26,7 @@ const CardContainer = styled.div`
   border-radius: 3px;
   box-shadow: 1px 2px 2px grey;
   transition: all 0.2s ease-in;
+  background: var(--black);
 
   :hover {
     box-shadow: 2px 4px 4px grey;
