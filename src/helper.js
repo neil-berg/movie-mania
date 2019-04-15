@@ -1,4 +1,5 @@
 import numeral from 'numeral';
+import moment from 'moment';
 
 export const nowPlayingDates = () => {
   const currentDate = new Date(Date.now());
@@ -36,12 +37,11 @@ export const overviewSnippet = overview => {
 };
 
 // Format the release date as Mon DD YYYY
-export const formatDate = date =>
-  new Date(date)
-    .toString()
-    .split(' ')
-    .slice(1, 4)
-    .join(' ');
+export const formatReleaseDate = date =>
+  moment(date, 'YYYY-MM-DD').format('MMM D YYYY');
+
+export const formatBirthdate = date =>
+  moment(date, 'YYYY-MM-DD').format('MMMM Do, YYYY');
 
 // Set green/yellow/red icon colors based on score
 export const ratingToColor = rating => {
@@ -59,7 +59,7 @@ export const ratingToColor = rating => {
 };
 
 export const getReleaseYear = movie =>
-  new Date(movie.release_date).getFullYear();
+  moment(movie.release_date, 'YYYY-MM-DD').format('YYYY');
 
 export const getCertification = movie => {
   try {

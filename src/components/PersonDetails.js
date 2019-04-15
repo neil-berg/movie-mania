@@ -12,7 +12,7 @@ import {
   setHeaderText
 } from '../actions';
 
-import { formatDate } from '../helper';
+import { formatBirthdate } from '../helper';
 
 const PersonContainer = styled.div`
   display: grid;
@@ -101,7 +101,7 @@ class PersonDetails extends React.Component {
         )}
         <div className="info">
           <p className="name">{person.name}</p>
-          <p className="birth">Born on {formatDate(person.birthday)}</p>
+          <p className="birth">Born on {formatBirthdate(person.birthday)}</p>
           <p className="birthplace">{person.place_of_birth}</p>
         </div>
         <div className="biography">

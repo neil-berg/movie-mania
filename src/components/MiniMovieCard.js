@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight, faStar } from '@fortawesome/free-solid-svg-icons';
 
-import { formatDate, createMovieSlug } from '../helper';
+import { formatReleaseDate, createMovieSlug } from '../helper';
 
 const CardContainer = styled.div`
   display: flex;
@@ -67,7 +67,7 @@ const MiniMovieCard = ({ movie, section }) => {
             <FontAwesomeIcon icon={faStar} color="var(--yellow)" />
           </p>
         ) : (
-          <span className="date">{formatDate(movie.release_date)}</span>
+          <span className="date">{formatReleaseDate(movie.release_date)}</span>
         )}
       </div>
       <Link className="link" to={createMovieSlug(movie)}>

@@ -10,7 +10,7 @@ import {
 
 import {
   overviewSnippet,
-  formatDate,
+  formatReleaseDate,
   ratingToColor,
   createMovieSlug
 } from '../helper';
@@ -167,7 +167,7 @@ const MovieCard = ({ movie }) => {
         </div>
         <div className="header__right">
           <p className="title">{movie.title}</p>
-          <p className="release">{formatDate(movie.release_date)}</p>
+          <p className="release">{formatReleaseDate(movie.release_date)}</p>
         </div>
       </div>
       <p className="overview">{overviewSnippet(movie.overview)}</p>
