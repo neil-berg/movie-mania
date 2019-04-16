@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -168,6 +169,10 @@ const DetailsOverview = ({ movie }) => {
       </div>
     </OverviewGrid>
   );
+};
+
+DetailsOverview.propTypes = {
+  movie: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {

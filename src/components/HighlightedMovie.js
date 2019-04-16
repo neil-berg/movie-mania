@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAngleDoubleRight,
@@ -121,6 +122,10 @@ const HighlightedMovie = ({ movie }) => {
       </div>
     </HighlightedContainer>
   );
+};
+
+HighlightedMovie.propTypes = {
+  movie: PropTypes.object
 };
 
 export default HighlightedMovie;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight, faStar } from '@fortawesome/free-solid-svg-icons';
 
@@ -74,6 +75,11 @@ const MiniMovieCard = ({ movie, section }) => {
       </Link>
     </CardContainer>
   );
+};
+
+MiniMovieCard.propTypes = {
+  movie: PropTypes.object.isRequired,
+  section: PropTypes.string.isRequired
 };
 
 export default MiniMovieCard;

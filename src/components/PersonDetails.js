@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -140,6 +141,11 @@ class PersonDetails extends React.Component {
     );
   }
 }
+
+PersonDetails.propTypes = {
+  personDetails: PropTypes.object.isRequired,
+  personCredits: PropTypes.array.isRequired
+};
 
 const mapStateToProps = state => {
   return {

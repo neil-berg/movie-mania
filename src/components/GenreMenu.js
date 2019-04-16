@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faExclamationTriangle,
@@ -255,6 +256,11 @@ class GenreMenu extends React.Component {
     );
   }
 }
+
+GenreMenu.propTypes = {
+  genreMenuOpen: PropTypes.bool.isRequired,
+  genreText: PropTypes.string.isRequired
+};
 
 const mapStateToProps = state => {
   return {

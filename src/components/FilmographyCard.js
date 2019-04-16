@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -60,7 +61,7 @@ const CardContainer = styled.div`
   }
 `;
 
-const FilmographyCard = ({ movie, section }) => {
+const FilmographyCard = ({ movie }) => {
   return (
     <CardContainer>
       <p className="title">{movie.title}</p>
@@ -76,6 +77,10 @@ const FilmographyCard = ({ movie, section }) => {
       </Link>
     </CardContainer>
   );
+};
+
+FilmographyCard.propTypes = {
+  movie: PropTypes.object.isRequired
 };
 
 export default FilmographyCard;

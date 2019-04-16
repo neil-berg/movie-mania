@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import DetailsBackdrop from './DetailsBackdrop';
 import DetailsOverview from './DetailsOverview';
@@ -49,6 +50,10 @@ class MovieDetails extends React.Component {
     );
   }
 }
+
+MovieDetails.propTypes = {
+  movie: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => {
   return {

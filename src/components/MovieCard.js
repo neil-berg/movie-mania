@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faStar,
@@ -181,6 +182,10 @@ const MovieCard = ({ movie }) => {
       </Link>
     </CardContainer>
   );
+};
+
+MovieCard.propTypes = {
+  movie: PropTypes.object.isRequired
 };
 
 export default MovieCard;

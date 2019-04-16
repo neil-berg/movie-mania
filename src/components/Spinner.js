@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const SpinnerContainer = styled.div`
   display: flex;
@@ -36,5 +37,9 @@ const Spinner = ({ text }) => (
     <p>{text}</p>
   </SpinnerContainer>
 );
+
+Spinner.propTypes = {
+  text: PropTypes.string.isRequired
+};
 
 export default Spinner;

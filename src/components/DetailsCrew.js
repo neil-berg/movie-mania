@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { getDirectors, getWriters } from '../helper';
 
@@ -23,7 +24,8 @@ const CrewContainer = styled.div`
   }
 `;
 
-const DetailsCrew = ({ crew }) => {
+const DetailsCrew = ({ credits }) => {
+  const crew = credits.crew;
   const directors = getDirectors(crew);
   const writers = getWriters(crew);
 
@@ -42,9 +44,13 @@ const DetailsCrew = ({ crew }) => {
   );
 };
 
+DetailsCrew.propTypes = {
+  credits: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => {
   return {
-    crew: state.selectedMovieCredits.crew
+    credits: state.selectedMovieCredits
   };
 };
 

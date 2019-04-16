@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import SortMenu from './SortMenu';
 import GenreMenu from './GenreMenu';
@@ -76,6 +77,13 @@ class TopRated extends React.Component {
     );
   }
 }
+
+TopRated.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  genreKey: PropTypes.number.isRequired,
+  genreText: PropTypes.string.isRequired,
+  topRatedMovies: PropTypes.array.isRequired
+};
 
 const mapStateToProps = state => {
   return {

@@ -18,7 +18,7 @@ export const genreTextReducer = (state = 'action', action) => {
   }
 };
 
-export const genreKeyReducer = (state = '28', action) => {
+export const genreKeyReducer = (state = 28, action) => {
   switch (action.type) {
     case 'SET_GENRE_KEY':
       return action.payload;

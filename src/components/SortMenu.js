@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMedal,
@@ -147,6 +148,11 @@ class SortMenu extends React.Component {
     );
   }
 }
+
+SortMenu.propTypes = {
+  sortMenuOpen: PropTypes.bool.isRequired,
+  sortText: PropTypes.string.isRequired
+};
 
 const mapStateToProps = state => {
   return {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -196,6 +197,10 @@ class NavBar extends React.Component {
     );
   }
 }
+
+NavBar.propTypes = {
+  sidedrawerOpen: PropTypes.bool.isRequired
+};
 
 const mapStateToProps = state => {
   return {

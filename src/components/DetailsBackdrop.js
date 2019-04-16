@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Backdrop = styled.div`
   height: 350px;
@@ -14,6 +15,10 @@ const DetailsBackdrop = ({ movie }) => {
   return movie.backdrop_path ? (
     <Backdrop imgPath={movie.backdrop_path} />
   ) : null;
+};
+
+DetailsBackdrop.propTypes = {
+  movie: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {

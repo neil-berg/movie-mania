@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { getVideos } from '../helper';
 
@@ -50,6 +51,10 @@ const DetailsVideos = ({ movie }) => {
       <VideoContainer videoList={videoList}>{videoList}</VideoContainer>
     </div>
   );
+};
+
+DetailsVideos.propTypes = {
+  movie: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {

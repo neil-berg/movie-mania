@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 
@@ -74,6 +75,10 @@ const Header = ({ headerText }) => {
       <Logo />
     </HeaderContainer>
   );
+};
+
+Header.propTypes = {
+  headerText: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => {

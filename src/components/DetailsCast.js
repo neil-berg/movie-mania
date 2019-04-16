@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -71,7 +72,8 @@ const BlankPhoto = styled.div`
   }
 `;
 
-const DetailsCast = ({ cast }) => {
+const DetailsCast = ({ credits }) => {
+  const cast = credits.cast;
   const featuredCast = getFeaturedCast(cast);
   if (featuredCast.length === 0) {
     return null;
@@ -108,9 +110,13 @@ const DetailsCast = ({ cast }) => {
   );
 };
 
+DetailsCast.propTypes = {
+  credits: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => {
   return {
-    cast: state.selectedMovieCredits.cast
+    credits: state.selectedMovieCredits
   };
 };
 

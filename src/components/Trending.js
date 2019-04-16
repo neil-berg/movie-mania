@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import MovieCard from './MovieCard';
 import SortMenu from './SortMenu';
@@ -64,6 +65,11 @@ class Trending extends React.Component {
     );
   }
 }
+
+Trending.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  trendingMovies: PropTypes.array.isRequired
+};
 
 const mapStateToProps = state => {
   return {

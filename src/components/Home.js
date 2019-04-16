@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAngleDoubleRight,
@@ -132,11 +133,19 @@ class Home extends React.Component {
   }
 }
 
+Home.propTypes = {
+  comingSoonMovies: PropTypes.array.isRequired,
+  nowPlayingMovies: PropTypes.array.isRequired,
+  trendingMovies: PropTypes.array.isRequired
+};
+
 const mapStateToProps = state => {
   return {
     comingSoonMovies: state.comingSoonMovies,
     nowPlayingMovies: state.nowPlayingMovies,
-    trendingMovies: state.trendingMovies
+    trendingMovies: state.trendingMovies.sort(
+      (a, b) => b.popularity - a.popularity
+    )
   };
 };
 

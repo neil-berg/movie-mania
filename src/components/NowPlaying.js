@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
@@ -66,6 +67,12 @@ class NowPlaying extends React.Component {
     );
   }
 }
+
+NowPlaying.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  nowPlayingMovies: PropTypes.array.isRequired,
+  sortKey: PropTypes.string.isRequired
+};
 
 const mapStateToProps = state => {
   return {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import SortMenu from './SortMenu';
 import MovieCard from './MovieCard';
@@ -86,6 +87,11 @@ class MovieSearchResults extends React.Component {
     );
   }
 }
+
+MovieSearchResults.propTypes = {
+  searchValue: PropTypes.string.isRequired,
+  searchResults: PropTypes.array.isRequired
+};
 
 const mapStateToProps = state => {
   return {
