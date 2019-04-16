@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +11,7 @@ import { getReleaseYear, createMovieSlug } from '../helper';
 const SubHeader = styled.h3`
   margin: 0;
   padding: 1em 0em 0.5em 1em;
-  color: var(--green);
+  color: white;
   border-top: 1px grey solid;
   text-align: left;
   font-size: 1.2em;
@@ -78,8 +78,8 @@ const DetailsSimilar = ({ similarMovies }) => {
 
   const similarList = similarMovies.map(movie => {
     return (
-      <Link to={createMovieSlug(movie)}>
-        <SimilarCard key={movie.id}>
+      <Link to={createMovieSlug(movie)} key={movie.id}>
+        <SimilarCard>
           {movie.poster_path ? (
             <img
               className="profile_photo"

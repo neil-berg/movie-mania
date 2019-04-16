@@ -7,7 +7,7 @@ import { getVideos } from '../helper';
 const SubHeader = styled.h3`
   margin: 0;
   padding: 1em 0em 0.75em 1em;
-  color: var(--green);
+  color: white;
   text-align: left;
   font-size: 1.2em;
   font-weight: 400;

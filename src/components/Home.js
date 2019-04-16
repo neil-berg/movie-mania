@@ -35,6 +35,7 @@ const MovieList = styled.div`
   border: 1px grey solid;
   border-radius: 3px;
   box-shadow: 1px 2px 2px grey;
+  background: var(--black);
 
   .link a {
     text-decoration: none;
@@ -66,6 +67,7 @@ const SectionHeader = styled.h2`
 
 class Home extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setHeaderText('Home');
     // Fetch NowPlaying, ComingSoon, and Trending movies
     const [startDateNow, endDateNow] = nowPlayingDates();

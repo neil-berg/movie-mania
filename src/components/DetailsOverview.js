@@ -90,6 +90,7 @@ const OverviewGrid = styled.div`
     border-bottom: 1px grey solid;
     max-width: 600px;
     margin: 0 auto;
+    line-height: 1.25em;
   }
 
   .overview .overview__poster {

@@ -72,7 +72,7 @@ const CardContainer = styled.div`
     margin: 0;
     padding: 0 0 0 0.35em;
     font-size: 0.75em;
-    color: grey;
+    color: lightgrey;
   }
 
   p.overview {
@@ -81,6 +81,7 @@ const CardContainer = styled.div`
     color: white;
     margin: 0;
     padding: 0 1em;
+    line-height: 1.35em;
   }
 
   a {
@@ -98,7 +99,7 @@ const CardContainer = styled.div`
   }
 
   a:hover {
-    color: var(--green);
+    color: var(--yellow);
   }
 
   .link__text {

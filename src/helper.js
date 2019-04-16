@@ -40,7 +40,7 @@ export const overviewSnippet = overview => {
 export const formatReleaseDate = date =>
   moment(date, 'YYYY-MM-DD').format('MMM D YYYY');
 
-export const formatBirthdate = date =>
+export const formatBirthDeathDate = date =>
   moment(date, 'YYYY-MM-DD').format('MMMM Do, YYYY');
 
 // Set green/yellow/red icon colors based on score

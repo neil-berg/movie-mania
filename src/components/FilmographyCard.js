@@ -19,22 +19,23 @@ const CardContainer = styled.div`
 
   .title {
     grid-area: title;
-    font-size: 1.1em;
-    color: var(--green);
-    margin: 0;
-    padding: 0 0 0.25em 0;
-  }
-
-  .date {
     font-size: 1em;
-    color: lightgrey;
-    grid-area: date;
+    color: var(--green);
     margin: 0;
     padding: 0;
   }
 
+  .date {
+    grid-area: date;
+    font-size: 0.9em;
+    color: lightgrey;
+    margin: 0;
+    padding: 0.25em 0;
+  }
+
   .character {
     grid-area: character;
+    font-size: 0.9em;
     margin: 0;
     padding: 0;
   }
@@ -65,7 +66,9 @@ const FilmographyCard = ({ movie, section }) => {
       <p className="title">{movie.title}</p>
       <p className="date"> {getReleaseYear(movie) || 'NA'}</p>
 
-      <p className="character">{movie.character ? movie.character : 'NA'}</p>
+      <p className="character">
+        {movie.character ? movie.character : 'Character TBA'}
+      </p>
 
       <Link className="link" to={createMovieSlug(movie)}>
         <span>Details</span>

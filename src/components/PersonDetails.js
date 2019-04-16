@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +11,7 @@ import {
   setHeaderText
 } from '../actions';
 
-import { formatBirthdate } from '../helper';
+import { formatBirthDeathDate } from '../helper';
 
 const PersonContainer = styled.div`
   display: grid;
@@ -23,8 +22,7 @@ const PersonContainer = styled.div`
     'filmography filmography';
   border: 1px grey solid;
   border-radius: 3px;
-  box-shadow: 1px 2px 2px grey;
-  transition: all 0.2s ease-in;
+  background: var(--black);
   max-width: 600px;
   margin: 0 auto;
 
@@ -37,8 +35,8 @@ const PersonContainer = styled.div`
   .info {
     grid-area: info;
     color: white;
-    border-bottom: 1px grey solid;
     padding: 0 1em;
+    font-size: 0.9em;
   }
 
   .info .name {
@@ -48,12 +46,30 @@ const PersonContainer = styled.div`
 
   .biography {
     grid-area: biography;
-    color: lightgrey;
+    font-size: 0.9em;
+    color: white;
     padding: 0 1em;
+    border-top: 1px grey solid;
+  }
+
+  .biography p {
+    color: lightgrey;
+    line-height: 1.5em;
   }
 
   .filmography {
     grid-area: filmography;
+    color: white;
+    border-top: 1px grey solid;
+  }
+
+  .biography h2,
+  .filmography h2 {
+    font-size: 24px;
+  }
+
+  .filmography h2 {
+    padding-left: 0.65em;
   }
 `;
 
@@ -71,6 +87,7 @@ const BlankPhoto = styled.div`
 
 class PersonDetails extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setHeaderText('Movie Mania');
     const personId = this.props.location.pathname.split('/')[2].split('-')[0];
     this.props.fetchPersonDetails(personId);
@@ -101,8 +118,15 @@ class PersonDetails extends React.Component {
         )}
         <div className="info">
           <p className="name">{person.name}</p>
-          <p className="birth">Born on {formatBirthdate(person.birthday)}</p>
+          <p className="birth">
+            Born on {formatBirthDeathDate(person.birthday)}
+          </p>
           <p className="birthplace">{person.place_of_birth}</p>
+          {person.deathday ? (
+            <p className="death">
+              Died on {formatBirthDeathDate(person.deathday)}
+            </p>
+          ) : null}
         </div>
         <div className="biography">
           <h2>Biography</h2>
@@ -120,9 +144,9 @@ class PersonDetails extends React.Component {
 const mapStateToProps = state => {
   return {
     personDetails: state.personDetails,
-    personCredits: state.personCredits.sort(
-      (a, b) => new Date(b.release_date) - new Date(a.release_date)
-    )
+    personCredits: state.personCredits
+      .filter(movie => movie.release_date !== '')
+      .sort((a, b) => new Date(b.release_date) - new Date(a.release_date))
   };
 };
 

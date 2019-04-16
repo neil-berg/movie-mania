@@ -11,6 +11,7 @@ const SubHeader = styled.h3`
   margin: 0;
   padding: 1em 0em 0.5em 1em;
   color: var(--green);
+  color: white;
   text-align: left;
   font-size: 1.2em;
   font-weight: 400;
@@ -78,8 +79,8 @@ const DetailsCast = ({ cast }) => {
 
   const featuredCastList = featuredCast.map(person => {
     return (
-      <Link to={createPersonSlug(person)}>
-        <CastCard key={person.id}>
+      <Link to={createPersonSlug(person)} key={person.id}>
+        <CastCard>
           {person.profile_path ? (
             <img
               className="profile_photo"

@@ -15,6 +15,7 @@ const HighlightedContainer = styled.div`
   width: 350px;
   margin: 1em auto;
   box-shadow: 1px 2px 2px grey;
+  background: var(--black);
 
   .poster {
     width: 348px;
@@ -30,7 +31,8 @@ const HighlightedContainer = styled.div`
     font-size: 1.5em;
     color: var(--green);
     margin: 0;
-    padding: 0 0 0.25em 0;
+    padding: 0.25em 0;
+    transform: translateX(-3px);
   }
 
   .info .score {
@@ -49,6 +51,7 @@ const HighlightedContainer = styled.div`
     padding: 0 1em;
     color: lightgrey;
     font-size: 0.85em;
+    line-height: 1.5em;
   }
 
   .link {

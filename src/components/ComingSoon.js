@@ -29,6 +29,7 @@ const CardGrid = styled.div`
 
 class ComingSoon extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setHeaderText('Coming Soon');
     const [startDate, endDate] = comingSoonDates();
     const page = Number(this.props.location.pathname.slice(-1));

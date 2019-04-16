@@ -32,6 +32,7 @@ const CardGrid = styled.div`
 
 class TopRated extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setHeaderText('Top Rated');
     const genreText = this.props.location.pathname.split('/')[2];
     const genreKey = getGenreKey(genreText);

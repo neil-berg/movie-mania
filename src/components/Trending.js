@@ -28,6 +28,7 @@ const CardGrid = styled.div`
 
 class Trending extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setHeaderText('Trending');
     const page = Number(this.props.location.pathname.slice(-1));
     this.props.fetchTrendingMovies(page);
@@ -35,6 +36,7 @@ class Trending extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    window.scrollTo(0, 0);
     const oldPage = Number(prevProps.location.pathname.slice(-1));
     const newPage = Number(this.props.location.pathname.slice(-1));
     if (oldPage !== newPage) {

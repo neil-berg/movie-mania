@@ -17,6 +17,7 @@ import {
 
 class MovieDetails extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setHeaderText('Movie Mania');
     const movieId = this.props.match.params.movieId.split('-')[0];
     this.props.fetchSelectedMovie(movieId);
@@ -25,6 +26,7 @@ class MovieDetails extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    window.scrollTo(0, 0);
     const oldMovieId = prevProps.match.params.movieId.split('-')[0];
     const newMovieId = this.props.match.params.movieId.split('-')[0];
     if (oldMovieId !== newMovieId) {

@@ -29,6 +29,7 @@ const CardGrid = styled.div`
 
 class NowPlaying extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setHeaderText('Now Playing');
     // Determine a 1 month window of dates to fetch for 'now playing'
     const [startDate, endDate] = nowPlayingDates();

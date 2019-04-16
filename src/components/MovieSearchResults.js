@@ -42,6 +42,7 @@ const PageTitle = styled.h2`
 
 class MovieSearchResults extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setHeaderText('Movie Mania');
     const value =
       this.props.searchValue || localStorage.getItem('movie-search-term');
@@ -88,7 +89,6 @@ class MovieSearchResults extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.isLoading,
     searchValue: state.searchValue,
     searchResults: sortedSearchResultsSelector(state)
   };
