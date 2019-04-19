@@ -33,7 +33,7 @@ import {
 import { getGenreKey } from '../helper';
 
 const MenuContainer = styled.div`
-  margin: 1.5em 0;
+  margin-top: 1.5em;
 
   .dropdown {
     display: grid;

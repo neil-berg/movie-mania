@@ -23,6 +23,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 1.5em;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const MenuContainer = styled.div`
