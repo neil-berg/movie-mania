@@ -66,7 +66,7 @@ class MovieSearchResults extends React.Component {
       .map(movie => <MovieCard movie={movie} key={movie.id} />);
   }
   render() {
-    if (this.renderList().length === 0) {
+    if (this.props.searchResults.length === 0) {
       return (
         <NoResultsWrapper>
           <NoResultsText>

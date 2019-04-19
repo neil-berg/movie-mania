@@ -52,7 +52,7 @@ export const selectedMovieCreditsReducer = (state = {}, action) => {
   }
 };
 
-export const searchedMovieReducer = (state = [], action) => {
+export const searchedMovieReducer = (state = [0], action) => {
   switch (action.type) {
     case 'SEARCH_RESULTS':
       return action.payload;
