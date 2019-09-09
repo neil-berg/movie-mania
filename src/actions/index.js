@@ -7,9 +7,7 @@ export const fetchNowPlayingMovies = (
 ) => async dispatch => {
   dispatch(isLoading());
   const response = await moviedb.get(
-    `/discover/movie?api_key=${
-      process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=${page}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&with_original_language=en`
+    `/discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=${page}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&with_original_language=en`
   );
   dispatch({
     type: 'NOWPLAYING_MOVIES',
@@ -21,9 +19,7 @@ export const fetchNowPlayingMovies = (
 export const fetchTrendingMovies = (page = 1) => async dispatch => {
   dispatch(isLoading());
   const response = await moviedb.get(
-    `/trending/movie/week?&api_key=${
-      process.env.REACT_APP_MOVIEDB_KEY
-    }&page=${page}`
+    `/trending/movie/week?&api_key=${process.env.REACT_APP_MOVIEDB_KEY}&page=${page}`
   );
   dispatch({
     type: 'TRENDING_MOVIES',
@@ -38,10 +34,11 @@ export const fetchComingSoonMovies = (
   page = 1
 ) => async dispatch => {
   dispatch(isLoading());
-  const response = await moviedb.get(`/discover/movie?api_key=${
-    process.env.REACT_APP_MOVIEDB_KEY
-  }&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=${page}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}
-  &with_original_language=en`);
+
+  const response = await moviedb.get(
+    `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}`
+  );
+
   dispatch({
     type: 'COMINGSOON_MOVIES',
     payload: response.data.results
@@ -52,9 +49,7 @@ export const fetchComingSoonMovies = (
 export const fetchTopRatedMovies = (genreId, page = 1) => async dispatch => {
   dispatch(isLoading());
   const response = await moviedb.get(
-    `/discover/movie?api_key=${
-      process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US&sort_by=vote_average.desc&certification_country=US&include_adult=false&include_video=false&page=${page}&vote_count.gte=100&with_genres=${genreId}&with_original_language=en`
+    `/discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&language=en-US&sort_by=vote_average.desc&certification_country=US&include_adult=false&include_video=false&page=${page}&vote_count.gte=100&with_genres=${genreId}&with_original_language=en`
   );
   dispatch({
     type: 'TOPRATED_MOVIES',
@@ -67,9 +62,7 @@ export const fetchSelectedMovie = movieId => async dispatch => {
   dispatch(isLoading());
 
   const response = await moviedb.get(
-    `/movie/${movieId}?api_key=${
-      process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US&append_to_response=videos,release_dates`
+    `/movie/${movieId}?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&language=en-US&append_to_response=videos,release_dates`
   );
 
   dispatch({
@@ -94,9 +87,7 @@ export const fetchSearchedMovie = value => async dispatch => {
   dispatch(isLoading());
 
   const response = await moviedb.get(
-    `/search/movie?api_key=${
-      process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US&query=${value}&page=1&include_adult=false`
+    `/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&language=en-US&query=${value}&page=1&include_adult=false`
   );
   dispatch({
     type: 'SEARCH_RESULTS',
@@ -110,9 +101,7 @@ export const fetchSimilarMovies = movieId => async dispatch => {
   dispatch(isLoading());
 
   const response = await moviedb.get(
-    `/movie/${movieId}/similar?api_key=${
-      process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US&page=1`
+    `/movie/${movieId}/similar?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&language=en-US&page=1`
   );
 
   dispatch({
@@ -127,9 +116,7 @@ export const fetchPersonDetails = personId => async dispatch => {
   dispatch(isLoading());
 
   const response = await moviedb.get(
-    `/person/${personId}?api_key=${
-      process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US`
+    `/person/${personId}?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&language=en-US`
   );
 
   dispatch({
@@ -144,9 +131,7 @@ export const fetchPersonCredits = personId => async dispatch => {
   dispatch(isLoading());
 
   const response = await moviedb.get(
-    `/person/${personId}/movie_credits?api_key=${
-      process.env.REACT_APP_MOVIEDB_KEY
-    }&language=en-US`
+    `/person/${personId}/movie_credits?api_key=${process.env.REACT_APP_MOVIEDB_KEY}&language=en-US`
   );
 
   dispatch({

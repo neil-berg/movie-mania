@@ -75,6 +75,7 @@ class Home extends React.Component {
     this.props.fetchNowPlayingMovies(startDateNow, endDateNow, 1);
 
     const [startDateSoon, endDateSoon] = comingSoonDates();
+    console.log(startDateSoon, endDateSoon);
     this.props.fetchComingSoonMovies(startDateSoon, endDateSoon, 1);
 
     this.props.fetchTrendingMovies(1);
